@@ -1,0 +1,81 @@
+CREATE DATABASE EventProject;
+
+USE EVENT;
+
+CREATE TABLE User {
+	UserID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	Username VARCHAR(50),
+	Password VARCHAR(50),
+	Salt VARCHAR(50),
+	Premium BOOLEAN,
+	Email VARCHAR(50),
+	Gender BOOLEAN,
+	Phone INT(13)
+};
+
+CREATE TABLE PasswordRecovery {
+	RecoverID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	UserID INT(11).
+	Token VARCHAR(50),
+	FOREIGN KEY UserID REFERENCES User(UserID)
+}
+
+CREATE TABLE Event {
+	EventID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	Name VARCHAR(50),
+	EventDate DATE,
+	Location VARCHAR(50),
+	Type VARCHAR(50),
+	Picture VARCHAR(50),
+	HostID INT(11),
+	FOREIGN KEY HostID REFERENCES User(UserID)
+};
+
+CREATE TABLE Attendance {
+	AttendanceID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	EventID INT(11),
+	UserID INT(11),
+	FOREIGN KEY EventID REFERENCES Event(EventID),
+	FOREIGN KEY UserID REFERENCES User(UserID)
+};
+
+CREATE TABLE Group {
+	GroupID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	GroupName VARCHAR(50),
+	Picture VARCHAR(50),
+	Description VARCHAR(200)
+};
+
+CREATE TABLE GroupUser {
+	GroupUserID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	GroupID INT(11),
+	UserID INT(11),
+	FOREIGN KEY GroupID REFERENCES Group(GroupID),
+	FOREIGN KEY UserID REFERENCES User(UserID)	
+};
+
+CREATE TABLE Follower {
+	FollowingID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	UserID INT(11),
+	FollowerID INT(11),
+	FOREIGN KEY UserID REFERENCES User(UserID),
+	FOREIGN KEY FollowerID REFERENCES User(UserID)	
+};
+
+CREATE TABLE Chat {
+	MessageID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	Message VARCHAR(200),
+	SenderID INT(11),
+	ReceiverID INT(11),
+	FOREIGN KEY SenderID REFERENCES User(UserID),
+	FOREIGN KEY ReceiverID REFERENCES User(UserID)	
+}
+
+CREATE TABLE Timeline {
+	PostID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	UserID INT(11),
+	Message VARCHAR(200),
+	EventID INT(11)
+	FOREIGN KEY UserID REFERENCES User(UserID),
+	FOREIGN KEY EventID REFERENCES Event(EventID)	
+}
