@@ -30,6 +30,12 @@ public class Database {
 	 */
 	public Map<String, List< Object> > SelectQuery(String query){
 		Map<String, List< Object> > result = new HashMap<>();
+		
+		
+		
+		//Note to add prescreening of the query to validate it is indeed a SELECT statement 
+		
+		//Generate a list of column names
 		String[] keys = query.replace(" ", "").replace("SELECT", "").split("FROM")[0].split(",");
 		
 		Statement st = null;
@@ -40,11 +46,12 @@ public class Database {
 			String statement = String.format(query);
 			
 			rs = st.executeQuery(statement);
-
+			
+			//Loop through the result set appending to the vector that corresponds to the column name
 			while (rs.next()) {
-	            for (int i = 1; i < keys.length; i++) {
-	                result.get(keys[i]).add(rs.getInt(keys[i]));
-	            }
+				for (int i = 1; i < keys.length; i++) {
+					result.get(keys[i]).add(rs.getString(keys[i]));
+				}
         	}
 		} catch(SQLException e) {
 			System.out.println(e);
