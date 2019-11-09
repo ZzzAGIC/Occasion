@@ -11,7 +11,8 @@ import java.util.Map;
 public class Database {
 	private Connection conn;
 
-	public Database() {
+	
+	public Database() throws Exception {
 		String databaseName = "NAME";
 		String instanceName = "INSTANCE_NAME";
 		String username = "USERNAME";
@@ -19,13 +20,14 @@ public class Database {
 		String connection_string = String.format("jdbc:mysql://google/%s?cloudSqlInstance=%s&" + "socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false", 
 		        databaseName, instanceName);
 		
-		try {
-			conn = DriverManager.getConnection(connection_string, username, password);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+		conn = DriverManager.getConnection(connection_string, username, password);	
 	}
-
+	
+	/**
+	 * A method that acts as a wrapper for select statements on the database
+	 * @param query - An SQL Select statement
+	 * @return A map consisting of a mapping of column name to an ordered vector of values
+	 */
 	public Map<String, List< Object> > SelectQuery(String query){
 		Map<String, List< Object> > result = new HashMap<>();
 		String[] keys = query.replace(" ", "").replace("SELECT", "").split("FROM")[0].split(",");
@@ -60,7 +62,11 @@ public class Database {
 		}
 		return result;
 	}
-
+	
+	/**
+	 * A method that acts as a wrapper for an SQL Statement that has no result set
+	 * @param query - An SQL Remove Query
+	 */
 	public void UpdateQuery(String query) {
 		Statement st = null;
 		try {				
@@ -77,7 +83,11 @@ public class Database {
 			}
 		}
 	}
-
+	
+	/**
+	 * Closes the connection 
+	 * @throws SQLException
+	 */
 	public void Close() throws SQLException {
 		conn.close();
 	}
