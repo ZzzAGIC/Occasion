@@ -1,4 +1,4 @@
-package db;
+package occasion.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,8 +30,6 @@ public class Database {
 	 */
 	public Map<String, List< Object> > SelectQuery(String query){
 		Map<String, List< Object> > result = new HashMap<>();
-		
-		
 		
 		//Note to add prescreening of the query to validate it is indeed a SELECT statement 
 		
