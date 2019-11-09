@@ -12,10 +12,10 @@ public class Database {
 	private Connection conn;
 
 	public Database() {
-		String databaseName = "BookSearch";
-		String instanceName = "cs201-255422:us-central1:booksearch";
-		String username = "rishabh";
-		String password = "rishabh";
+		String databaseName = "NAME";
+		String instanceName = "INSTANCE_NAME";
+		String username = "USERNAME";
+		String password = "PASSWORD";
 		String connection_string = String.format("jdbc:mysql://google/%s?cloudSqlInstance=%s&" + "socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false", 
 		        databaseName, instanceName);
 		
