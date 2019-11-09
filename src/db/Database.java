@@ -18,6 +18,7 @@ public class Database {
 		String password = "rishabh";
 		String connection_string = String.format("jdbc:mysql://google/%s?cloudSqlInstance=%s&" + "socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false", 
 		        databaseName, instanceName);
+		
 		try {
 			conn = DriverManager.getConnection(connection_string, username, password);
 		} catch (SQLException e) {
