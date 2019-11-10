@@ -50,7 +50,7 @@ public class Database {
 				for (int i = 1; i < keys.length; i++) {
 					result.get(keys[i]).add(rs.getString(keys[i]));
 				}
-        	}
+			}
 		} catch(SQLException e) {
 			System.out.println(e);
 		} finally {	
