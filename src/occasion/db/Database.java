@@ -5,9 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Database {
 	
@@ -28,14 +26,15 @@ public class Database {
 		
 		return conn;
 	}
+	
 	/**
 	 * A method that acts as a wrapper for select statements on the database
 	 * @param query - An SQL Select statement
 	 * @param args - An indefinite number of parameters for the query
 	 * @return A map consisting of a mapping of column name to an ordered vector of values
 	 */
-	public static List<List<String> >  SelectQuery(String query, String...args){
-		
+	public static List<List<String> > SelectQuery(String query, String...args){
+	
 		//Note to add prescreening of the query to validate it is indeed a SELECT statement 
 		
 		PreparedStatement st = null;
@@ -54,6 +53,7 @@ public class Database {
 			ResultSetMetaData rsmd = rs.getMetaData();
 			
 			List<List<String> > result = new ArrayList<List<String>>();
+			
 			//Loop through the result set appending to the vector that corresponds to the column name
 			int row = 1;
 			while (rs.next()) {
