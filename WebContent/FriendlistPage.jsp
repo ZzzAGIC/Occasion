@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Friendlist Page</title>
+<title>Friendlist Page!</title>
 </head>
 <body>
 
