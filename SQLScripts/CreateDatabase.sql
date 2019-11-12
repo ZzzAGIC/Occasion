@@ -9,7 +9,7 @@ CREATE TABLE User {
 	Salt VARCHAR(50),
 	Premium BOOLEAN,
 	Email VARCHAR(50),
-	Gender BOOLEAN,
+	Gender VARCHAR(50),
 	Phone INT(13),
 	ProfileImage VARCHAR(50),
 	Birthday DATE,
@@ -115,6 +115,6 @@ CREATE TABLE Location {
 	State VARCHAR(11),
 	Street VARCHAR(200),
 	Zipcode INT(11),
-	Longitude VARCHAR(20),
-	Latitude VARCHAR(20)
+	Longitude POINT,
+	Latitude POINT
 };
