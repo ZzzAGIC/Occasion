@@ -1,0 +1,25 @@
+@charset "UTF-8";
+body {
+	background: #cccccc;
+}
+
+.form {
+	
+	vertical-align: middle;
+  background: #ccffff;
+  width: 40%;
+  margin: auto;
+  padding: 40px;
+  box-shadow: 0 0 3px rgb(204, 204, 204, 0.5);
+}
+ .button {
+    cursor: pointer;
+    background: #ff9999;
+    width: 100%;
+    padding: 10px 15px;
+    border: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+
+}

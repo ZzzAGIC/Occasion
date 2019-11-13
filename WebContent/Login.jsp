@@ -4,14 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="Login.css">
+<title>Login</title>
 </head>
 <body>
 	
 	
 	
 	<div align="center">
-		<form action="myservlet" method="post" onsubmit="return validate();"> 
+		<form class="form" action="myservlet" method="post" onsubmit="return validate();"> 
 		<div id="formerror" style="color: red;"> 
 		<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 		</div>
