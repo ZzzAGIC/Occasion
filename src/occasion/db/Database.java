@@ -71,20 +71,13 @@ public class Database {
 
 		} finally {	
 			try {
-				st.close();
-			} catch(Exception e) {
-				System.out.println(e);
+				if(rs != null) { rs.close();}
+				if(st != null) { st.close();}
+				if(conn != null) {conn.close();}
 			}
-			try {
-				rs.close();
-			} catch(Exception e) {
-				System.out.println(e);
-			}
-			try {
-				conn.close();
-			} catch(Exception e) {
-				System.out.println(e);
-			}			
+			catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}		
 		}
 		return result;
 	}
@@ -109,14 +102,11 @@ public class Database {
 			System.out.println(e);
 		} finally {
 			try {
-				st.close();
-			} catch(SQLException e) {
-				System.out.println(e);
+				if(st != null) { st.close();}
+				if(conn != null) {conn.close();}
 			}
-			try {
-				conn.close();
-			} catch(SQLException e) {
-				System.out.println(e);
+			catch(SQLException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 	}

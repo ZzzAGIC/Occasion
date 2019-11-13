@@ -1,10 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -72,7 +68,6 @@ public class register_validate extends HttpServlet {
 						next = "/Register.jsp";
 					}
 					try {
-//						if (LOG_IN(register_name, register_pass1, false)) {
 						if (Register(Username, phone_number, Email, Password1)) {	
 							session.setAttribute("login", true);
 							session.setAttribute("myname", Username);
