@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
+import occasion.db.Database;
 
 /**
  * Servlet implementation class login_validate
@@ -85,7 +90,12 @@ public class login_validate extends HttpServlet {
 	    }
 	    
 		public static boolean LOG_IN(String username, String password) throws SQLException, ClassNotFoundException {
-			return true;
+			String query = "SELECT * FROM User WHERE Username = ? AND Password = ?";
+			List<List<String>> output = Database.SelectQuery(query, username, password);
+			
+			if(output.size() > 0) return true;
+			
+			return false;
 		}
 			
 
