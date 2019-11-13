@@ -12,11 +12,13 @@
 	<div class="navbar">
 		<h1 class="logo">Occasion</h1>
 		<button class="button" id="Homepage_button" type="button" onclick="window.location='HomePage.jsp'">Home Page</button>
+		<div class="dropdown">
 		<button class="button" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">Profile</button>
 			<div class="dropdown-content">
-    			<button class="subbutton" id="Login_buttom" type="button" onclick="">Login</button>
-				<button class="subbutton" id="Register_buttom" type="button" onclick="">Register</button>
+    			<button class="subbutton" id="Login_buttom" type="button" onclick="window.location='Login.jsp'">Login</button>
+				<button class="subbutton" id="Register_buttom" type="button" onclick="window.location='Register.jsp'">Register</button>
   			</div>
+  		</div>
 		<button class="button" id="Friendpage_button" type="button" onclick="window.location='FriendlistPage.jsp'">Friend list</button>
 		<button class="button" id="Eventpage_buttom" type="button" onclick="window.location='EventPage.jsp'">Event</button>	
 		<button class="button" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">+</button>
