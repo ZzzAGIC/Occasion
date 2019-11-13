@@ -40,29 +40,31 @@ public class Database {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Connection conn = null;
+		List<List<String> > result = new ArrayList<List<String>>();
+
 		try {				
 			conn = getConnection();
 			
 			st = conn.prepareStatement(query);
 			
 			for(int i = 0; i < args.length; i++) {
-				st.setString(i, args[i]);
+				st.setString(i + 1, args[i]);
 			}
 			rs = st.executeQuery();
 			
 			ResultSetMetaData rsmd = rs.getMetaData();
 			
-			List<List<String> > result = new ArrayList<List<String>>();
-			
 			//Loop through the result set appending to the vector that corresponds to the column name
-			int row = 1;
 			while (rs.next()) {
 				List<String> rowData = new ArrayList<>();
 				for(int i = 0; i < rsmd.getColumnCount(); i++) {
-					rowData.add(rs.getObject(row).toString());
+					try {
+						rowData.add(rs.getObject(i).toString());
+					} catch (Exception e) {
+						rowData.add("");
+					}
 				}
 				result.add(rowData);
-				row++;
 			}
 			return result;
 		} catch(SQLException e) {
@@ -82,9 +84,9 @@ public class Database {
 				conn.close();
 			} catch(Exception e) {
 				System.out.println(e);
-			}
+			}			
 		}
-		return null;
+		return result;
 	}
 	
 	/**
@@ -98,9 +100,8 @@ public class Database {
 		try {				
 			conn = getConnection();
 			st = conn.prepareStatement(query);
-			
 			for(int i = 0; i < args.length; i++) {
-				st.setString(i, args[i]);
+				st.setString(i + 1, args[i]);
 			}
 			
 			st.executeUpdate();
