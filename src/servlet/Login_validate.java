@@ -20,13 +20,13 @@ import occasion.db.Database;
  * Servlet implementation class login_validate
  */
 @WebServlet("/login_validate")
-public class login_validate extends HttpServlet {
+public class Login_validate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public login_validate() {
+    public Login_validate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -84,7 +84,14 @@ public class login_validate extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	    
+	/**
+	 * Function Validates that a user exists with the existing credentials   
+	 * @param username - inputed username
+	 * @param password - inputed password
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
 	public static boolean validateCredentials(String username, String password) throws SQLException, ClassNotFoundException {
 		String query = "SELECT * FROM User WHERE Username = ? AND Password = ?";
 		List<List<String>> output = Database.SelectQuery(query, username, password);

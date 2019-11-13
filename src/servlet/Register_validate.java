@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class register_validate
  */
 @WebServlet("/register_validate")
-public class register_validate extends HttpServlet {
+public class Register_validate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public register_validate() {
+    public Register_validate() {
         super();
         // TODO Auto-generated constructor stub
     }
