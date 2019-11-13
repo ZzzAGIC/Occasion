@@ -83,9 +83,7 @@ public class register_validate extends HttpServlet {
 					catch (ClassNotFoundException e){
 						e.printStackTrace();
 					}
-					
-					
-					
+										
 					request.setAttribute("error", error);
 					RequestDispatcher dispatch = getServletContext().getRequestDispatcher(next);
 					
