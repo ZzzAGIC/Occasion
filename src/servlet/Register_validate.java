@@ -108,7 +108,7 @@ public class register_validate extends HttpServlet {
 		if(output.size() > 0) return false;
 		
 		String toinsert = "INSERT INTO User (Username,Password,  Email, Phone) "
-				+ "VALUES ('"+Username+"','"+Password+"','"+Email+"','"+phone_number+"')";
+				+ "VALUES (?, ?, ?, ?)";
 //		Username,Password, Salt, Premium, Email, Gender, Phone, ProfileImage, Birthday, Points, Status
 		
 		Database.UpdateQuery(toinsert, Username, Password, Email, phone_number);
