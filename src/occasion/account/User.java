@@ -1,5 +1,7 @@
 package occasion.account;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class User {
 	private Date registrationDate;
 	private boolean premium;
 	private int points;
+	private int status; 
 	
 	public User() {
 	}
@@ -30,9 +33,35 @@ public class User {
 		if(details.size() == 0) return;
 		
 		List<String> record = details.get(0);
-		
+		System.out.println(record);
 		this.setUserID(Integer.parseInt(record.get(0)));
 		this.setUsername(record.get(1));
+		this.setNickname(record.get(3));
+		this.setPremium(Boolean.parseBoolean(record.get(4)));
+		this.setEmail(record.get(5));
+		this.setGender(record.get(6));
+		this.setPhone(record.get(7));
+		this.setImage(record.get(8));
+		
+		System.out.println(record.get(9));
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+		try {
+			this.setBirthday(formatter.parse(record.get(9)));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.setPoints(Integer.parseInt(record.get(10)));
+		} catch (Exception e) {
+			this.setPoints(0);
+		}
+		
+		try {
+			this.setPoints(Integer.parseInt(record.get(11)));
+		} catch (Exception e) {
+			this.setStatus(0);
+		}
 	}
 
 	public int getUserID() {
@@ -62,7 +91,7 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
-
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -121,5 +150,19 @@ public class User {
 
 	public void setPoints(int points) {
 		this.points = points;
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public void PrintDetails() {
+		System.out.println("Username: " + getUsername());
+		System.out.println("Nickname: " + getNickname());
+		System.out.println("Email: " + getEmail());
 	}
 }

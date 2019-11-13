@@ -57,13 +57,14 @@ public class Database {
 			//Loop through the result set appending to the vector that corresponds to the column name
 			while (rs.next()) {
 				List<String> rowData = new ArrayList<>();
-				for(int i = 0; i < rsmd.getColumnCount(); i++) {
+				for(int i = 1; i <= rsmd.getColumnCount(); i++) {
 					try {
 						rowData.add(rs.getObject(i).toString());
 					} catch (Exception e) {
 						rowData.add("");
 					}
 				}
+				System.out.println(rowData);
 				result.add(rowData);
 			}
 			return result;

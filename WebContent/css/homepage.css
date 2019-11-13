@@ -54,7 +54,6 @@
 }
 
 .header{
-	backgroun-color: black;
 	height: 80px;
 	width: 100%;
 }
@@ -88,7 +87,7 @@
 	
 }
 .footer{
-	 display: flex;
+	display: flex;
     flex-direction: row;
     justify-content: space-around;
 }

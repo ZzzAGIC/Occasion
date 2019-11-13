@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="occasion.account.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	<div class="navbar">
 		<h1 class="logo">Occasion</h1>
 		<button class="button" id="Homepage_button" type="button" onclick="window.location='HomePage.jsp'">Home Page</button>
-		
+
 		<div class="dropdown">
 		<button class="button" type="button" >Profile</button>
 			<div class="dropdown-content">
