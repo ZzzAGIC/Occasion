@@ -33,7 +33,7 @@ public class User {
 		if(details.size() == 0) return;
 		
 		List<String> record = details.get(0);
-		System.out.println(record);
+
 		this.setUserID(Integer.parseInt(record.get(0)));
 		this.setUsername(record.get(1));
 		this.setNickname(record.get(3));
