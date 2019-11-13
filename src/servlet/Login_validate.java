@@ -19,7 +19,7 @@ import occasion.db.Database;
 /**
  * Servlet implementation class login_validate
  */
-@WebServlet("/login_validate")
+@WebServlet("/Login_validate")
 public class Login_validate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
