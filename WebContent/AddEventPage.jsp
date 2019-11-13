@@ -21,7 +21,7 @@
   				<br>
   				<button class="subbutton" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">My Profile</button>
   				<br>
-				<button class="subbutton" id="Signout_button" type="button" onclick="">Sign out</button>
+				<button class="subbutton" id="Signout_button" type="submit" onclick="">Sign out</button>
   			
   			</div>
   		</div>

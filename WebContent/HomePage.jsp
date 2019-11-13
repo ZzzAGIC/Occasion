@@ -8,7 +8,6 @@
 <title>HomePage</title>
 </head>
 <body>
-	
 	<div class="navbar">
 		<h1 class="logo">Occasion</h1>
 		<button class="button" id="Homepage_button" type="button" onclick="window.location='HomePage.jsp'">Home Page</button>
@@ -22,8 +21,9 @@
   				<br>
   				<button class="subbutton" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">My Profile</button>
   				<br>
-				<button class="subbutton" id="Signout_button" type="button" onclick="signout()">Sign out</button>
-  			
+  				<form action="Signout">
+  					<input class="subbutton" id="Signout_button" type="submit" value="Sign out"/>
+  				</form>
   			</div>
   		</div>
   		

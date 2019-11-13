@@ -11,7 +11,6 @@
 <div class="navbar">
 		<h1 class="logo">Occasion</h1>
 		<button class="button" id="Homepage_button" type="button" onclick="window.location='HomePage.jsp'">Home Page</button>
-		
 		<div class="dropdown">
 		<button class="button" type="button" >Profile</button>
 			<div class="dropdown-content">
@@ -21,8 +20,9 @@
   				<br>
   				<button class="subbutton" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">My Profile</button>
   				<br>
-				<button class="subbutton" id="Signout_button" type="button" onclick="">Sign out</button>
-  			
+				<form action="Signout" method = "POST">
+  					<input class="subbutton" id="Signout_button" type="submit" value="Sign out"/>
+  				</form>  			
   			</div>
   		</div>
   		
