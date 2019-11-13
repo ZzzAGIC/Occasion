@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="homepage.css">
+<link rel="stylesheet" href="css/homepage.css">
 <title>ProfilePage</title>
 </head>
 <body>

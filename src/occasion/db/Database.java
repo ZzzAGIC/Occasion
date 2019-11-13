@@ -68,7 +68,7 @@ public class Database {
 			}
 			return result;
 		} catch(SQLException e) {
-
+			System.out.println(e.getMessage());
 		} finally {	
 			try {
 				if(rs != null) { rs.close();}
