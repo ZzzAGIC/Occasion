@@ -12,7 +12,7 @@
 	
 	
 	<div align="center">
-		<form class="form" action="myservlet" method="post" onsubmit="return validate();"> 
+		<form class="form" action="login_validate" method="post" onsubmit="return validate();"> 
 		<div id="formerror" style="color: red;"> 
 		<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 		</div>
