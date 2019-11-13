@@ -44,34 +44,31 @@ public class login_validate extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("login", false);
 			
-				boolean login_input_checker = true;
 
-				if(login_name =="") {
-					error += "Username cannot be empty & ";
+			if(login_name =="") {
+				error += "Username cannot be empty & ";
+				next = "/Login.jsp";
+			}
+			if(login_pass =="") {
+				error += "password cannot be empty & ";
+				next = "/Login.jsp";
+			}
+			try {
+				//login success
+				if (validateCredentials(login_name, login_pass)) {
+					session.setAttribute("login", true);
+					session.setAttribute("myname", login_name);
+				}
+				//login failed
+				else {
+					error += "invalid username or wrong password  & ";
 					next = "/Login.jsp";
 				}
-				if(login_pass =="") {
-					error += "password cannot be empty & ";
-					next = "/Login.jsp";
-				}
-				try {
-					//login success
-					if (LOG_IN(login_name, login_pass)) {
-						session.setAttribute("login", true);
-						session.setAttribute("myname", login_name);
-					}
-					//login failed
-					else {
-						error += "invalid username or wrong password  & ";
-						next = "/Login.jsp";
-					}
-				}
-				catch (SQLException e){
-					e.printStackTrace();
-				}
-				catch (ClassNotFoundException e){
-					e.printStackTrace();
-				}
+			} catch (SQLException e){
+				e.printStackTrace();
+			} catch (ClassNotFoundException e){
+				e.printStackTrace();
+			}
 			
 			
 			
@@ -89,7 +86,7 @@ public class login_validate extends HttpServlet {
 			}
 	    }
 	    
-		public static boolean LOG_IN(String username, String password) throws SQLException, ClassNotFoundException {
+		public static boolean validateCredentials(String username, String password) throws SQLException, ClassNotFoundException {
 			String query = "SELECT * FROM User WHERE Username = ? AND Password = ?";
 			List<List<String>> output = Database.SelectQuery(query, username, password);
 			
