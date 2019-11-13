@@ -1,8 +1,8 @@
 CREATE DATABASE EventProject;
 
-USE EVENT;
+USE EventProject;
 
-CREATE TABLE User {
+CREATE TABLE User (
 	UserID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	Username VARCHAR(50),
 	Password VARCHAR(50),
@@ -15,16 +15,16 @@ CREATE TABLE User {
 	Birthday DATE,
 	Points INT(5),
 	Status INT(2)
-};
+);
 
-CREATE TABLE PasswordRecovery {
+CREATE TABLE PasswordRecovery (
 	RecoverID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	UserID INT(11).
 	Token VARCHAR(50),
 	FOREIGN KEY UserID REFERENCES User(UserID)
-}
+)
 
-CREATE TABLE Event {
+CREATE TABLE Event (
 	EventID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	Name VARCHAR(50),
 	EventDate DATE,
@@ -38,9 +38,9 @@ CREATE TABLE Event {
 	Description VARCHAR(200),
 	FOREIGN KEY HostID REFERENCES User(UserID)
 	FOREIGN KEY LocationID REFERENCES Location(LocationID)
-};
+);
 
-CREATE TABLE Attendance {
+CREATE TABLE Attendance (
 	AttendanceID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	EventID INT(11),
 	UserID INT(11),
@@ -48,9 +48,9 @@ CREATE TABLE Attendance {
 	Favourite INT(1),
 	FOREIGN KEY EventID REFERENCES Event(EventID),
 	FOREIGN KEY UserID REFERENCES User(UserID)
-};
+);
 
-CREATE TABLE Group {
+CREATE TABLE Group (
 	GroupID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	GroupName VARCHAR(50),
 	Picture VARCHAR(50),
@@ -58,18 +58,18 @@ CREATE TABLE Group {
 	OwnerID INT(11),
 	Size INT(5),
 	FOREIGN KEY OwnerID REFERENCES User(UserID)
-};
+);
 
-CREATE TABLE GroupUser {
+CREATE TABLE GroupUser (
 	GroupUserID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	GroupID INT(11),
 	UserID INT(11),
 	Description VARCHAR(200),
 	FOREIGN KEY GroupID REFERENCES Group(GroupID),
 	FOREIGN KEY UserID REFERENCES User(UserID)	
-};
+);
 
-CREATE TABLE Relationship {
+CREATE TABLE Relationship (
 	RelationshipID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	AlphaUserID INT(11),
 	BetaUserID INT(11),
@@ -79,18 +79,18 @@ CREATE TABLE Relationship {
 	FOREIGN KEY AlphaUserID REFERENCES User(UserID),
 	FOREIGN KEY BetaUserID REFERENCES User(UserID),
 	FOREIGN KEY ActionUserID REFERENCES User(UserID)	
-};
+);
 
-CREATE TABLE Chat {
+CREATE TABLE Chat (
 	MessageID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	Message VARCHAR(200),
 	SenderID INT(11),
 	ReceiverID INT(11),
 	FOREIGN KEY SenderID REFERENCES User(UserID),
 	FOREIGN KEY ReceiverID REFERENCES User(UserID)	
-};
+);
 
-CREATE TABLE PostID {
+CREATE TABLE PostID (
 	PostID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	EventID INT(11),
 	UserID INT(11),
@@ -98,17 +98,17 @@ CREATE TABLE PostID {
 	Description VARCHAR(200),
 	FOREIGN KEY UserID REFERENCES User(UserID),
 	FOREIGN KEY EventID REFERENCES Event(EventID)	
-};
+);
 
-CREATE TABLE Preferences {
+CREATE TABLE Preferences (
 	PreferenceID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	UserID INT(11),
 	TypeID INT(11),
 	FOREIGN KEY UserID REFERENCES User(UserID),
 	FOREIGN KEY TypeID REFERENCES Type(UserID),
-};
+);
 
-CREATE TABLE Location {
+CREATE TABLE Location (
 	LocationID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	City VARCHAR(11),
 	Country VARCHAR(11),
@@ -117,4 +117,4 @@ CREATE TABLE Location {
 	Zipcode INT(11),
 	Longitude POINT,
 	Latitude POINT
-};
+);
