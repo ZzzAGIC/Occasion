@@ -15,16 +15,16 @@ public class Database {
 	 * @throws SQLException
 	 */
 	private static Connection getConnection() throws SQLException {
-		String databaseName = "NAME";
-		String instanceName = "INSTANCE_NAME";
-		String username = "USERNAME";
-		String password = "PASSWORD";
-		String connection_string = String.format("jdbc:mysql://google/%s?cloudSqlInstance=%s&" + "socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false", 
+		String databaseName = "EventProject";
+		String instanceName = "occassion:us-central1:project-instance1";
+		String username = "developer";
+		String password = "123456";
+		String connection_string = String.format("jdbc:mysql://google/%s?cloudSqlInstance=%s&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false", 
 		        databaseName, instanceName);
 		
 		Connection conn = DriverManager.getConnection(connection_string, username, password);
 		
-		return conn;
+		return conn;	
 	}
 	
 	/**
@@ -66,21 +66,21 @@ public class Database {
 			}
 			return result;
 		} catch(SQLException e) {
-			System.out.println(e);
+
 		} finally {	
 			try {
 				st.close();
-			} catch(SQLException e) {
+			} catch(Exception e) {
 				System.out.println(e);
 			}
 			try {
 				rs.close();
-			} catch(SQLException e) {
+			} catch(Exception e) {
 				System.out.println(e);
 			}
 			try {
 				conn.close();
-			} catch(SQLException e) {
+			} catch(Exception e) {
 				System.out.println(e);
 			}
 		}
