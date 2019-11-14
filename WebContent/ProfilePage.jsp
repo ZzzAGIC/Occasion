@@ -55,10 +55,11 @@
 		}
 		%>
     	<h1 align=center><i><%=myusername%>'s Profile</i></h1>
-    	<h2>My Email: </h2>
-    	<h2>My Phone number: </h2>
-    	<h2>My Birthday: </h2>
-    	<h2>My Points: </h2>
+    	<h2>GENDER: </h2>
+    	<h2>EMAIL ADDRESS: </h2>
+    	<h2>PHONE: </h2>
+    	<h2>DATE OF BIRTH: </h2>
+    	<h2>POINTS: </h2>
 	</div>
 	
 	<div class="profile_activity">
