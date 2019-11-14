@@ -48,7 +48,17 @@
 		
 	</div>
 	<div class="profile_info">
-		
+		<% 
+		String myusername = null;
+		if(session.getAttribute("myname") != null) {
+			myusername = session.getAttribute("myname").toString(); 
+		}
+		%>
+    	<h1 align=center><i><%=myusername%>'s Profile</i></h1>
+    	<h2>My Email: </h2>
+    	<h2>My Phone number: </h2>
+    	<h2>My Birthday: </h2>
+    	<h2>My Points: </h2>
 	</div>
 	
 	<div class="profile_activity">
