@@ -99,8 +99,7 @@ public class register_validate extends HttpServlet {
 			}
 			    
 	public static boolean Register(String Username, String phone_number, String Email, String Password) throws SQLException, ClassNotFoundException {
-		//isLogin is true -> login request
-		//isLogin is false -> register request
+		
 		String tosearch = "SELECT * FROM User WHERE Username = ?";
 		List<List<String>> output = Database.SelectQuery(tosearch, Username);
 		if(output.size() > 0) return false;

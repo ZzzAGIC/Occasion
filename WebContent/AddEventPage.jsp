@@ -46,9 +46,11 @@
 			</div>
 		</div>
 		
-		</div>
-		<div class="AddEvent">
-			<form class="AddEventForm" action="Login_validate" method="post" onsubmit="return validate();"> 
+	</div>
+		
+		
+	<div class="AddEvent">
+		<form class="AddEventForm" action="Addevent_validate" method="post" onsubmit="return validate();"> 
 			<div id="formerror" style="color: red;"> 
 			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 			</div>
@@ -56,9 +58,9 @@
 			EventName:<br/> <input class="bar" type="text" name="EventName"/><br/><br/>  
 			EventTime:<br/> <input class="bar" type="text" name="EventTime"/><br/><br/>  
 			<input class="button" type="submit" name="status" value="Add Event"/>  
-			</form>  
+		</form>  
 		
-		</div>
+	</div>
 		
 	
 
