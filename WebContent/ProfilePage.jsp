@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ page import="occasion.account.User" %>
+<%@ page import="java.util.Date" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>ProfilePage</title>
 </head>
@@ -53,13 +55,24 @@
 		if(session.getAttribute("myname") != null) {
 			myusername = session.getAttribute("myname").toString(); 
 		}
+		User curr_user = new User(myusername);
+		
+		String profile_img = curr_user.getImage();
+		String gender = curr_user.getGender();
+		String Email = curr_user.getEmail();
+		String phone = curr_user.getPhone();
+		Date birthday = curr_user.getBirthday();
+		int points = curr_user.getPoints();
+		
 		%>
     	<h1 align=center><i><%=myusername%>'s Profile</i></h1>
-    	<h2>GENDER: </h2>
-    	<h2>EMAIL ADDRESS: </h2>
-    	<h2>PHONE: </h2>
-    	<h2>DATE OF BIRTH: </h2>
-    	<h2>POINTS: </h2>
+    	<img src="<%=profile_img%>" alt="profile image">
+    	<h2>GENDER: <%=gender%></h2>
+    	<h2>EMAIL ADDRESS: <%=Email%></h2>
+    	<h2>PHONE: <%=phone%></h2>
+    	<h2>DATE OF BIRTH: <%=birthday%></h2>
+    	<h2>POINTS: <%=points%></h2>
+    	<button class="button" id="EditProfile_button" type="button" onclick=>Edit profile</button>
 	</div>
 	
 	<div class="profile_activity">
