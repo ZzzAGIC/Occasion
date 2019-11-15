@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/homepage.css">
-<title>Event Page</title>
+<title>My Event</title>
 </head>
 <body>
-<div class="navbar">
+	<div class="navbar">
 		<h1 class="logo">Occasion</h1>
 		<button class="button" id="Homepage_button" type="button" onclick="window.location='HomePage.jsp'">Home Page</button>
 		<div class="dropdown">
@@ -83,4 +83,5 @@
 			
 			
 		</script>
+</body>
 </html>
