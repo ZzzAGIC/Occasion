@@ -54,8 +54,8 @@
 	</div>
 	
 	
-	<form id="UserSearch" method="Post" action="validation1" >
-			<input id="search" type="text" placeholder="Search a Occasion User!"> <br>
+	<form id="UserSearch" method="Post" action="SearchUser_validate" >
+			<input id="search" type="text" name="search" placeholder="Search a Occasion User!"> <br>
 			<div id="formerror">
 			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 			</div>

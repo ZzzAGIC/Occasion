@@ -33,9 +33,9 @@ public class SearchUser_validate extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 					String search_content = request.getParameter("search");
-					String search_type = request.getParameter("selection");
+					String search_type = request.getParameter("type");
 					
-					String next = "/FriendlistPage.jsp";
+					String next = "/UserSearchResult.jsp";
 					String error = "";
 					HttpSession session = request.getSession();
 					boolean login = (boolean) session.getAttribute("login");
@@ -53,7 +53,8 @@ public class SearchUser_validate extends HttpServlet {
 					try {
 						List<List<String>> output= SearchUser(search_content,search_type);
 						if (output.size() > 0) {	
-							
+							request.setAttribute("searchresult", output);
+							request.setAttribute("content", search_content);
 						}
 						else if(output.size() == 0){
 							error += "User does not exist! & ";
@@ -84,6 +85,7 @@ public class SearchUser_validate extends HttpServlet {
 	public static List<List<String>> SearchUser(String content, String type) throws SQLException, ClassNotFoundException {
 		
 		String tosearch = "SELECT * FROM User WHERE " + type + " = ?";
+		System.out.print(tosearch);
 		List<List<String>> output = Database.SelectQuery(tosearch, content);
 		return output;
 		
