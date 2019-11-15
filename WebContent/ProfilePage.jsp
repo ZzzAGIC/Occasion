@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <%@ page import="occasion.account.User" %>
+<%@ page import="occasion.event.Event" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>ProfilePage</title>
@@ -65,6 +67,8 @@
 		String phone = curr_user.getPhone();
 		Date birthday = curr_user.getBirthday();
 		int points = curr_user.getPoints();
+		ArrayList<Event> pastEvent= curr_user.getAttendedEvent();
+		ArrayList<Event> futureEvent= curr_user.getFutureEvent();
 		
 		%>
     	<h1 align=center><i><%=myusername%>'s Profile</i></h1>

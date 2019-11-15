@@ -17,7 +17,8 @@ public class Event {
 	private int curr_num;
 	private ArrayList<User> attendants;
 	private ArrayList<String> pictures;
-	private boolean private_event;
+	private int private_event;
+	//public event = 0; private event = 1; exclusive event = 2;
 	
 	public Event() {
 		

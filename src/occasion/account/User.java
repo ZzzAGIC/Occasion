@@ -1,9 +1,16 @@
 package occasion.account;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeSet;
+
+import occasion.event.Event;
+import occasion.event.Location;
+import occasion.account.Post;
 
 import occasion.db.Database;
 
@@ -21,6 +28,21 @@ public class User {
 	private boolean premium;
 	private int points;
 	private int status; 
+	private ArrayList<User> followingList;
+	private ArrayList<User> followerList;
+	private int followingNum;
+	private int followerNum;
+	private ArrayList<User> blockedFriendlist;
+	private ArrayList<User> hideFriendlist;
+	private ArrayList<Event> attendedEvent;
+	private ArrayList<Event> futureEvent;
+	private TreeSet<String> preferenceType;
+	private int preferenceDistance;
+	private Location curr_Loc;
+	private ArrayList<Post> sharedPost;
+	
+	
+	
 	
 	public User() {
 	}
@@ -159,6 +181,78 @@ public class User {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
+
+	public ArrayList<User> getFollowingList(){
+		return followingList;
+	}
+	public void AddFollowingList(User U) {
+		followingList.add(U);
+	}
+
+	public ArrayList<User> getFollowerList(){
+		return followerList;
+	}
+	public void AddFollowerList(User U) {
+		followerList.add(U);
+	}
+
+	public int getFollowingNume() {
+		return followingList.size();
+	}
+
+	public int getFollowerNume() {
+		return followerList.size();
+	}
+
+	public ArrayList<User> getBlockedFriendlist(){
+		return blockedFriendlist;
+	}
+	public void AddBlockedFriendlist(User U) {
+		blockedFriendlist.add(U);
+	}
+
+	public ArrayList<User> getHideFriendlist(){
+		return hideFriendlist;
+	}
+	public void AddHideFriendlist(User U) {
+		hideFriendlist.add(U);
+	}
+	
+	
+	public ArrayList<Event> getAttendedEvent(){
+		return attendedEvent;
+	}
+	public void AddAttendedEvent(Event E) {
+		attendedEvent.add(E);
+	}
+	
+	public ArrayList<Event> getFutureEvent(){
+		return futureEvent;
+	}
+	public void AddFutureEvent(Event E) {
+		futureEvent.add(E);
+	}
+
+	public TreeSet<String> getPreferenceType(){
+		return preferenceType;
+	}
+
+	public int getPreferenceDistance() {
+		return preferenceDistance;
+	}
+
+	public Location getLocation() {
+		return curr_Loc;
+	}
+
+	public ArrayList<Post> getPost(){
+		return sharedPost;
+	}
+	public void AddPost(Post P) {
+		sharedPost.add(P);
+	}
+	
 
 	public void PrintDetails() {
 		System.out.println("Username: " + getUsername());
