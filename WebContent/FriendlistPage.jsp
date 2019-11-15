@@ -54,6 +54,23 @@
 	</div>
 	
 	
+	<form id="UserSearch" method="Post" action="validation1" >
+			<input id="search" type="text" placeholder="Search a Occasion User!"> <br>
+			<div id="formerror">
+			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+			</div>
+			<input id="selection" type="radio" name="type" value="Username">
+			<label for="name">Username</label>
+			<input id="selection" type="radio" name="type" value="Phone"> 
+			<label for="author">Phone</label>
+			<input id="selection" type="radio" name="type" value="Email"> 
+			<label for="ISBN">Email</label> 
+			
+			
+			<button id="button" type="submit"> Search!</button>
+		</form>
+	
+	
 	<div class="friend_list">
 		<% 
 		String myusername = null;
