@@ -71,14 +71,11 @@ CREATE TABLE GroupUser (
 
 CREATE TABLE Relationship (
 	RelationshipID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
-	AlphaUserID INT(11),
-	BetaUserID INT(11),
-	ActionUserID INT(11),
-	StatusCode INT(1),
+	FollowerUserID INT(11),
+	FollowingUserID INT(11),
 	BlockCode INT(1),
-	FOREIGN KEY AlphaUserID REFERENCES User(UserID),
-	FOREIGN KEY BetaUserID REFERENCES User(UserID),
-	FOREIGN KEY ActionUserID REFERENCES User(UserID)	
+	FOREIGN KEY (FollowerUserID) REFERENCES User(UserID),
+	FOREIGN KEY (FollowingUserID) REFERENCES User(UserID)
 );
 
 CREATE TABLE Chat (
