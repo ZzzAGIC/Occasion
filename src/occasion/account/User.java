@@ -94,7 +94,7 @@ public class User {
 			follower.add(new User(itemUsername));
 		}
 		this.followerList = follower;
-		
+		this.followerNum = followerList.size(); 
 		
 		//Add users which this user is following
 		query = "SELECT User.username FROM User, Relationship WHERE FollowerUserID = User.ID AND FollowerUserID = ?";
@@ -107,6 +107,7 @@ public class User {
 			following.add(new User(itemUsername));
 		}
 		this.followingList = following;
+		this.followingNum = followingList.size();
 		
 	}
 
