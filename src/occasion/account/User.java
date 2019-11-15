@@ -27,11 +27,7 @@ public class User {
 	private Date registrationDate;
 	private boolean premium;
 	private int points;
-	private int status; 
-	private ArrayList<User> followingList;
-	private ArrayList<User> followerList;
-	private int followingNum;
-	private int followerNum;
+	private int status; 	
 	private ArrayList<User> blockedFriendlist;
 	private ArrayList<User> hideFriendlist;
 	private ArrayList<Event> attendedEvent;
@@ -82,33 +78,6 @@ public class User {
 		} catch (Exception e) {
 			this.setStatus(0);
 		}
-		
-		//Add users which are following this user 
-		query = "SELECT User.username FROM User, Relationship WHERE FollowingUserID = User.ID AND FollowingUserID = ?";
-		details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
-		
-		ArrayList<User> follower = new ArrayList<User>();
-		
-		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			follower.add(new User(itemUsername));
-		}
-		this.followerList = follower;
-		this.followerNum = followerList.size(); 
-		
-		//Add users which this user is following
-		query = "SELECT User.username FROM User, Relationship WHERE FollowerUserID = User.ID AND FollowerUserID = ?";
-		details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
-		
-		ArrayList<User> following = new ArrayList<User>();
-		
-		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			following.add(new User(itemUsername));
-		}
-		this.followingList = following;
-		this.followingNum = followingList.size();
-		
 	}
 
 	public int getUserID() {
@@ -208,28 +177,35 @@ public class User {
 	}
 	
 
-	public ArrayList<User> getFollowingList(){
-		return followingList;
-	}
-	public void AddFollowingList(User U) {
-		followingList.add(U);
-	}
-
 	public ArrayList<User> getFollowerList(){
-		return followerList;
+		//Add users which are following this user 
+		String query = "SELECT User.username FROM User, Relationship WHERE FollowingUserID = User.ID AND FollowingUserID = ?";
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
+				
+		ArrayList<User> follower = new ArrayList<User>();
+				
+		for(List<String> item : details) {
+			String itemUsername = item.get(0);
+			follower.add(new User(itemUsername));
+		}
+		return follower; 
 	}
-	public void AddFollowerList(User U) {
-		followerList.add(U);
-	}
+	
 
-	public int getFollowingNume() {
-		return followingList.size();
+	public ArrayList<User> getFollowingList(){
+		//Add users which this user is following
+		String query = "SELECT User.username FROM User, Relationship WHERE FollowerUserID = User.ID AND FollowerUserID = ?";
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
+				
+		ArrayList<User> following = new ArrayList<User>();
+				
+		for(List<String> item : details) {
+			String itemUsername = item.get(0);
+			following.add(new User(itemUsername));
+		}
+		return following;
 	}
-
-	public int getFollowerNume() {
-		return followerList.size();
-	}
-
+	
 	public ArrayList<User> getBlockedFriendlist(){
 		return blockedFriendlist;
 	}
