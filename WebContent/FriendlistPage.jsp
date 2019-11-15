@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ page import="occasion.account.User" %>
+<%@ page import="occasion.event.Event" %>
+<%@ page import="java.util.ArrayList" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>Friendlist Page!</title>
 </head>
@@ -49,12 +52,28 @@
 		</div>
 		
 	</div>
-	<div class="header">
-		
-	</div>
+	
 	
 	<div class="friend_list">
-	
+		<% 
+		String myusername = null;
+		if(session.getAttribute("myname") != null) {
+			myusername = session.getAttribute("myname").toString(); 
+		}
+		User curr_user = new User(myusername);
+		
+		
+		ArrayList<User> followingUsers = curr_user.getFollowingList();
+		
+				
+		%>
+    	<h1 align=center><i><%=myusername%>'s Following Users</i></h1>
+
+		<%if(followingUsers != null){
+			for(int i = 0; i < followingUsers.size(); i++ ){%> 
+			<h2>Friend's profile image: <%=followingUsers.get(i).getImage()%></h2>
+			<h2>Friend's name: <%=followingUsers.get(i).getUsername()%></h2>
+	    <%}}%> 
 	</div>
 	
 	<div class="footer">
