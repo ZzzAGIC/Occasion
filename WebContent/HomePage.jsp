@@ -56,7 +56,7 @@
 	</div>
 	
 	<div class="invitation">
-		
+		<img src="images/Event1.jpg" alt="Event1">
 	</div>
 	
 	<div class="trending">
