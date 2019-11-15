@@ -40,9 +40,7 @@ public class User {
 	private int preferenceDistance;
 	private Location curr_Loc;
 	private ArrayList<Post> sharedPost;
-	
-	
-	
+		
 	
 	public User() {
 	}
@@ -84,6 +82,32 @@ public class User {
 		} catch (Exception e) {
 			this.setStatus(0);
 		}
+		
+		//Add users which are following this user 
+		query = "SELECT User.username FROM User, Relationship WHERE FollowingUserID = User.ID AND FollowingUserID = ?";
+		details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
+		
+		ArrayList<User> follower = new ArrayList<User>();
+		
+		for(List<String> item : details) {
+			String itemUsername = item.get(0);
+			follower.add(new User(itemUsername));
+		}
+		this.followerList = follower;
+		
+		
+		//Add users which this user is following
+		query = "SELECT User.username FROM User, Relationship WHERE FollowerUserID = User.ID AND FollowerUserID = ?";
+		details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
+		
+		ArrayList<User> following = new ArrayList<User>();
+		
+		for(List<String> item : details) {
+			String itemUsername = item.get(0);
+			following.add(new User(itemUsername));
+		}
+		this.followingList = following;
+		
 	}
 
 	public int getUserID() {
