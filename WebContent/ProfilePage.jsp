@@ -70,6 +70,7 @@
 		ArrayList<Event> pastEvent= curr_user.getAttendedEvent();
 		ArrayList<Event> futureEvent= curr_user.getFutureEvent();
 		
+		
 		%>
     	<h1 align=center><i><%=myusername%>'s Profile</i></h1>
     	<img src="<%=profile_img%>" alt="profile image">
@@ -82,7 +83,9 @@
 	</div>
 	
 	<div class="profile_activity">
-	
+		<%for(int i = 0; i < pastEvent.size(); i++ ){%> 
+			<h2>Past Event: <%=pastEvent.get(i).getEventName()%></h2>
+	    <%}%> 
 	</div>
 	
 	<div class="footer">

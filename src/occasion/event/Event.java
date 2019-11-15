@@ -26,5 +26,98 @@ public class Event {
 	
 	//constructor
 	
+
+	public int getEventID() {
+		return eventID;
+	}
+	public void setEventID(int id_) {
+		eventID = id_;
+	}
+
+	public String getEventName() {
+		return event_name;
+	}
+	public void setEventName(String name_) {
+		event_name = name_;
+	}
+
+	public User getInitiator() {
+		return initiator;
+	}
+	public void setInitiator(User U) {
+		initiator = U;
+	}
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type_) {
+		type = type_;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+	public void setLocation(Location L) {
+		location = L;
+	}
+
+	public Date getEventTime() {
+		return event_time;
+	}
+	public void setEventTime(Date D) {
+		event_time = D;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+	public void setCapacity(int C) {
+		capacity = C;
+	}
+
+	public int getCurrNum() {
+		return curr_num;
+	}
+	public void setCurrNum(int N) {
+		curr_num = N;
+	}
+	public void incrementCurrNum() {
+		curr_num ++;
+	}
+
+	public ArrayList<User> getAttendants(){
+		return attendants;
+	}
+	public void addAttendants(User U) {
+		attendants.add(U);
+	}
+
+	public ArrayList<String> getPictures(){
+		return pictures;
+	}
+	public void addPictures(String P) {
+		pictures.add(P);
+	}
+
+	public String getPrivate_event() {
+		String type_ =  null;
+		if(private_event == 0) {
+			type_ = "public"; 
+		}
+		else if(private_event == 1) {
+			type_ = "privae"; 
+		}
+		else if(private_event == 2) {
+			type_ = "exclusive"; 
+		}
+		return type_;
+	}
+
+	public void PrintDetails() {
+		System.out.println("EventName: " + getEventName());
+		System.out.println("Type: " + getType());
+		System.out.println("Private: " + getPrivate_event());
+	}
 	
 }
