@@ -55,11 +55,17 @@
 	</div>
 	<div class="profile_info">
 		<% 
-		String myusername = null;
-		if(session.getAttribute("myname") != null) {
-			myusername = session.getAttribute("myname").toString(); 
+		String curr_username = null;
+		if(request.getParameter("Friend_User")!=null){
+			curr_username = request.getParameter("Friend_User").toString();
 		}
-		User curr_user = new User(myusername);
+		else if(request.getParameter("Friend_User")==null){
+		
+			if(session.getAttribute("myname") != null) {
+				curr_username = session.getAttribute("myname").toString(); 
+			}
+		}
+		User curr_user = new User(curr_username);
 		
 		String profile_img = curr_user.getImage();
 		String gender = curr_user.getGender();
@@ -72,7 +78,7 @@
 		
 				
 		%>
-    	<h1 align=center><i><%=myusername%>'s Profile</i></h1>
+    	<h1 align=center><i><%=curr_username%>'s Profile</i></h1>
     	<img src="<%=profile_img%>" alt="profile image">
     	<h2>GENDER: <%=gender%></h2>
     	<h2>EMAIL ADDRESS: <%=Email%></h2>

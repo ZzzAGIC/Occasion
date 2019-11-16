@@ -68,6 +68,9 @@
 				<%User temp = new User(choice.get(i).get(1)); 
 				String username = temp.getUsername();%>
 				
+				<a href="ProfilePage.jsp?Friend_User=<%=username%>">
+					<img id="profileImage" src="<%=temp.getImage()%>" alt="<%=username%>'s profile image">
+		        </a>
 				<h4>Username: <%=username%></h4>
 
 	            <%}%> 
