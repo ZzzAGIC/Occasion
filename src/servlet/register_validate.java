@@ -104,7 +104,8 @@ public class register_validate extends HttpServlet {
 		List<List<String>> output = Database.SelectQuery(tosearch, Username);
 		if(output.size() > 0) return false;
 		
-		String toinsert = "INSERT INTO User (Username,Password,  Email, Phone) "
+		
+		String toinsert = "INSERT INTO User (Username,Password,Email, Phone) "
 				+ "VALUES (?, ?, ?, ?)";
 //		Username,Password, Salt, Premium, Email, Gender, Phone, ProfileImage, Birthday, Points, Status
 		

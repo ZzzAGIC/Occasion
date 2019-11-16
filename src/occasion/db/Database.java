@@ -64,7 +64,6 @@ public class Database {
 						rowData.add("");
 					}
 				}
-				System.out.println(rowData);
 				result.add(rowData);
 			}
 			return result;

@@ -10,7 +10,7 @@ CREATE TABLE User (
 	Premium BOOLEAN,
 	Email VARCHAR(50),
 	Gender VARCHAR(50),
-	Phone INT(13),
+	Phone VARCHAR(13),
 	ProfileImage VARCHAR(50),
 	Birthday DATE,
 	Points INT(5),
