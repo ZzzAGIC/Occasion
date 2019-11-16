@@ -1,9 +1,13 @@
 package occasion.event;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import occasion.account.User;
+import occasion.db.Database;
 import occasion.event.Location;
 
 public class Event {
@@ -25,7 +29,40 @@ public class Event {
 	}
 	
 	//constructor
-	
+	public Event(int eventID) {
+		this.setEventID(eventID);
+		String query = "SELECT * FROM Event WHERE eventID = ?";
+		
+		List<String> result = Database.SelectQuery(query, Integer.toString(eventID)).get(0);
+		
+		setEventName(result.get(0));
+		
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+		try {
+			setEventTime(formatter.parse(result.get(1)));
+		} catch (ParseException e) {
+			//NOTE TO SELF: Add placeholder date
+		}
+		
+		//Set Location
+		
+		//Set Event Type
+		setType(result.get(3));
+		
+		//Set Picture
+		
+		//Set Host
+		String name = User.getUsernameFromId(Integer.parseInt(result.get(5)));
+		setInitiator(new User(name));
+		
+		//Set Capacity
+		setCapacity(Integer.parseInt(result.get(6)));
+		
+		//Set Size
+		setCurrNum(Integer.parseInt(result.get(7)));
+		
+		//Set Price
+	}
 
 	public int getEventID() {
 		return eventID;

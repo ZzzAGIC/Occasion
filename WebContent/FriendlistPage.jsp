@@ -124,10 +124,9 @@
 				document.getElementById("Signout_button").style.display="none"
 				
 			}
-			
-			
-
-			
-			
+		</script>
+		
+		<script>
+		
 		</script>
 </html>

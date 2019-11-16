@@ -59,7 +59,6 @@ public class User {
 		this.setPhone(record.get(7));
 		this.setImage(record.get(8));
 		
-		System.out.println(record.get(9));
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 		try {
 			this.setBirthday(formatter.parse(record.get(9)));
@@ -254,7 +253,14 @@ public class User {
 		sharedPost.add(P);
 	}
 	
-
+	public static String getUsernameFromId(int id) {
+		String query = "SELECT username FROM User Where user.userID = ?";
+		
+		List<List<String>> results = Database.SelectQuery(query, Integer.toString(id));
+		
+		return results.get(0).get(0);
+	}
+	
 	public void PrintDetails() {
 		System.out.println("Username: " + getUsername());
 		System.out.println("Nickname: " + getNickname());
