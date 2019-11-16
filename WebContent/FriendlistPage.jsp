@@ -88,7 +88,8 @@
 
 		<%if(followingUsers != null){
 			for(int i = 0; i < followingUsers.size(); i++ ){%> 
-			<h2>Friend's profile image: <%=followingUsers.get(i).getImage()%></h2>
+			<h2>Friend's profile image: <img src="<%=followingUsers.get(i).getImage()%>" 
+			alt="<%=followingUsers.get(i).getUsername()%>'s profile image"></h2>
 			<h2>Friend's name: <%=followingUsers.get(i).getUsername()%></h2>
 	    <%}}%> 
 	</div>

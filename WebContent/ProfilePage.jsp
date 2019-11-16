@@ -18,11 +18,9 @@
 			if(request.getParameter("Friend_User")!=null){
 				follow_username = request.getParameter("Friend_User").toString();
 			}
-			else if(request.getParameter("Friend_User")==null){
-			
-				if(session.getAttribute("myname") != null) {
+			if(session.getAttribute("myname") != null) {
 					myname = session.getAttribute("myname").toString();
-				}
+			
 			}
 			
 			%>

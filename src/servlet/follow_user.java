@@ -41,6 +41,7 @@ public class follow_user extends HttpServlet {
 		int followingID = beta.getUserID();
 		try{
 			add_following(followerID,followingID);
+			System.out.println("follow user");
 		}
 		catch (SQLException e){
 			e.printStackTrace();
@@ -53,13 +54,14 @@ public class follow_user extends HttpServlet {
 	public static void add_following(int followerID, int followingID) throws SQLException, ClassNotFoundException {
 		
 		String tosearch = "SELECT * FROM Relationship WHERE followerID = ? AND followingID = ?";
-		List<List<String>> output = Database.SelectQuery(tosearch, "followerID", "followingID");
+		String followerid_ = Integer.toString(followerID);
+		String followingid_ = Integer.toString(followingID);
+		List<List<String>> output = Database.SelectQuery(tosearch, followerid_, followingid_);
 		if(output.size() == 0) {
+			System.out.println(followerid_ +" "+ followingid_);
+			String toinsert = "INSERT INTO Relationship (FollowerUserID,FollowingUserID, BlockCode) VALUES (?, ?, ?)";
 		
-			String toinsert = "INSERT INTO Relationship (FollowerUserID,FollowingUserID, BlockCode) "
-				+ "VALUES (?, ?, ?)";
-		
-			Database.UpdateQuery(toinsert, "followerID", "followingID", "0");
+			Database.UpdateQuery(toinsert, followerid_, followingid_, "0");
 		}
 		
 	
