@@ -12,7 +12,7 @@
 	
 	
 	<div align="center">
-		<form class="form" action="Login_validate" method="post" onsubmit="return validate();"> 
+		<form class="form" action="Login_validate" method="post"> 
 		<div id="formerror" style="color: red;"> 
 		<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 		</div>

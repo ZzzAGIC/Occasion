@@ -10,6 +10,37 @@
 <%@ page import="java.util.Date" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>ProfilePage</title>
+	<script>
+		function add_following(){
+			<%
+			String myname = null;
+			String follow_username = null;
+			if(request.getParameter("Friend_User")!=null){
+				follow_username = request.getParameter("Friend_User").toString();
+			}
+			else if(request.getParameter("Friend_User")==null){
+			
+				if(session.getAttribute("myname") != null) {
+					myname = session.getAttribute("myname").toString();
+				}
+			}
+			
+			%>
+			var myUsername = "<%=myname%>";
+			console.log(myUsername);
+			var follow_Username = "<%=follow_username%>";
+			console.log(follow_Username);
+			
+			var mylink = "follow_user?Follower="+myUsername+"&Following="+follow_Username;
+	
+			console.log(mylink);
+			var xhttp= new XMLHttpRequest();
+			xhttp.open("GET", mylink, false);
+			xhttp.send();
+		}
+	
+	</script>
+
 </head>
 <body>
 	<div class="navbar">
@@ -56,6 +87,7 @@
 	<div class="profile_info">
 		<% 
 		String curr_username = null;
+		boolean own_profile = false;
 		if(request.getParameter("Friend_User")!=null){
 			curr_username = request.getParameter("Friend_User").toString();
 		}
@@ -63,6 +95,7 @@
 		
 			if(session.getAttribute("myname") != null) {
 				curr_username = session.getAttribute("myname").toString(); 
+				own_profile = true;
 			}
 		}
 		User curr_user = new User(curr_username);
@@ -86,6 +119,7 @@
     	<h2>DATE OF BIRTH: <%=birthday%></h2>
     	<h2>POINTS: <%=points%></h2>
     	<button class="button" id="EditProfile_button" type="button" onclick=>Edit profile</button>
+		<button class="button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
 	</div>
 	
 	<div class="profile_activity">
@@ -126,6 +160,19 @@
 				document.getElementById("Profilepage_button").style.display="none"
 				document.getElementById("Signout_button").style.display="none"
 				
+			}
+			
+			var own = <%=own_profile%>;
+			if(own) {
+				//this is my profile page, display edit button
+				document.getElementById("FollowUser_button").style.display="none"
+				document.getElementById("EditProfile_button").style.display="initial"
+				
+			}
+			else if(!own) {
+				//this is other user's button, display add/remove button
+				document.getElementById("FollowUser_button").style.display="initial"
+				document.getElementById("EditProfile_button").style.display="none"
 			}
 			
 			

@@ -193,7 +193,10 @@ public class User {
 
 	public ArrayList<User> getFollowingList(){
 		//Add users which this user is following
-		String query = "SELECT User.username FROM User, Relationship WHERE FollowerUserID = User.ID AND FollowerUserID = ?";
+//		String query = "SELECT User.username FROM User, Relationship WHERE FollowerUserID = User.ID AND FollowerUserID = ?";
+//		
+		String query = "select Username from User where UserID in (select FollowingUserID from Relationship where FollowerUserID = ?);";
+
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
 		ArrayList<User> following = new ArrayList<User>();
