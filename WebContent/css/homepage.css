@@ -121,6 +121,12 @@
 	text-align: center;
 	
 }
+
+#map{
+	margin-left:auto;
+	height: 400px;
+	width: 400px;
+}
 .footer{
 	display: flex;
     flex-direction: row;

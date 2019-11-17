@@ -49,7 +49,13 @@
 		
 	</div>
 	
-</body>
+
+	
+	<h1>google map</h1>
+	<div id="map"></div>
+
+	
+
 	<script>
 			var login  = <%=session.getAttribute("login")%>
 			if(login != null) {
@@ -78,9 +84,19 @@
 				
 			}
 			
-			
 
+		   function initMap() {
+			   	var option ={
+				    center: {lat: -34.397, lng: 150.644},
+				    zoom: 8
+			     };
+			   	var map = new google.maps.Map(document.getElementById('map'),option);
+		   }
+	</script>
+	
+	<script async defer
+		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsK1nRM2sfZDiQE7P4MIkxwUrft61TUTw&callback=initMap">
+	</script>
+</body>
 			
-			
-		</script>
 </html>
