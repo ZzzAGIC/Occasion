@@ -97,7 +97,10 @@
 	
 }
 .profile_info{
-	
+	background: #ccffff;
+  	width: 40%;
+  	margin: auto;
+  	padding: 40px;
 }
 .profile_activity{
 	

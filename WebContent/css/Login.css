@@ -5,12 +5,12 @@ body {
 
 .form {
 	
-	vertical-align: middle;
-  background: #ccffff;
-  width: 40%;
-  margin: auto;
-  padding: 40px;
-  box-shadow: 0 0 3px rgb(204, 204, 204, 0.5);
+	  vertical-align: middle;
+	  background: #ccffff;
+	  width: 40%;
+	  margin: auto;
+	  padding: 40px;
+	  box-shadow: 0 0 3px rgb(204, 204, 204, 0.5);
 }
  .button {
     cursor: pointer;
