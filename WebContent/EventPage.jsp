@@ -118,7 +118,7 @@
 		   function initMap() {
 			   	var option ={
 				    center: {lat: 34.0522, lng: -118.2437},
-				    zoom: 8
+				    zoom: 11
 			     };
 			   	var map = new google.maps.Map(document.getElementById('map'),option);
 		   }
