@@ -110,14 +110,19 @@
 				
 		%>
     	<h1 align=center><i><%=curr_username%>'s Profile</i></h1>
-    	<img src="<%=profile_img%>" alt="profile image">
-    	<h2>GENDER: <%=gender%></h2>
-    	<h2>EMAIL ADDRESS: <%=Email%></h2>
-    	<h2>PHONE: <%=phone%></h2>
-    	<h2>DATE OF BIRTH: <%=birthday%></h2>
-    	<h2>POINTS: <%=points%></h2>
+
+    	<img src="<%=profile_img%>" alt="profile image" align="left" height="180" width="240">
+
+    	<div class="profile_text">
+	    	<h4>GENDER: <%=gender%></h4>
+	    	<h4>EMAIL ADDRESS: <%=Email%></h4>
+	    	<h4>PHONE: <%=phone%></h4>
+	    	<h4>DATE OF BIRTH: <%=birthday%></h4>
+	    	<h4>POINTS: <%=points%></h4>
+    	</div>
     	<button class="button" id="EditProfile_button" type="button" onclick=>Edit profile</button>
 		<button class="button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
+		
 	</div>
 	
 	<div class="profile_activity">

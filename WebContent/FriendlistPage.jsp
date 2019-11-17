@@ -52,10 +52,10 @@
 		</div>
 		
 	</div>
-	
-	
-	<form id="UserSearch" method="Post" action="SearchUser_validate" >
-			<input id="search" type="text" name="search" placeholder="Search a Occasion User!"> <br>
+
+
+		<form id="UserSearch" method="Post" action="SearchUser_validate" >
+			<input id="search" type="text" name="search" placeholder="Search a Occasion User!" style="width:30%;"> <br>
 			<div id="formerror">
 			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 			</div>
@@ -69,6 +69,7 @@
 			
 			<button id="button" type="submit"> Search!</button>
 		</form>
+
 	
 	
 	<div class="friend_list">
@@ -85,13 +86,18 @@
 				
 		%>
     	<h1 align=center><i><%=myusername%>'s Following Users</i></h1>
-
+		<div class="list">
 		<%if(followingUsers != null){
 			for(int i = 0; i < followingUsers.size(); i++ ){%> 
-			<h2>Friend's profile image: <img src="<%=followingUsers.get(i).getImage()%>" 
-			alt="<%=followingUsers.get(i).getUsername()%>'s profile image"></h2>
-			<h2>Friend's name: <%=followingUsers.get(i).getUsername()%></h2>
+				
+				<a href="ProfilePage.jsp?Friend_User=<%=followingUsers.get(i).getUsername()%>">
+				<img src="<%=followingUsers.get(i).getImage() %>" 
+				alt="<%=followingUsers.get(i).getUsername()%>'s profile image" height="180" width="220">
+				</a>
+				<h4><%=followingUsers.get(i).getUsername()%></h4>
+			
 	    <%}}%> 
+	    </div>
 	</div>
 	
 	<div class="footer">

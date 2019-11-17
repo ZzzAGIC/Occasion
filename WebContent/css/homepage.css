@@ -94,15 +94,31 @@
 	
 }
 .friend_list{
-	
+	background-image: linear-gradient(#ccffff, #ff9999);
+  	width: 100%;
+  	margin: auto;
+  	padding: 40px;
+  	
+}
+.list{
+	width: 100%;
+	display: flex;
+    
+    flex-direction: row;
 }
 .profile_info{
-	background: #ccffff;
-  	width: 40%;
+	background-image: linear-gradient(#ccffff, #ff9999);
+  	width: 100%;
   	margin: auto;
   	padding: 40px;
 }
+
 .profile_activity{
+	
+}
+#UserSearch{
+	padding-top: 20px;
+	text-align: center;
 	
 }
 .footer{
