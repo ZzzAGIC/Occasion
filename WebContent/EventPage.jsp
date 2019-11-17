@@ -46,13 +46,43 @@
 			<button class="subbutton" id="MyEvent_buttom" type="button" onclick="window.location='MyEventPage.jsp'">My Event</button>
 			</div>
 		</div>
-		
 	</div>
-	
+		
+	<div class="event_search">
+		<form id="Eventsearch" method="Post" action="" >
+			<input id="search" type="text" name="search" placeholder="Search an event!" style="width:40%;"> <br>
+			<div id="formerror">
+			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+			</div>
+			<input id="selection" type="radio" name="type" value="Username">
+			<label for="name">Event Name</label>
+			<input id="selection" type="radio" name="type" value="Phone"> 
+			<label for="author">Location</label>
+			<input id="selection" type="radio" name="type" value="Email"> 
+			<label for="ISBN">Type</label> 
+			
+			
+			<button id="button" type="submit"> Search!</button>
+		</form>
+	</div>
+		
 
 	
-	<h1>google map</h1>
+	<div class="eventList">
+		<table> 
+	         <tr bgcolor="#cccccc"> 
+	          <th id="eventName"><b>Event Name</b></th> 
+	          <th id="time"><b>Time</b></th> 
+	          <th id="location"><b>Location</b></th> 
+	          <th id="description"><b>Description</b></th> 
+	         </tr> 
+		
+		</table>
+	</div>
+		
+		
 	<div id="map"></div>
+
 
 	
 

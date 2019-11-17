@@ -116,16 +116,22 @@
 .profile_activity{
 	
 }
-#UserSearch{
+#UserSearch,.event_search{
 	padding-top: 20px;
 	text-align: center;
 	
+	
 }
 
+.eventList{
+	float: left;
+	width: 40%;
+	height:400px;
+}
 #map{
-	margin-left:auto;
+	float: right;
 	height: 400px;
-	width: 400px;
+	width: 60%;
 }
 .footer{
 	display: flex;
