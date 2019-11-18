@@ -99,6 +99,7 @@ body{
 .friend_list{
 	background-image: linear-gradient(#ccffff, #ff9999);
   	width: 100%;
+  	height: 100%;
   	margin: auto;
   	padding: 40px;
   	
