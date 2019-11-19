@@ -38,9 +38,7 @@ public class EditProfile extends HttpServlet {
 		String name = (String)session.getAttribute("myname");
 		
 		String query = "UPDATE User SET Gender = ?,  Email = ?, Phone = ?, Birthday = ? WHERE Username = ?;";
-		
-		System.out.println(phone + "-" + birth + "-" + name);
-		
+				
 		Database.UpdateQuery(query, gender, email, phone, birth, name);
         
 		response.sendRedirect(next);

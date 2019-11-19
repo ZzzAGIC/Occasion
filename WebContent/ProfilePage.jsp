@@ -180,6 +180,7 @@
 				
 				var submit = document.createElement("INPUT");
 				submit.setAttribute("type", "submit");
+				submit.setAttribute("class", "submitButtonElement")
 				submit.value = "Submit"
 				document.getElementById("submitButton").innerHTML = "";
 				document.getElementById("submitButton").appendChild(submit);
