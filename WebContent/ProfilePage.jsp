@@ -172,7 +172,7 @@
 				
 				document.getElementById("birthDetail").innerHTML = "";
 				var birthSearch = document.createElement("INPUT");
-				birthSearch.setAttribute("type", "search");
+				birthSearch.setAttribute("type", "date");
 				birthSearch.value = inputBirth;
 				birthSearch.setAttribute("id", "birthSearch");
 				birthSearch.setAttribute("name", "birthSearch");

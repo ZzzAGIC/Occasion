@@ -59,7 +59,7 @@ public class User {
 		this.setPhone(record.get(7));
 		this.setImage(record.get(8));
 		
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			this.setBirthday(formatter.parse(record.get(9)));
 		} catch (ParseException e) {

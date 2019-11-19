@@ -37,7 +37,7 @@ public class Event {
 		
 		setEventName(result.get(0));
 		
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			setEventTime(formatter.parse(result.get(1)));
 		} catch (ParseException e) {
