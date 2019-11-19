@@ -1,5 +1,11 @@
 package occasion.event;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import occasion.account.User;
+import occasion.db.Database;
 
 public class Location {
 	private int locationID;
@@ -16,11 +22,21 @@ public class Location {
 	}
 	
 	//constructor
-	
+	public Location(int locationID_) {
+		this.setLocationID(locationID_);
+		String query = "SELECT * FROM Location WHERE LocationID = ?";
+		
+		List<String> result = Database.SelectQuery(query, Integer.toString(locationID)).get(0);
+		
+		
+	}
 	
 	
 	public int getlocationID() {
 		return locationID;
+	}
+	public void setLocationID(int loc_ID) {
+		this.locationID = loc_ID;
 	}
 	
 	public String getcity() {

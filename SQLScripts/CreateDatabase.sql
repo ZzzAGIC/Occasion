@@ -26,7 +26,7 @@ CREATE TABLE PasswordRecovery (
 
 CREATE TABLE Event (
 	EventID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
-	Name VARCHAR(50),
+	EventName VARCHAR(50),
 	EventDate DATE,
 	LocationID INT(11),
 	Type VARCHAR(50),

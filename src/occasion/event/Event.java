@@ -35,19 +35,21 @@ public class Event {
 		
 		List<String> result = Database.SelectQuery(query, Integer.toString(eventID)).get(0);
 		
-		setEventName(result.get(0));
+		setEventName(result.get(1));
 		
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			setEventTime(formatter.parse(result.get(1)));
+			setEventTime(formatter.parse(result.get(2)));
 		} catch (ParseException e) {
 			//NOTE TO SELF: Add placeholder date
 		}
 		
 		//Set Location
-		
+		int loc_id = Integer.parseInt(result.get(3));
+		Location curr_loc = new Location(loc_id);
+		setLocation(curr_loc);
 		//Set Event Type
-		setType(result.get(3));
+		setType(result.get(4));
 		
 		//Set Picture
 		
