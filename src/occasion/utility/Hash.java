@@ -1,6 +1,5 @@
 package occasion.utility;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -36,7 +35,7 @@ public class Hash {
 	    return true;
 	}
 	
-	private static byte[] getSalt() throws NoSuchAlgorithmException {
+	public static byte[] getSalt() throws NoSuchAlgorithmException {
 		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
 		
 		byte[] salt = new byte[16];

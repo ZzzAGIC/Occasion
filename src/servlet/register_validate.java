@@ -107,11 +107,10 @@ public class register_validate extends HttpServlet {
 		
 		String toinsert = "INSERT INTO User (Username,Password,Email, Phone) "
 				+ "VALUES (?, ?, ?, ?)";
-//		Username,Password, Salt, Premium, Email, Gender, Phone, ProfileImage, Birthday, Points, Status
+		//Username,Password, Salt, Premium, Email, Gender, Phone, ProfileImage, Birthday, Points, Status
 		
 		Database.UpdateQuery(toinsert, Username, Password, Email, phone_number);
 		return true;
-		
 	}
 					
     

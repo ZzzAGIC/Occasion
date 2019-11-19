@@ -132,8 +132,4 @@
 				
 			}
 		</script>
-		
-		<script>
-		
-		</script>
 </html>

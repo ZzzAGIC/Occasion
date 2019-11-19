@@ -10,6 +10,7 @@
 <%@ page import="java.util.Date" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>ProfilePage</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 	<script>
 		function add_following(){
 			<%
@@ -112,19 +113,19 @@
     	<h1 align=center><i><%=curr_username%>'s Profile</i></h1>
 
     	<img src="<%=profile_img%>" alt="profile image" align="left" height="180" width="240">
-
-    	<div class="profile_text">
-	    	<h4>GENDER: <%=gender%></h4>
-	    	<h4>EMAIL ADDRESS: <%=Email%></h4>
-	    	<h4>PHONE: <%=phone%></h4>
-	    	<h4>DATE OF BIRTH: <%=birthday%></h4>
-	    	<h4>POINTS: <%=points%></h4>
-    	</div>
-    	<button class="button" id="EditProfile_button" type="button" onclick=>Edit profile</button>
-		<button class="button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
-		
+		<form action="EditProfile" method="POST">
+	    	<div class="profile_text">
+		    	<h4>GENDER: <span id="genderDetail"><%=gender%></span></h4>
+		    	<h4>EMAIL ADDRESS: <span id="emailDetail"><%=Email%></span></h4>
+		    	<h4>PHONE: <span id="phoneDetail"><%=phone%></span></h4>
+		    	<h4>DATE OF BIRTH: <span id="birthDetail"><%=birthday%></span></h4>
+		    	<h4>POINTS: <%=points%></h4>
+	    	</div>
+	    	<div id="submitButton"><button class="button" id="EditProfile_button" type="button" onclick="module.editProfile();">Edit profile</button></div>
+			<button class="button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
+		</form>
 	</div>
-	
+
 	<div class="profile_activity">
 		<%if(pastEvent != null){
 			for(int i = 0; i < pastEvent.size(); i++ ){%> 
@@ -137,6 +138,57 @@
 	</div>
 
 </body>
+	<script>
+		var module = (function(){
+			var inputGender = document.getElementById('genderDetail').innerHTML;
+			var inputEmail = document.getElementById('emailDetail').innerHTML;
+			var inputPhone = document.getElementById('phoneDetail').innerHTML;
+			var inputBirth = document.getElementById('birthDetail').innerHTML;
+			
+			function editProfile() {	
+				document.getElementById("genderDetail").innerHTML = "";
+				var genderSearch = document.createElement("INPUT");
+				genderSearch.setAttribute("type", "search");
+				genderSearch.value = inputGender;
+				genderSearch.setAttribute("id", "genderSearch");
+				document.getElementById("genderDetail").appendChild(genderSearch);
+				
+				document.getElementById("emailDetail").innerHTML = "";
+				var emailSearch = document.createElement("INPUT");
+				emailSearch.setAttribute("type", "search");
+				emailSearch.value = inputEmail;
+				emailSearch.setAttribute("id", "emailSearch");
+				document.getElementById("emailDetail").appendChild(emailSearch);
+				
+				document.getElementById("phoneDetail").innerHTML = "";
+				var phoneSearch = document.createElement("INPUT");
+				phoneSearch.setAttribute("type", "search");
+				phoneSearch.value = inputPhone;
+				phoneSearch.setAttribute("id", "phoneSearch");
+				document.getElementById("phoneDetail").appendChild(phoneSearch);
+				
+				document.getElementById("birthDetail").innerHTML = "";
+				var birthSearch = document.createElement("INPUT");
+				birthSearch.setAttribute("type", "search");
+				birthSearch.value = inputBirth;
+				birthSearch.setAttribute("id", "birthSearch");
+				document.getElementById("birthDetail").appendChild(birthSearch);
+				
+				var submit = document.createElement("INPUT");
+				submit.setAttribute("type", "submit");
+				submit.value = "Submit"
+				document.getElementById("submitButton").innerHTML = "";
+				document.getElementById("submitButton").appendChild(submit);
+			}
+			
+			
+						
+			return {
+			    editProfile: editProfile,
+			};
+		})();
+		
+	</script>
 	<script>
 			var login  = <%=session.getAttribute("login")%>
 			if(login != null) {
@@ -176,11 +228,6 @@
 				//this is other user's button, display add/remove button
 				document.getElementById("FollowUser_button").style.display="initial"
 				document.getElementById("EditProfile_button").style.display="none"
-			}
-			
-			
-
-			
-			
+			}	
 		</script>
 </html>
