@@ -90,12 +90,10 @@ body{
    	position: absolute;
 }
 .vertical_scroll{
-
 	text-align: center;
 	flex: 2;
 	overflow-y: auto;
   	overflow-x: hidden;
-	
 }
 .friend_list{
 	background-image: linear-gradient(#ccffff, #ff9999);

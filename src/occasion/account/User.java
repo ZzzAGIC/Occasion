@@ -193,8 +193,6 @@ public class User {
 
 	public ArrayList<User> getFollowingList(){
 		//Add users which this user is following
-//		String query = "SELECT User.username FROM User, Relationship WHERE FollowerUserID = User.ID AND FollowerUserID = ?";
-//		
 		String query = "select Username from User where UserID in (select FollowingUserID from Relationship where FollowerUserID = ?);";
 
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
@@ -209,7 +207,14 @@ public class User {
 	}
 	
 	public ArrayList<User> getBlockedFriendlist(){
-		return blockedFriendlist;
+		String query = "SELECT Username FROM User, Relationship WHERE Relationship.BlockCode = 3 AND Relationship.FollowerUserID = ? AND Relationship.FollowerUserID = User.UserID";
+		List<List<String>> result = Database.SelectQuery(query, Integer.toString(this.userID));
+		
+		ArrayList<User> block_users = new ArrayList<User>();
+		for(List<String> record : result) {
+			block_users.add(new User(record.get(0)));
+		}
+		return block_users;
 	}
 	public void AddBlockedFriendlist(User U) {
 		blockedFriendlist.add(U);
