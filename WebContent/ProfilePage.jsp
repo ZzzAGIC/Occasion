@@ -151,6 +151,7 @@
 				genderSearch.setAttribute("type", "search");
 				genderSearch.value = inputGender;
 				genderSearch.setAttribute("id", "genderSearch");
+				genderSearch.setAttribute("name", "genderSearch");
 				document.getElementById("genderDetail").appendChild(genderSearch);
 				
 				document.getElementById("emailDetail").innerHTML = "";
@@ -158,6 +159,7 @@
 				emailSearch.setAttribute("type", "search");
 				emailSearch.value = inputEmail;
 				emailSearch.setAttribute("id", "emailSearch");
+				emailSearch.setAttribute("name", "emailSearch");
 				document.getElementById("emailDetail").appendChild(emailSearch);
 				
 				document.getElementById("phoneDetail").innerHTML = "";
@@ -165,6 +167,7 @@
 				phoneSearch.setAttribute("type", "search");
 				phoneSearch.value = inputPhone;
 				phoneSearch.setAttribute("id", "phoneSearch");
+				phoneSearch.setAttribute("name", "phoneSearch");
 				document.getElementById("phoneDetail").appendChild(phoneSearch);
 				
 				document.getElementById("birthDetail").innerHTML = "";
@@ -172,6 +175,7 @@
 				birthSearch.setAttribute("type", "search");
 				birthSearch.value = inputBirth;
 				birthSearch.setAttribute("id", "birthSearch");
+				birthSearch.setAttribute("name", "birthSearch");
 				document.getElementById("birthDetail").appendChild(birthSearch);
 				
 				var submit = document.createElement("INPUT");
@@ -180,9 +184,7 @@
 				document.getElementById("submitButton").innerHTML = "";
 				document.getElementById("submitButton").appendChild(submit);
 			}
-			
-			
-						
+							
 			return {
 			    editProfile: editProfile,
 			};
