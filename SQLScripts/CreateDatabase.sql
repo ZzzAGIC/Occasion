@@ -36,8 +36,8 @@ CREATE TABLE Event (
 	Size INT(11),
 	Price INT(5),
 	Description VARCHAR(200),
-	FOREIGN KEY HostID REFERENCES User(UserID)
-	FOREIGN KEY LocationID REFERENCES Location(LocationID)
+	FOREIGN KEY (HostID) REFERENCES User(UserID),
+	FOREIGN KEY (LocationID) REFERENCES Location(LocationID)
 );
 
 CREATE TABLE Attendance (
