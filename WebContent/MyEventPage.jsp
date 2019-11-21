@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ page import="occasion.account.User" %>
+<%@ page import="occasion.event.Event" %>
+<%@ page import="java.util.ArrayList" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>My Event</title>
 </head>
@@ -47,6 +50,34 @@
 			</div>
 		</div>
 		
+	</div>
+	
+	
+	<div class="MyEvent_List">
+		<% 
+		String myusername = null;
+		if(session.getAttribute("myname") != null) {
+			myusername = session.getAttribute("myname").toString(); 
+		}
+		
+		
+				
+		%>
+  
+	    <h1 align=center><i>Events created by <%=myusername%></i></h1>
+		<div class="list">
+		
+	    </div>
+	    
+	    <h1 align=center><i><%=myusername%>'s Future Events</i></h1>
+		<div class="list">
+		
+	    </div>
+	    
+	    <h1 align=center><i><%=myusername%>'s Past Events</i></h1>
+		<div class="list">
+		
+	    </div>
 	</div>
 	
 </body>
