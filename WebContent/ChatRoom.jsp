@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="occasion.account.User" %>
+<%@ page import="occasion.chat.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/homepage.css">
-<title>HomePage</title>
+<title>CHATROOM</title>
 </head>
 <body>
 	<div class="navbar">
@@ -17,9 +18,11 @@
 		<button class="button" type="button" >Profile</button>
 			<div class="dropdown-content">
     			<button class="subbutton" id="Login_button" type="button" onclick="window.location='Login.jsp'">Login</button>
-    			<button class="subbutton" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">My Profile</button>
-  				<br>
+    			<br>
 				<button class="subbutton" id="Register_button" type="button" onclick="window.location='Register.jsp'">Register</button>
+  				<br>
+  				<button class="subbutton" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">My Profile</button>
+  				<br>
   				<form action="Signout">
   					<input class="subbutton" id="Signout_button" type="submit" value="Sign out"/>
   				</form>
@@ -31,7 +34,7 @@
 			<div class="dropdown-content">
     			<button class="subbutton" id="Friendlist_button" type="button" onclick="window.location='FriendlistPage.jsp'">Friend List</button>
     			<br>
-				<button class="subbutton" id="Chat_button" type="button" onclick="window.location='ChatRoom.jsp'">Chats</button>
+				<button class="subbutton" id="Chat_button" type="button" onclick="window.location='ChatRoom.jsp''">Chats</button>
   				
   			</div>
 		</div>
@@ -47,50 +50,24 @@
 			</div>
 		</div>
 		
-		<div class="dropdown">
-		<button class="button" id="Add_buttom" type="button">+</button>	
-			<div class="dropdown-content">
-			<button class="subbutton" id="AddPost_buttom" type="button" onclick="window.location='AddPost.jsp'">Add Post</button>	
-			<br>
-			<button class="subbutton" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">Add Event</button>
-			</div>
-		</div>
-		
 	</div>
 	
 	<div class="header">
 		
 	</div>
 	
-	<h1 style="text-align: center;">Invitation</h1>
-	<div class="invitation">
-		<div class="scroll-events">
-		<img src="images/Event1.jpg" alt="Event1" height="200" width="360">
-		<img src="images/Event2.jpg" alt="Event2" height="200" width="360">
-		<img src="images/Event3.jpg" alt="Event3" height="200" width="360">
-		<img src="images/Event4.jpg" alt="Event4" height="200" width="360">
-		</div>
-	</div>
+	<form>
+		<input id="textMessage" type="text">
+		<input onclick="sendMessage();" value="Send Message" type="button">	
+	</form>
+	<br> <textarea id="messagesTextArea" rows="10" cols="50"></textarea> <br>
+	<script type="text/javascript">
+	</script>
 	
-	<h1 style="text-align: center;">Trending</h1>
-	<div class="trending">
-		<div class="scroll-events">
-		<img src="images/Event1.jpg" alt="Event1" height="200" width="360">
-		<img src="images/Event2.jpg" alt="Event2" height="200" width="360">
-		<img src="images/Event3.jpg" alt="Event3" height="200" width="360">
-		<img src="images/Event4.jpg" alt="Event4" height="200" width="360">
-		</div>
-	</div>
 	
-	<h1 style="text-align: center;">Friends' activities</h1>
-	<div class="friend_activity">
-		<div class="vertical_scroll" >
-		<img src="images/Event1.jpg" alt="Event1" height="60%" width="60%">
-		<img src="images/Event2.jpg" alt="Event2" height="60%" width="60%">
-		<img src="images/Event3.jpg" alt="Event3" height="60%" width="60%">
-		<img src="images/Event4.jpg" alt="Event4" height="60%" width="60%">
-		</div>
-	</div>
+	<button class="button" id="chatButton" type="button" onclick="initiateChatroom()">Create chat</button>
+	<button class="button" id="chatButton" type="button" onclick="initiateChatroom()">Join chat</button>
+	
 	
 	<div class="footer">
 	
@@ -99,6 +76,7 @@
 </body>
 	<script>
 			var login  = <%=session.getAttribute("login")%>
+			var webSocket;
 			if(login != null) {
 				if(login == true) {
 					//already login, display profile & signout
@@ -130,7 +108,35 @@
 				sessionInfo.Item("login") = null;
 			}
 			
+			function initiateChatroom() {
+				webSocket = new WebSocket("ws://localhost:8080/Occasion/serverendpointdemo");
+				var messagesTextArea = document.getElementById("messagesTextArea");
+				webSocket.onopen = function(message) {processOpen(message);};
+				webSocket.onclose = function(message) {processClose(message);};
+				webSocket.onerror = function(message) {processError(message);};
+				webSocket.onmessage = function(message) {processMessage(message);};
 
+			}
+			function processOpen(message) {
+				messagesTextArea.value += "Server connect ...\n";
+			}
+			function sendMessage() {
+				if(textMessage.value !="close") {
+					webSocket.send(textMessage.value);
+					messagesTextArea.value += "Send to Server ==> " + textMessage.value + "\n";
+					textMessage.value="";	
+				} else webSocket.close();
+			}
+			function processMessage(message) {
+				messagesTextArea.value += "Receive from server ==> " + message.data + "\n";
+			}
+			function processClose(message) {
+				webSocket.send("Client disconnected...");
+				messagesTextArea.value += "Server Disconnecting...\n";
+			}
+			function processError(message) {
+				messagesTextArea.value += "error...\n";
+			}
 			
 			
 		</script>
