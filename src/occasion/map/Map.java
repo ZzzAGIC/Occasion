@@ -55,6 +55,8 @@ public class Map {
 		System.out.println(lat);
 		System.out.println(lng);
 		
+		output.add(lat);
+		output.add(lng);
 		return output;
 	}
 }
