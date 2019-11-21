@@ -21,7 +21,7 @@ body{
 .button{
 	font-size: 16px;
 	height: 100%;
-	width: 80px;
+	width: 100px;
 	background-color: white;
   	color: black;
   	border: 2px solid black;
@@ -129,13 +129,20 @@ body{
 .profile_activity{
 	
 }
-#UserSearch,.event_search,.AddEventForm{
+#UserSearch,.event_search{
 	padding-top: 40px;
 	text-align: center;
 	padding-bottom: 20px;
 	
 	
 }
+.bar{
+	width:200px;
+}
+.AddEvent{
+	margin-left: 25%;
+}
+
 
 .eventList{
 	float: left;
