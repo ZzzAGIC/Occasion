@@ -50,16 +50,26 @@
 		
 	<div class="event_search">
 		<form id="Eventsearch" method="Post" action="" >
-			<input id="search" type="text" name="search" placeholder="Search an event!" style="width:40%;"> <br>
+			<input id="search" type="text" name="search" placeholder="Search an event!" style="width:30%;"> 
+			Type:<select class="bar"  name="EventType" style="width:10%;">
+					<option value="all">ALL</option>
+					<option value="academic">Academic</option>
+					<option value="leisure">Leisure</option>
+					<option value="music">Music</option>
+					<option value="party">Party</option>
+					<option value="sports">Sports</option>
+					<option value="stu_org">Student Organization</option>
+					<option value="other">Other</option>
+				</select>
+			<br>
 			<div id="formerror">
 			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 			</div>
 			<input id="selection" type="radio" name="type" value="Username">
-			<label for="name">Event Name</label>
+			<label for="EventName">Event Name</label>
 			<input id="selection" type="radio" name="type" value="Phone"> 
-			<label for="author">Location</label>
-			<input id="selection" type="radio" name="type" value="Email"> 
-			<label for="ISBN">Type</label> 
+			<label for="Location">Location</label>
+			 
 			
 			
 			<button id="button" type="submit"> Search!</button>

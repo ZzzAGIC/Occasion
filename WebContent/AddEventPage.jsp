@@ -183,6 +183,7 @@
 				Zipcode:<br/> <input class="bar" id="location" type="text" name="EventLocation_zipcode"/><br/><br/> 
 				
 			Type:<br/> <select class="bar"  name="EventType">
+					<option value="all">ALL</option>
 					<option value="academic">Academic</option>
 					<option value="leisure">Leisure</option>
 					<option value="music">Music</option>
