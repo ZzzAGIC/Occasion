@@ -67,6 +67,7 @@ public class Addevent_validate extends HttpServlet {
 		}
 		System.out.print(event_time);
 		
+		
 		String street= request.getParameter("EventLocation_street");
 		String room= request.getParameter("EventLocation_Room");
 		String city= request.getParameter("EventLocation_city");
@@ -77,6 +78,7 @@ public class Addevent_validate extends HttpServlet {
 		int capacity= Integer.parseInt(request.getParameter("EventCapacity"));
 		int price= Integer.parseInt(request.getParameter("EventPrice"));
 		String description= request.getParameter("EventDescription");
+		
 		
 			
 		String next = "/EventPage.jsp";
@@ -146,41 +148,34 @@ public class Addevent_validate extends HttpServlet {
 		//more errors
 		
 		List<String> geocode = Map.getGeocode(street, room, city, state, country, zipcode);
+		String loc_ID = null;
 		
-//		//add/verify location
-//		try {
-//			//login success
-//			if () {
-//			
-//			}
-//			//login failed
-//			else {
-//				error += "unable to add event  & ";
-//				next = "/AddEventPage.jsp";
-//			}
-//		} catch (SQLException e){
-//			e.printStackTrace();
-//		} catch (ClassNotFoundException e){
-//			e.printStackTrace();
-//		}
+		//add/verify location
+		try {
+			loc_ID = AddLocation(street,room,city,state,country,zipcode);
+		} catch (SQLException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e){
+			e.printStackTrace();
+		}
 		
 		
-//		//add event
-//		try {
-//			//login success
-//			if () {
-//			
-//			}
-//			//login failed
-//			else {
-//				error += "unable to add event  & ";
-//				next = "/AddEventPage.jsp";
-//			}
-//		} catch (SQLException e){
-//			e.printStackTrace();
-//		} catch (ClassNotFoundException e){
-//			e.printStackTrace();
-//		}
+		//add event
+		try {
+			//login success
+			if (AddEvent(event_name,event_time,loc_ID,type,capacity,price,description,username)) {
+			
+			}
+			//login failed
+			else {
+				error += "unable to add event  & ";
+				next = "/AddEventPage.jsp";
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e){
+			e.printStackTrace();
+		}
 			
 				
 		request.setAttribute("error", error);
@@ -203,36 +198,37 @@ public class Addevent_validate extends HttpServlet {
 		String tosearch = "SELECT * FROM Location WHERE City = ? AND Country = ? AND State = ? AND "
 				+ "Street = ? AND Zipcode = ?";
 		List<List<String>> output = Database.SelectQuery(tosearch, city,country,state,street,zipcode);
-		//if the location already added, 
-		if(output.size() > 0) {
-			Loc_ID = output.get(0).get(0);
-			System.out.println(Loc_ID);
-			return Loc_ID;
+		//if the location not exist yet, need to add now 
+		if(output.size() == 0) {
+			String toinsert = "INSERT INTO Location (City,Country,State, Street,Zipcode,Longitude,Latitude) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+			Database.UpdateQuery(toinsert, city, country, state, street,zipcode);
+		
 		}
-		
-		//if the location not exist yet, need to add now
-//		else {
-//			String toinsert = "INSERT INTO Location (City,Country,State, Street,Zipcode,Longitude,Latitude) "
-//					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-//			Database.UpdateQuery(toinsert, city, country, state, street,zipcode);
-//		}
-		
-		//
+//		return the loc_ID
+		Loc_ID = output.get(0).get(0);
+		System.out.println(Loc_ID);
 		return Loc_ID;
+
 	}
 	
-	public static boolean AddEvent(String Username, String phone_number, String Email, String Password) throws SQLException, ClassNotFoundException {
-		
-		String tosearch = "SELECT * FROM User WHERE Username = ?";
-		List<List<String>> output = Database.SelectQuery(tosearch, Username);
+	public static boolean AddEvent(String event_name, Date event_time, String loc_ID, String type, int capacity, int price, String description,String username)
+			 throws SQLException, ClassNotFoundException{
+		String tosearch = "SELECT * FROM Event WHERE EventName = ? AND EventDate = ? AND LocationID = ? AND Description = ?";
+		String event_date = event_time.toString();
+		List<List<String>> output = Database.SelectQuery(tosearch, event_name, event_date, loc_ID, description);
 		if(output.size() > 0) return false;
 		
+		//get userID
+		String searchUser = "SELECT UserID FROM User WHERE Username = ?";
+		List<List<String>> curr_ID = Database.SelectQuery(tosearch, username);
+		String U_ID = curr_ID.get(0).get(0);
 		
-		String toinsert = "INSERT INTO User (Username,Password,Email, Phone) "
-				+ "VALUES (?, ?, ?, ?)";
-		//Username,Password, Salt, Premium, Email, Gender, Phone, ProfileImage, Birthday, Points, Status
-		
-		Database.UpdateQuery(toinsert, Username, Password, Email, phone_number);
+		String toinsert = "INSERT INTO Event (EventName,EventDate,LocationID,Type,HostID,Capacity,Size,Price,Description) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?)";
+		String capacity_ = Integer.toString(capacity);
+		String price_ = Integer.toString(price);
+		Database.UpdateQuery(toinsert, event_name, event_date, loc_ID, type, U_ID, capacity_, price_, description);
 		return true;
 	}
 

@@ -14,5 +14,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="gson-2.8.0 copy.jar"/>
+	<classpathentry kind="lib" path="gson-2.8.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
