@@ -51,14 +51,35 @@
 	</div>
 		
 		
-	<div class="AddEvent">
+	<div class="AddEvent" >
 		<form class="AddEventForm" action="Addevent_validate" method="post" onsubmit="return validate();"> 
 			<div id="formerror" style="color: red;"> 
 			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 			</div>
 			<br/>
+
 			EventName:<br/> <input class="bar" type="text" name="EventName"/><br/><br/>  
-			EventTime:<br/> <input class="bar" type="text" name="EventTime"/><br/><br/>  
+			EventTime:<br/> <input class="bar" type="date" name="EventTime"/><br/><br/>  
+			Location:<br/> <input class="bar" type="text" name="EventName"/><br/><br/> 
+				Street:<br/> <input class="bar" type="text" name="EventName"/><br/><br/> 
+				City:<br/> <input class="bar" type="text" name="EventName"/><br/><br/> 
+				State:<br/> <input class="bar" type="text" name="EventName"/><br/><br/> 
+				Country:<br/> <input class="bar" type="text" name="EventName"/><br/><br/> 
+				Zipcode:<br/> <input class="bar" type="text" name="EventName"/><br/><br/> 
+				
+			Type:<br/> 
+				<select class="bar" type="selection" name="EventTime">
+				  <option value="volvo">Volvo</option>
+				  <option value="saab">Saab</option>
+				  <option value="opel">Opel</option>
+				  <option value="audi">Audi</option>
+				</select> <br/><br/> 
+			<!-- host ID -->
+			capacity:<br/> <input class="bar" type="text" name="EventName"/><br/><br/>  
+			price:<br/> <input class="bar" type="text" name="EventTime"/><br/><br/>  
+			Description:<br/> <input class="bar" type="text" name="EventTime"/><br/><br/>  
+			Pictures:<br/> <input class="bar" type="text" name="EventTime"/><br/><br/>
+			
 			<input class="button" type="submit" name="status" value="Add Event"/>  
 		</form>  
 		

@@ -129,7 +129,7 @@ body{
 .profile_activity{
 	
 }
-#UserSearch,.event_search{
+#UserSearch,.event_search,.AddEventForm{
 	padding-top: 40px;
 	text-align: center;
 	padding-bottom: 20px;
