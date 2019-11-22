@@ -57,16 +57,17 @@ public class Addevent_validate extends HttpServlet {
 			minute = '0' + minute;
 		}
 		String total_time = year+"-"+month+"-"+day+" "+hour+":"+minute+":00";
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date event_time = null;
 		try {
-			event_time = (Date) format.parse(total_time);
+			event_time = (Date) formatter.parse(total_time);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		System.out.print(event_time);
-		
+		String sql_date = formatter.format(event_time);
+		System.out.print(sql_date);
 		
 		String street= request.getParameter("EventLocation_street");
 		String room= request.getParameter("EventLocation_Room");
@@ -78,10 +79,10 @@ public class Addevent_validate extends HttpServlet {
 		int capacity= Integer.parseInt(request.getParameter("EventCapacity"));
 		int price= Integer.parseInt(request.getParameter("EventPrice"));
 		String description= request.getParameter("EventDescription");
-		
+		String private_type= request.getParameter("privacy");
 		
 			
-		String next = "/EventPage.jsp";
+		String next = "/MyEventPage.jsp";
 		String error = "";
 		HttpSession session = request.getSession();
 		session.setAttribute("login", false);
@@ -148,11 +149,13 @@ public class Addevent_validate extends HttpServlet {
 		//more errors
 		
 		List<String> geocode = Map.getGeocode(street, room, city, state, country, zipcode);
+		String latitude = geocode.get(0);
+		String longitude = geocode.get(1);
 		String loc_ID = null;
 		
 		//add/verify location
 		try {
-			loc_ID = AddLocation(street,room,city,state,country,zipcode);
+			loc_ID = AddLocation(street,room,city,state,country,zipcode,latitude,longitude);
 		} catch (SQLException e){
 			e.printStackTrace();
 		} catch (ClassNotFoundException e){
@@ -162,8 +165,8 @@ public class Addevent_validate extends HttpServlet {
 		
 		//add event
 		try {
-			//login success
-			if (AddEvent(event_name,event_time,loc_ID,type,capacity,price,description,username)) {
+			//addevent 
+			if (AddEvent(event_name,sql_date,loc_ID,type,capacity,price,description,username,private_type)) {
 			
 			}
 			//login failed
@@ -192,7 +195,7 @@ public class Addevent_validate extends HttpServlet {
 		}
 	}
 	public static String AddLocation(String street, String room, String city, String state,
-			String country, String zipcode) throws SQLException, ClassNotFoundException {
+			String country, String zipcode,String latitude, String longitude) throws SQLException, ClassNotFoundException {
 		
 		String Loc_ID = null;
 		String tosearch = "SELECT * FROM Location WHERE City = ? AND Country = ? AND State = ? AND "
@@ -200,19 +203,21 @@ public class Addevent_validate extends HttpServlet {
 		List<List<String>> output = Database.SelectQuery(tosearch, city,country,state,street,zipcode);
 		//if the location not exist yet, need to add now 
 		if(output.size() == 0) {
+			System.out.println("insert location");
 			String toinsert = "INSERT INTO Location (City,Country,State, Street,Zipcode,Longitude,Latitude) "
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-			Database.UpdateQuery(toinsert, city, country, state, street,zipcode);
+			Database.UpdateQuery(toinsert, city, country, state, street,zipcode,longitude,latitude);
 		
 		}
+		List<List<String>> output1 = Database.SelectQuery(tosearch, city,country,state,street,zipcode);
+		
 //		return the loc_ID
-		Loc_ID = output.get(0).get(0);
-		System.out.println(Loc_ID);
+		Loc_ID = output1.get(0).get(0);
 		return Loc_ID;
 
 	}
 	
-	public static boolean AddEvent(String event_name, Date event_time, String loc_ID, String type, int capacity, int price, String description,String username)
+	public static boolean AddEvent(String event_name, String event_time, String loc_ID, String type, int capacity, int price, String description,String username,String privacy)
 			 throws SQLException, ClassNotFoundException{
 		String tosearch = "SELECT * FROM Event WHERE EventName = ? AND EventDate = ? AND LocationID = ? AND Description = ?";
 		String event_date = event_time.toString();
@@ -221,14 +226,14 @@ public class Addevent_validate extends HttpServlet {
 		
 		//get userID
 		String searchUser = "SELECT UserID FROM User WHERE Username = ?";
-		List<List<String>> curr_ID = Database.SelectQuery(tosearch, username);
+		List<List<String>> curr_ID = Database.SelectQuery(searchUser, username);
 		String U_ID = curr_ID.get(0).get(0);
 		
-		String toinsert = "INSERT INTO Event (EventName,EventDate,LocationID,Type,HostID,Capacity,Size,Price,Description) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?)";
+		String toinsert = "INSERT INTO Event (EventName,EventDate,LocationID,Type,HostID,Capacity,Size,Price,Description,Privacy) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 		String capacity_ = Integer.toString(capacity);
 		String price_ = Integer.toString(price);
-		Database.UpdateQuery(toinsert, event_name, event_date, loc_ID, type, U_ID, capacity_, price_, description);
+		Database.UpdateQuery(toinsert, event_name, event_date, loc_ID, type, U_ID, capacity_,"0", price_, description,privacy);
 		return true;
 	}
 

@@ -30,12 +30,13 @@ CREATE TABLE Event (
 	EventDate DATE,
 	LocationID INT(11),
 	Type VARCHAR(50),
-	Picture VARCHAR(50),
+	Picture VARCHAR(200),
 	HostID INT(11),
 	Capacity INT(11),
 	Size INT(11),
 	Price INT(5),
-	Description VARCHAR(200),
+	Description VARCHAR(500),
+	Privacy INT(1),
 	FOREIGN KEY (HostID) REFERENCES User(UserID),
 	FOREIGN KEY (LocationID) REFERENCES Location(LocationID)
 );
@@ -107,11 +108,11 @@ CREATE TABLE Preferences (
 
 CREATE TABLE Location (
 	LocationID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
-	City VARCHAR(11),
-	Country VARCHAR(11),
-	State VARCHAR(11),
+	City VARCHAR(50),
+	Country VARCHAR(50),
+	State VARCHAR(50),
 	Street VARCHAR(200),
-	Zipcode INT(11),
-	Longitude POINT,
-	Latitude POINT
+	Zipcode VARCHAR(20),
+	Longitude VARCHAR(50),
+	Latitude VARCHAR(50)
 );
