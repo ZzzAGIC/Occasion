@@ -281,7 +281,7 @@ public class User {
 	}
 	
 	public static String getUsernameFromId(int id) {
-		String query = "SELECT username FROM User Where user.userID = ?";
+		String query = "SELECT username FROM User Where userID = ?";
 		
 		List<List<String>> results = Database.SelectQuery(query, Integer.toString(id));
 		
