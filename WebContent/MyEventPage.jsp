@@ -59,13 +59,23 @@
 		if(session.getAttribute("myname") != null) {
 			myusername = session.getAttribute("myname").toString(); 
 		}
-		
+		User curr_user = new User(myusername);
+		ArrayList<Event> CreatedEvents = curr_user.getCreatedEvent();
 		
 				
 		%>
   
 	    <h1 align=center><i>Events created by <%=myusername%></i></h1>
 		<div class="list">
+			<%if(CreatedEvents != null){
+			for(int i = 0; i < CreatedEvents.size(); i++ ){%> 
+				
+				<img src="<%=CreatedEvents.get(i).getPictures() %>" 
+				alt="<%=CreatedEvents.get(i).getEventName()%>'s event image" height="180" width="220">
+
+				<h4><%=CreatedEvents.get(i).getEventName()%></h4>
+			
+	    <%}}%> 
 		
 	    </div>
 	    

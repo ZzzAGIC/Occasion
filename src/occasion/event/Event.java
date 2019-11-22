@@ -35,6 +35,7 @@ public class Event {
 		
 		List<String> result = Database.SelectQuery(query, Integer.toString(eventID)).get(0);
 		
+		setEventID(Integer.parseInt(result.get(0)));
 		setEventName(result.get(1));
 		
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -54,16 +55,20 @@ public class Event {
 		//Set Picture
 		
 		//Set Host
-		String name = User.getUsernameFromId(Integer.parseInt(result.get(5)));
+		String name = User.getUsernameFromId(Integer.parseInt(result.get(6)));
 		setInitiator(new User(name));
 		
 		//Set Capacity
-		setCapacity(Integer.parseInt(result.get(6)));
+		setCapacity(Integer.parseInt(result.get(7)));
 		
 		//Set Size
-		setCurrNum(Integer.parseInt(result.get(7)));
+		setCurrNum(Integer.parseInt(result.get(8)));
 		
 		//Set Price
+		
+		//set description result.get(10)
+		
+		//set privacy result.get(11)
 	}
 
 	public int getEventID() {

@@ -30,6 +30,7 @@ public class User {
 	private int status; 	
 	private ArrayList<User> blockedFriendlist;
 	private ArrayList<User> hideFriendlist;
+	private ArrayList<Event> createdEvent;
 	private ArrayList<Event> attendedEvent;
 	private ArrayList<Event> futureEvent;
 	private TreeSet<String> preferenceType;
@@ -228,6 +229,24 @@ public class User {
 	}
 	
 	
+	public ArrayList<Event> getCreatedEvent(){
+		String query = "select EventID from Event where HostID = ?;";
+
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
+				
+		ArrayList<Event> created = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			String itemUsername = item.get(0);
+			int e_ID = Integer.parseInt(itemUsername);
+			created.add(new Event(e_ID));
+		}
+		return created;
+	}
+	
+	public void AddCreatedEvent(Event E) {
+		createdEvent.add(E);
+	}
 	public ArrayList<Event> getAttendedEvent(){
 		return attendedEvent;
 	}
