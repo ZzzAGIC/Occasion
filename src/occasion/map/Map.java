@@ -8,7 +8,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -37,10 +38,10 @@ public class Map {
 		bufferedReader.close();
 		System.out.println(content.toString());
 		
-		
-		JsonParser parser = new JsonParser();
+		//Gson parser = new GsonBuilder().create();
+		//JsonParser parser = new JsonParser();
 		System.out.println("almost");
-		JsonObject job = parser.parse(content.toString()).getAsJsonObject();
+		JsonObject job = new JsonParser().parse(content.toString()).getAsJsonObject(); //parser.parse(content.toString()).getAsJsonObject();
 		
 		JsonArray ja_result = (JsonArray) job.get("result");
 		JsonObject obj_addressCompoment = (JsonObject)ja_result.get(0);
