@@ -15,7 +15,11 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="gson-2.8.0 copy.jar"/>
 	<classpathentry exported="true" kind="lib" path="gson-2.8.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="gson-2.8.0_.jar"/>
+	<classpathentry exported="true" kind="lib" path="gson-2.8.0_.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="/Users/zhangchaohang/Desktop/eclipse-workplace/zhaohanz_hw3/gson-2.8.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -19,7 +20,7 @@ public class Map {
 	
 	public static List<String>  getGeocode(String street, String room, String city, String state,
 			String country, String zipcode) throws IOException{
-		List<String> output= null;
+		List<String> output = new ArrayList<String>();
 		street = street.replace(" ", "+");
 		city = city.replace(" ", "+");
 		String mapstring = "https://maps.googleapis.com/maps/api/geocode/json?address="
@@ -38,12 +39,14 @@ public class Map {
 		bufferedReader.close();
 		System.out.println(content.toString());
 		
-		//Gson parser = new GsonBuilder().create();
-		//JsonParser parser = new JsonParser();
-		System.out.println("almost");
-		JsonObject job = new JsonParser().parse(content.toString()).getAsJsonObject(); //parser.parse(content.toString()).getAsJsonObject();
+
+		JsonParser parser = new JsonParser();
+
+		JsonObject job = parser.parse(content.toString()).getAsJsonObject();
+		//parser.parse(content.toString()).getAsJsonObject();
 		
-		JsonArray ja_result = (JsonArray) job.get("result");
+		JsonArray ja_result = (JsonArray) job.get("results");
+		System.out.println(ja_result);
 		JsonObject obj_addressCompoment = (JsonObject)ja_result.get(0);
 		JsonObject obj_geometry = (JsonObject)obj_addressCompoment.get("geometry");
 		JsonObject obj_location = (JsonObject)obj_geometry.get("location");
