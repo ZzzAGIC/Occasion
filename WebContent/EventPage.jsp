@@ -101,6 +101,8 @@
 				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
 				</a>
 				<h4><%=all_Events.get(i).getEventName()%></h4>
+				<h4><%=all_Events.get(i).getLocation().getlongitute()%></h4>
+				<h4><%=all_Events.get(i).getLocation().getlatitude()%></h4>
 			
 	    <%}}%> 
 	    </div>
@@ -147,6 +149,40 @@
 				    zoom: 11
 			     };
 			   	var map = new google.maps.Map(document.getElementById('map'),option);
+			   	
+			   	
+			   	var locations = [];
+			   	
+			   	<%if(all_Events != null){
+					for(int i = 0; i < all_Events.size(); i++ ){%> 
+						
+						
+						var name = '<%=all_Events.get(i).getEventName()%>'
+						var lat = <%=all_Events.get(i).getLocation().getlatitude()%>;
+						var lng = <%=all_Events.get(i).getLocation().getlongitute()%>;
+						locations.push(name,lat,lng);
+					
+			    <%}}%> 
+			    /* for (i = 0; i < locations.length; i+=3) {  
+			    	console.log(locations[i])
+			        console.log(locations[i+1]+" "+locations[i+2])
+			      } */
+			   	
+			   	
+			   	
+			   	/* var marker = new google.maps.Marker({
+			   	    position: myLatLng,
+			   	    map: map,
+			   	    title: 'Hello World!'
+			   	  }); */
+			   	var marker, i;
+
+			      for (i = 0; i < locations.length; i+=3) {  
+			        marker = new google.maps.Marker({
+			          position: new google.maps.LatLng(locations[i+1], locations[i+2]),
+			          map: map
+			        });
+			      }
 		   }
 	</script>
 	

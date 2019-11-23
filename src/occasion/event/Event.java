@@ -21,7 +21,10 @@ public class Event {
 	private int curr_num;
 	private ArrayList<User> attendants;
 //	private ArrayList<String> pictures;
+	
 	private String img;
+	private int price;
+	private String description;
 	private int private_event;
 	//public event = 0; private event = 1; exclusive event = 2;
 	
@@ -67,10 +70,13 @@ public class Event {
 		setCurrNum(Integer.parseInt(result.get(8)));
 		
 		//Set Price
+		setPrice(Integer.parseInt(result.get(9)));
 		
 		//set description result.get(10)
+		setDescription(result.get(10));
 		
 		//set privacy result.get(11)
+		setPrivacy(Integer.parseInt(result.get(11)));
 	}
 
 	public int getEventID() {
@@ -151,7 +157,27 @@ public class Event {
 //	public void addPictures(String P) {
 //		pictures.add(P);
 //	}
-
+	
+	
+	public void setPrice(int p) {
+		price = p;
+	}
+	public int getPrice() {
+		return price;
+	}
+	
+	
+	public void setDescription(String d) {
+		description = d;
+	}
+	public String getDescription() {
+		return description;
+	}
+			
+	
+	public void setPrivacy(int pr) {
+		private_event = pr;
+	}
 	public String getPrivate_event() {
 		String type_ =  null;
 		if(private_event == 0) {
