@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ page import="occasion.account.User" %>
+<%@ page import="occasion.event.Event" %>
+<%@ page import="java.util.ArrayList" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>Event Page</title>
 </head>
@@ -76,18 +79,31 @@
 		</form>
 	</div>
 		
-
+	<%
+		String myusername = null;
+		if(session.getAttribute("myname") != null) {
+			myusername = session.getAttribute("myname").toString(); 
+		}
+		User curr_user = new User(myusername);
+		
+		
+		ArrayList<Event> all_Events = curr_user.getRecommendedEvents();
+	
+	%>
 	
 	<div class="eventList">
-		<table> 
-	         <tr bgcolor="#cccccc"> 
-	          <th id="eventName"><b>Event Name</b></th> 
-	          <th id="time"><b>Time</b></th> 
-	          <th id="location"><b>Location</b></th> 
-	          <th id="description"><b>Description</b></th> 
-	         </tr> 
-		
-		</table>
+		<h1 align=center><i>Events for <%=myusername%></i></h1>
+		<div class="list_v">
+		<%if(all_Events != null){
+			for(int i = 0; i < all_Events.size(); i++ ){%> 
+				
+				<img src="<%=all_Events.get(i).getPictures() %>" 
+				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
+				</a>
+				<h4><%=all_Events.get(i).getEventName()%></h4>
+			
+	    <%}}%> 
+	    </div>
 	</div>
 		
 		

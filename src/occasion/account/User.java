@@ -254,12 +254,31 @@ public class User {
 		attendedEvent.add(E);
 	}
 	
+	
+	
 	public ArrayList<Event> getFutureEvent(){
 		return futureEvent;
 	}
 	public void AddFutureEvent(Event E) {
 		futureEvent.add(E);
 	}
+	
+	public ArrayList<Event> getRecommendedEvents(){
+		String query = "select * from Event;";
+
+		List<List<String>> details = Database.SelectQuery(query);
+				
+		ArrayList<Event> recommend = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			String itemUsername = item.get(0);
+			int e_ID = Integer.parseInt(itemUsername);
+			recommend.add(new Event(e_ID));
+		}
+		return recommend;
+	}
+	
+	
 
 	public TreeSet<String> getPreferenceType(){
 		return preferenceType;
