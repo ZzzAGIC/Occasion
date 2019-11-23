@@ -80,7 +80,7 @@ public class Addevent_validate extends HttpServlet {
 		int price= Integer.parseInt(request.getParameter("EventPrice"));
 		String description= request.getParameter("EventDescription");
 		String private_type= request.getParameter("privacy");
-		
+		String img= request.getParameter("EventImages");
 			
 		String next = "/MyEventPage.jsp";
 		String error = "";
@@ -166,7 +166,7 @@ public class Addevent_validate extends HttpServlet {
 		//add event
 		try {
 			//addevent 
-			if (AddEvent(event_name,sql_date,loc_ID,type,capacity,price,description,username,private_type)) {
+			if (AddEvent(event_name,sql_date,loc_ID,type,img,capacity,price,description,username,private_type)) {
 			
 			}
 			//login failed
@@ -217,7 +217,7 @@ public class Addevent_validate extends HttpServlet {
 
 	}
 	
-	public static boolean AddEvent(String event_name, String event_time, String loc_ID, String type, int capacity, int price, String description,String username,String privacy)
+	public static boolean AddEvent(String event_name, String event_time, String loc_ID, String type, String img, int capacity, int price, String description,String username,String privacy)
 			 throws SQLException, ClassNotFoundException{
 		String tosearch = "SELECT * FROM Event WHERE EventName = ? AND EventDate = ? AND LocationID = ? AND Description = ?";
 		String event_date = event_time.toString();
@@ -229,11 +229,11 @@ public class Addevent_validate extends HttpServlet {
 		List<List<String>> curr_ID = Database.SelectQuery(searchUser, username);
 		String U_ID = curr_ID.get(0).get(0);
 		
-		String toinsert = "INSERT INTO Event (EventName,EventDate,LocationID,Type,HostID,Capacity,Size,Price,Description,Privacy) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String toinsert = "INSERT INTO Event (EventName,EventDate,LocationID,Type,Picture,HostID,Capacity,Size,Price,Description,Privacy) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		String capacity_ = Integer.toString(capacity);
 		String price_ = Integer.toString(price);
-		Database.UpdateQuery(toinsert, event_name, event_date, loc_ID, type, U_ID, capacity_,"0", price_, description,privacy);
+		Database.UpdateQuery(toinsert, event_name, event_date, loc_ID, type,img, U_ID, capacity_,"0", price_, description,privacy);
 		return true;
 	}
 

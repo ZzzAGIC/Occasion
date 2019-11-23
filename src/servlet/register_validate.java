@@ -2,6 +2,9 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -41,6 +44,28 @@ public class register_validate extends HttpServlet {
 					String Password1 = request.getParameter("new_userpass1");
 					String password2 = request.getParameter("new_userpass2");
 					
+					String Gender = request.getParameter("gender");
+					String profile_IMG = request.getParameter("profile_image");
+					
+					String day= request.getParameter("day");
+					if(day.length() == 1) {
+						day = '0' + day;
+					}
+					String month= request.getParameter("month");
+					String year= request.getParameter("year");
+					
+					String total_time = year+"-"+month+"-"+day;
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					Date event_time = null;
+					try {
+						event_time = (Date) formatter.parse(total_time);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					System.out.print(event_time);
+					String sql_date = formatter.format(event_time);
+					
 					String next = "/HomePage.jsp";
 					String error = "";
 					HttpSession session = request.getSession();
@@ -68,7 +93,7 @@ public class register_validate extends HttpServlet {
 						next = "/Register.jsp";
 					}
 					try {
-						if (Register(Username, phone_number, Email, Password1)) {	
+						if (Register(Username, phone_number, Email, Password1,Gender,sql_date,profile_IMG)) {	
 							session.setAttribute("login", true);
 							session.setAttribute("myname", Username);
 						}
@@ -98,18 +123,19 @@ public class register_validate extends HttpServlet {
 					}
 			}
 			    
-	public static boolean Register(String Username, String phone_number, String Email, String Password) throws SQLException, ClassNotFoundException {
+	public static boolean Register(String Username, String phone_number, String Email, String Password
+			,String Gender, String birthday, String image) throws SQLException, ClassNotFoundException {
 		
 		String tosearch = "SELECT * FROM User WHERE Username = ?";
 		List<List<String>> output = Database.SelectQuery(tosearch, Username);
 		if(output.size() > 0) return false;
 		
 		
-		String toinsert = "INSERT INTO User (Username,Password,Email, Phone) "
-				+ "VALUES (?, ?, ?, ?)";
+		String toinsert = "INSERT INTO User (Username,Password,Email,Gender,Phone,ProfileImage,Birthday) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 		//Username,Password, Salt, Premium, Email, Gender, Phone, ProfileImage, Birthday, Points, Status
 		
-		Database.UpdateQuery(toinsert, Username, Password, Email, phone_number);
+		Database.UpdateQuery(toinsert, Username, Password, Email, Gender,phone_number,image,birthday);
 		return true;
 	}
 					

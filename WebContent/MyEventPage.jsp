@@ -72,7 +72,7 @@
 				
 				<img src="<%=CreatedEvents.get(i).getPictures() %>" 
 				alt="<%=CreatedEvents.get(i).getEventName()%>'s event image" height="180" width="220">
-
+				
 				<h4><%=CreatedEvents.get(i).getEventName()%></h4>
 			
 	    <%}}%> 
