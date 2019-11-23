@@ -20,7 +20,8 @@ public class Event {
 	private int capacity;
 	private int curr_num;
 	private ArrayList<User> attendants;
-	private ArrayList<String> pictures;
+//	private ArrayList<String> pictures;
+	private String img;
 	private int private_event;
 	//public event = 0; private event = 1; exclusive event = 2;
 	
@@ -53,6 +54,7 @@ public class Event {
 		setType(result.get(4));
 		
 		//Set Picture
+		setPictures(result.get(5));
 		
 		//Set Host
 		String name = User.getUsernameFromId(Integer.parseInt(result.get(6)));
@@ -136,13 +138,19 @@ public class Event {
 	public void addAttendants(User U) {
 		attendants.add(U);
 	}
-
-	public ArrayList<String> getPictures(){
-		return pictures;
+	
+	public void setPictures(String img_){
+//		pictures.add(img);
+		img = img_;
 	}
-	public void addPictures(String P) {
-		pictures.add(P);
+		
+	public String getPictures(){
+//		return pictures;
+		return img;
 	}
+//	public void addPictures(String P) {
+//		pictures.add(P);
+//	}
 
 	public String getPrivate_event() {
 		String type_ =  null;
