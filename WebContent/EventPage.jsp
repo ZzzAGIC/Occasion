@@ -49,6 +49,16 @@
 			<button class="subbutton" id="MyEvent_buttom" type="button" onclick="window.location='MyEventPage.jsp'">My Event</button>
 			</div>
 		</div>
+		
+		<div class="dropdown">
+		<button class="button" id="Add_buttom" type="button">+</button>	
+			<div class="dropdown-content">
+			<button class="subbutton" id="AddPost_buttom" type="button" onclick="window.location='AddPost.jsp'">Add Post</button>	
+			<br>
+			<button class="subbutton" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">Add Event</button>
+			</div>
+		</div>
+		
 	</div>
 		
 	<div class="event_search">
