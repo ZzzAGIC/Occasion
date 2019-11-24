@@ -137,16 +137,16 @@
 		</form>
 	</div>
 
+	
+	<h1 style="text-align: center;"><i>Recent events for <%=curr_username%></i></h1>
 	<div class="profile_activity">
-		<h1 align=center><i>Recent events for <%=curr_username%></i></h1>
-		
 		<div class="scroll-events" >
 		<%if(all_Events != null){
 			for(int i = 0; i < all_Events.size(); i++ ){%> 
 				
 				<img src="<%=all_Events.get(i).getPictures() %>" 
 				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
-				<h4><%=all_Events.get(i).getEventName()%></h4>	
+				<%-- <h4><%=all_Events.get(i).getEventName()%></h4>	 --%>
 	    <%}}%> 
 	    </div>
 	</div>
