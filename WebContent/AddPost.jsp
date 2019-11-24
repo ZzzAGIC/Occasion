@@ -13,7 +13,7 @@
 <body>
 	
 	<div align="center">
-		<form class="form" action="register_validate" method="post">
+		<form class="form" action="add_post" method="post">
 		<div id="formerror" style="color: red;">  
 		<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 		</div>
@@ -21,7 +21,7 @@
 		Text:<br/> <input class="bar" type="text" name="post_text" style="height:100px;"/><br/><br/>  
 		Post image:<br/> <input class="bar" type="text" name="post_image"/><br/><br/>  
 		
-		Post Event:<br/> <select id="day" name="day">
+		Post Event:<br/> <select  name="event">
 					<% 
 					String myusername = null;
 					if(session.getAttribute("myname") != null) {
@@ -34,10 +34,11 @@
 					%>
 					<%if(CreatedEvents != null){
 					for(int i = 0; i < CreatedEvents.size(); i++ ){
-						String e = CreatedEvents.get(i).getEventName();
+						String e_id = Integer.toString(CreatedEvents.get(i).getEventID());
+						String e_name = CreatedEvents.get(i).getEventName();
 					%> 
 						
-						<option value="<%=e%>"><%=e%></option>
+						<option value="<%=e_id%>"><%=e_name%></option>
 					
 			   		 <%}}%> 
 								

@@ -85,8 +85,6 @@ public class Addevent_validate extends HttpServlet {
 		String next = "/MyEventPage.jsp";
 		String error = "";
 		HttpSession session = request.getSession();
-		session.setAttribute("login", false);
-		
 		String username = (String) session.getAttribute("myname");
 			
 

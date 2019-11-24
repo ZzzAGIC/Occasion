@@ -100,6 +100,7 @@ CREATE TABLE Post (
 	UserID INT(11),
 	LikeNum INT(11),
 	Description VARCHAR(200),
+	Image VARCHAR(50),
 	FOREIGN KEY (UserID) REFERENCES User(UserID),
 	FOREIGN KEY (EventID) REFERENCES Event(EventID)	
 );
