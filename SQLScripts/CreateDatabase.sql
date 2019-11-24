@@ -17,6 +17,12 @@ CREATE TABLE User (
 	Status INT(2)
 );
 
+--temporary table for image testing
+CREATE TABLE Test (
+	TestID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
+	img MEDIUMBLOB
+);
+
 CREATE TABLE PasswordRecovery (
 	RecoverID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	UserID INT(11).
@@ -88,14 +94,14 @@ CREATE TABLE Chat (
 	FOREIGN KEY ReceiverID REFERENCES User(UserID)	
 );
 
-CREATE TABLE PostID (
+CREATE TABLE Post (
 	PostID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	EventID INT(11),
 	UserID INT(11),
-	Like INT(11),
+	LikeNum INT(11),
 	Description VARCHAR(200),
-	FOREIGN KEY UserID REFERENCES User(UserID),
-	FOREIGN KEY EventID REFERENCES Event(EventID)	
+	FOREIGN KEY (UserID) REFERENCES User(UserID),
+	FOREIGN KEY (EventID) REFERENCES Event(EventID)	
 );
 
 CREATE TABLE Preferences (
