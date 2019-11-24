@@ -92,6 +92,7 @@
 		</div>
 		
 	</div>
+	<div class="profile_all">
 	<div class="profile_info">
 		<% 
 		String curr_username = null;
@@ -117,6 +118,7 @@
 		ArrayList<Event> pastEvent = curr_user.getAttendedEvent();
 		ArrayList<Event> futureEvent = curr_user.getFutureEvent();
 		
+		ArrayList<Event> all_Events = curr_user.getCreatedEvent();
 				
 		%>
     	<h1 align=center><i><%=curr_username%>'s Profile</i></h1>
@@ -136,10 +138,18 @@
 	</div>
 
 	<div class="profile_activity">
-		<%if(pastEvent != null){
-			for(int i = 0; i < pastEvent.size(); i++ ){%> 
-			<h2>Past Event: <%=pastEvent.get(i).getEventName()%></h2>
+		<h1 align=center><i>Recent events for <%=curr_username%></i></h1>
+		
+		<div class="scroll-events" >
+		<%if(all_Events != null){
+			for(int i = 0; i < all_Events.size(); i++ ){%> 
+				
+				<img src="<%=all_Events.get(i).getPictures() %>" 
+				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
+				<h4><%=all_Events.get(i).getEventName()%></h4>	
 	    <%}}%> 
+	    </div>
+	</div>
 	</div>
 	
 	<div class="footer">

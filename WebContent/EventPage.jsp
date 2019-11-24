@@ -103,16 +103,16 @@
 	
 	<div class="eventList">
 		<h1 align=center><i>Events for <%=myusername%></i></h1>
-		<div class="list_v">
+		
+		<div class="vertical_scroll" >
+		
+
 		<%if(all_Events != null){
 			for(int i = 0; i < all_Events.size(); i++ ){%> 
 				
 				<img src="<%=all_Events.get(i).getPictures() %>" 
 				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
-				</a>
 				<h4><%=all_Events.get(i).getEventName()%></h4>
-				<h4><%=all_Events.get(i).getLocation().getlongitute()%></h4>
-				<h4><%=all_Events.get(i).getLocation().getlatitude()%></h4>
 			
 	    <%}}%> 
 	    </div>

@@ -116,10 +116,13 @@ body{
     flex-direction: column;
 }
 .profile_info{
-	background-image: linear-gradient(#ccffff, #ff9999);
+	
   	width: 100%;
   	margin: auto;
   	padding: 40px;
+}
+.profile_all{
+	background-image: linear-gradient(#ccffff, #ff9999);
 }
 
 .submitButtonElement {
@@ -153,11 +156,14 @@ body{
 .eventList{
 	float: left;
 	width: 40%;
-	height:400px;
+	height:600px;
+	display: flex;
+    flex-direction: column;
+   	position: absolute;
 }
 #map{
 	float: right;
-	height: 400px;
+	height: 600px;
 	width: 60%;
 }
 .footer{

@@ -18,7 +18,8 @@
 		<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 		</div>
 		<br/>
-		Text:<br/> <input class="bar" type="text" name="post_text"/><br/><br/>  
+		Text:<br/> <input class="bar" type="text" name="post_text" style="height:100px;"/><br/><br/>  
+		Post image:<br/> <input class="bar" type="text" name="post_image"/><br/><br/>  
 		
 		Post Event:<br/> <select id="day" name="day">
 					<% 
@@ -42,7 +43,6 @@
 								
 		</select><br/><br/>
 		
-		Post image:<br/> <input class="bar" type="text" name="post_image"/><br/><br/>  
 		<input class="button" type="submit" name="status" />  
 		</form>  
 	</div>
