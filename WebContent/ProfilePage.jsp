@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <%@ page import="occasion.account.User" %>
+<%@ page import="occasion.account.Post" %>
 <%@ page import="occasion.event.Event" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
@@ -119,6 +120,7 @@
 		ArrayList<Event> futureEvent = curr_user.getFutureEvent();
 		
 		ArrayList<Event> all_Events = curr_user.getCreatedEvent();
+		ArrayList<Post> all_Posts = curr_user.getPost();
 				
 		%>
     	<h1 align=center><i><%=curr_username%>'s Profile</i></h1>
@@ -150,6 +152,17 @@
 	    <%}}%> 
 	    </div>
 	</div>
+	
+	<h1 style="text-align: center;"><i><%=curr_username%>'s Posts</i></h1>
+	<div class="profile_posts">
+		<div class="vertical_scroll" >
+		<%if(all_Posts != null){
+			for(int i = 0; i < all_Posts.size(); i++ ){%> 
+				
+	    <%}}%> 
+	    </div>
+	</div>
+	
 	</div>
 	
 	<div class="footer">
