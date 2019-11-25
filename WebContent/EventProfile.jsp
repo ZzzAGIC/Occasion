@@ -75,12 +75,20 @@
 			<% 
 			int EventID = Integer.parseInt(request.getParameter("EventID").toString());
 		
-			/* boolean own_event = false; */
+			boolean own_event = false;
+			String myusername = null;
+			if(session.getAttribute("myname") != null) {
+				myusername = session.getAttribute("myname").toString(); 
+			}
 			
 
 			Event curr_Event = new Event(EventID);
 			String name = curr_Event.getEventName();
 			String initiator = curr_Event.getInitiator().getUsername();
+			if(initiator.compareTo(myusername) == 0) {
+				own_event = true;
+			}
+				
 			String img = curr_Event.getPictures();
 			String type = curr_Event.getType();
 			String description = curr_Event.getDescription();
@@ -95,6 +103,8 @@
 			String lat_ = curr_Event.getLocation().getlatitude();
 			
 			String location = street + " " + city;
+			
+			ArrayList<User> attendents = curr_Event.getAttendants();
 					
 			%>
 			
@@ -114,9 +124,25 @@
 		    	<h4>Free spots: <%=freespots%></h4>
 		    	<h4>Location: <%=location%></h4>
 	    	</div>
+	    	<%if(!own_event) {%>
 	    	<button class="button" id="AddEvent_button" type="button" onclick="add();">Going event</button>
 			<button class="button" id="RemoveEvent_button" type="button" onclick="remove();" style="display: none;">Not Going</button>
-
+			<%}
+	    	else if(own_event) {%>
+				<h4>Attendents: </h4>
+				<%if(attendents != null){
+				for(int i = 0; i < attendents.size(); i++ ){%> 
+					
+					<a href="ProfilePage.jsp?Friend_User=<%=attendents.get(i).getUsername()%>">
+					<h4><%=attendents.get(i).getUsername()%></h4>
+					</a>
+					
+				
+				<%}}
+				else if(attendents == null){%> 
+				<h4>N/A</h4>
+				
+			<%} }%>
 		<div id="map"></div>
 		
 		
