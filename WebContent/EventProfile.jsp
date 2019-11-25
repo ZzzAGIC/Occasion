@@ -29,14 +29,12 @@
 		<button class="button" type="button" >Profile</button>
 			<div class="dropdown-content">
     			<button class="subbutton" id="Login_button" type="button" onclick="window.location='Login.jsp'">Login</button>
-    			<br>
+    			<button class="subbutton" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">My Profile</button>
+  				<br>
 				<button class="subbutton" id="Register_button" type="button" onclick="window.location='Register.jsp'">Register</button>
-  				<br>
-  				<button class="subbutton" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">My Profile</button>
-  				<br>
-				<form action="Signout">
+  				<form action="Signout">
   					<input class="subbutton" id="Signout_button" type="submit" value="Sign out"/>
-  				</form>  			
+  				</form>			
   			</div>
   		</div>
   		
@@ -112,7 +110,7 @@
 					</a></span></h4>
 		    	<h4>Time: <span id="Time"><%=time%></span></h4>
 		    	<h4>Description: <span id="Description"><%=description%></span></h4>
-		    	<h4>Price: <%=price%></h4>
+		    	<h4>Price: $<%=price%></h4>
 		    	<h4>Free spots: <%=freespots%></h4>
 		    	<h4>Location: <%=location%></h4>
 	    	</div>
@@ -159,7 +157,7 @@
 		   function initMap() {
 			   	var option ={
 				    center: {lat: <%=lat_%>, lng: <%=lng_%>},
-				    zoom: 11
+				    zoom: 15
 			     };
 			   	var map = new google.maps.Map(document.getElementById('map'),option);
 			   	
