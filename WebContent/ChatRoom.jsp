@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="occasion.account.User" %>
 <%@ page import="occasion.chat.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,15 +58,41 @@
 	
 	<form>
 		<input id="textMessage" type="text">
-		<input onclick="sendMessage();" value="Send Message" type="button">	
+		<input onclick="sendMessage();" value="Send" type="button">	
 	</form>
 	<br> <textarea id="messagesTextArea" rows="10" cols="50"></textarea> <br>
 	<script type="text/javascript">
+	var webSocket = new WebSocket("ws://localhost:8080/Occasion/serverendpointdemo");
+	var messagesTextArea = document.getElementById("messagesTextArea");
+	messagesTextArea.value +=("Opened websocket successfully");
+	webSocket.onopen = function(message) {processOpen(message);};
+	webSocket.onclose = function(message) {processClose(message);};
+	webSocket.onerror = function(message) {processError(message);};
+	webSocket.onmessage = function(message) {processMessage(message);};
+	
+	function processOpen(message) {
+		messagesTextArea.value += "Server connect ...\n";
+	}
+	function sendMessage() {
+			webSocket.send(textMessage.value);
+			messagesTextArea.value += textMessage.value + "\n";
+			textMessage.value="";	
+	}
+	function processMessage(message) {
+		var jsonData = JSON.parse(message.data);
+		if(jsonData.message != null) messagesTextArea.value += jsonData.message + "\n";
+		messagesTextArea.value += message.data + "\n";
+	}
+	function processClose(message) {
+		webSocket.send("Client disconnected...");
+		messagesTextArea.value += message.code + "\n";
+		messagesTextArea.value += message.reason + "\n";
+		messagesTextArea.value += "Server Disconnecting...\n";
+	}
+	function processError(message) {
+		messagesTextArea.value += "error...\n";
+	}
 	</script>
-	
-	
-	<button class="button" id="chatButton" type="button" onclick="initiateChatroom()">Create chat</button>
-	<button class="button" id="chatButton" type="button" onclick="initiateChatroom()">Join chat</button>
 	
 	
 	<div class="footer">
@@ -108,35 +134,6 @@
 				sessionInfo.Item("login") = null;
 			}
 			
-			function initiateChatroom() {
-				webSocket = new WebSocket("ws://localhost:8080/Occasion/serverendpointdemo");
-				var messagesTextArea = document.getElementById("messagesTextArea");
-				webSocket.onopen = function(message) {processOpen(message);};
-				webSocket.onclose = function(message) {processClose(message);};
-				webSocket.onerror = function(message) {processError(message);};
-				webSocket.onmessage = function(message) {processMessage(message);};
-
-			}
-			function processOpen(message) {
-				messagesTextArea.value += "Server connect ...\n";
-			}
-			function sendMessage() {
-				if(textMessage.value !="close") {
-					webSocket.send(textMessage.value);
-					messagesTextArea.value += "Send to Server ==> " + textMessage.value + "\n";
-					textMessage.value="";	
-				} else webSocket.close();
-			}
-			function processMessage(message) {
-				messagesTextArea.value += "Receive from server ==> " + message.data + "\n";
-			}
-			function processClose(message) {
-				webSocket.send("Client disconnected...");
-				messagesTextArea.value += "Server Disconnecting...\n";
-			}
-			function processError(message) {
-				messagesTextArea.value += "error...\n";
-			}
 			
 			
 		</script>

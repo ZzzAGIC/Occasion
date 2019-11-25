@@ -21,5 +21,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="/Users/zhangchaohang/Desktop/eclipse-workplace/zhaohanz_hw3/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="javax.json-1.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
