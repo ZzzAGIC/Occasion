@@ -37,7 +37,19 @@
 			var xhttp= new XMLHttpRequest();
 			xhttp.open("GET", mylink, false);
 			xhttp.send();
+			
+			if (xhttp.responseText.trim().length > 0) {
+				document.getElementById("formerror").innerHTML= xhttp.responseText;
+				
+			}
+				
+            else{
+	            document.getElementById("UnfollowUser_button").style.display="initial";
+	 			document.getElementById("FollowUser_button").style.display="none";
+            }
 		}
+		
+		/* Unfollowing function*/
 	
 	</script>
 
@@ -134,6 +146,8 @@
 	    	</div>
 	    	<div id="submitButton"><button class="button" id="EditProfile_button" type="button" onclick="module.editProfile();">Edit profile</button></div>
 			<button class="button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
+			<button class="button" id="UnfollowUser_button" type="button" onclick="Unfollowing();" style="display: none;">Unfollow</button>
+		
 		</form>
 	</div>
 

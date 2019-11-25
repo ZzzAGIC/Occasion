@@ -11,6 +11,14 @@
 <%@ page import="java.util.Date" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>Event Profile</title>
+
+	<script>
+		function add(){
+			
+			
+		}
+	
+	</script>
 </head>
 <body>
 	<div class="navbar">
@@ -67,28 +75,108 @@
 	
 		<div class="event_profile">
 			<% 
-			String curr_username = null;
-			boolean own_profile = false;
-			if(request.getParameter("Friend_User")!=null){
-				curr_username = request.getParameter("Friend_User").toString();
-			}
-			else if(request.getParameter("Friend_User")==null){
+			int EventID = Integer.parseInt(request.getParameter("EventID").toString());
+		
+			/* boolean own_event = false; */
 			
-				if(session.getAttribute("myname") != null) {
-					curr_username = session.getAttribute("myname").toString(); 
-					own_profile = true;
-				}
-			}
-			User curr_user = new User(curr_username);
+
+			Event curr_Event = new Event(EventID);
+			String name = curr_Event.getEventName();
+			String initiator = curr_Event.getInitiator().getUsername();
+			String img = curr_Event.getPictures();
+			String type = curr_Event.getType();
+			String description = curr_Event.getDescription();
 			
+			int freespots = curr_Event.getCapacity() - curr_Event.getCurrNum();
+			int price = curr_Event.getPrice();
+			Date time = curr_Event.getEventTime();
 			
+			String street = curr_Event.getLocation().getstreet();
+			String city = curr_Event.getLocation().getcity();
+			String lng_ = curr_Event.getLocation().getlongitute();
+			String lat_ = curr_Event.getLocation().getlatitude();
+			
+			String location = street + " " + city;
 					
 			%>
+			
+			<h1 align=center><i>Details for <%=name%></i></h1>
+
+	    	<img src="<%=img%>" alt="event image" align="left" height="180" width="240">
+
+	    	<div class="profile_text">
+		    	<h4>Type: <span id="Type"><%=type%></span></h4>
+		    	<h4>Initiator: <span id="Initiator">
+		    		<a href="ProfilePage.jsp?Friend_User=<%=initiator%>">
+					<%=initiator%>
+					</a></span></h4>
+		    	<h4>Time: <span id="Time"><%=time%></span></h4>
+		    	<h4>Description: <span id="Description"><%=description%></span></h4>
+		    	<h4>Price: <%=price%></h4>
+		    	<h4>Free spots: <%=freespots%></h4>
+		    	<h4>Location: <%=location%></h4>
+	    	</div>
+	    	<button class="button" id="AddEvent_button" type="button" onclick="add();">Going event</button>
+			<button class="button" id="RemoveEvent_button" type="button" onclick="remove();" style="display: none;">Not Going</button>
+
+		<div id="map"></div>
 		
 		
 		
 		</div>
 	
 	</div>
+	
+	<script>
+			var login  = <%=session.getAttribute("login")%>
+			if(login != null) {
+				if(login == true) {
+					//already login, display profile & signout
+					document.getElementById("Login_button").style.display="none"
+					document.getElementById("Register_button").style.display="none"
+					document.getElementById("Profilepage_button").style.display="initial"
+					document.getElementById("Signout_button").style.display="initial"
+				}
+				else {
+					//not login, display login & register
+					document.getElementById("Login_button").style.display="initial"
+					document.getElementById("Register_button").style.display="initial"
+					document.getElementById("Profilepage_button").style.display="none"
+					document.getElementById("Signout_button").style.display="none"
+				}
+				
+			}
+			//first open, same as not login
+			else {
+				document.getElementById("Login_button").style.display="initial"
+				document.getElementById("Register_button").style.display="initial"
+				document.getElementById("Profilepage_button").style.display="none"
+				document.getElementById("Signout_button").style.display="none"
+				
+			}
+			
+
+		   function initMap() {
+			   	var option ={
+				    center: {lat: <%=lat_%>, lng: <%=lng_%>},
+				    zoom: 11
+			     };
+			   	var map = new google.maps.Map(document.getElementById('map'),option);
+			   	
+			   
+			   	  
+			        marker = new google.maps.Marker({
+			          position: new google.maps.LatLng(<%=lat_%>, <%=lng_%>),
+			          map: map
+			        });
+			  
+		   }
+	</script>
+	
+	<script async defer
+		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsK1nRM2sfZDiQE7P4MIkxwUrft61TUTw&callback=initMap">
+	</script>
+	
+	
 </body>
 </html>

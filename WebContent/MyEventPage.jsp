@@ -77,9 +77,10 @@
 			<%if(CreatedEvents != null){
 			for(int i = 0; i < CreatedEvents.size(); i++ ){%> 
 				
+				<a href="EventProfile.jsp?EventID=<%=CreatedEvents.get(i).getEventID()%>">
 				<img src="<%=CreatedEvents.get(i).getPictures() %>" 
 				alt="<%=CreatedEvents.get(i).getEventName()%>'s event image" height="180" width="220">
-				
+				</a>
 				<h4><%=CreatedEvents.get(i).getEventName()%></h4>
 			
 	    <%}}%> 
