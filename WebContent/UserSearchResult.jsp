@@ -69,7 +69,7 @@
 				String username = temp.getUsername();%>
 				
 				<a href="ProfilePage.jsp?Friend_User=<%=username%>">
-					<img id="profileImage" src="<%=temp.getImage()%>" alt="<%=username%>'s profile image">
+					<img id="profileImage" src="<%=temp.getImage()%>" alt="<%=username%>'s profile image" height="180" width="220">
 		        </a>
 				<h4>Username: <%=username%></h4>
 
