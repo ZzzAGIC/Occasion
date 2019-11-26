@@ -208,7 +208,7 @@
 			Pictures:<br/> <input class="bar" type="text" name="EventImages"/><br/><br/>
 				
 			<!-- <input type="submit" value="submit" name="submit"/> -->
-		</form>			
+		<!-- </form> -->			
 			<input class="button" type="submit" name="status" value="Add Event"/>  
 		</form>  
 		
