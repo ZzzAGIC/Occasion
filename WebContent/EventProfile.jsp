@@ -17,9 +17,7 @@
 			<%
 			String myname = null;
 			String follow_username = null;
-			if(request.getParameter("Friend_User")!=null){
-				follow_username = request.getParameter("Friend_User").toString();
-			}
+			
 			if(session.getAttribute("myname") != null) {
 					myname = session.getAttribute("myname").toString();
 			
@@ -30,10 +28,10 @@
 			%>
 			var myUsername = "<%=myname%>";
 			console.log(myUsername);
-			var follow_Username = "<%=E_ID%>";
-			console.log(E_ID);
+			var EventID = "<%=E_ID%>";
+			console.log(EventID);
 			
-			var mylink = "Going_Event?Username="+myUsername+"&EventID="+E_ID;
+			var mylink = "Going_Event?Username="+myUsername+"&EventID="+EventID;
 	
 			console.log(mylink);
 			var xhttp= new XMLHttpRequest();
