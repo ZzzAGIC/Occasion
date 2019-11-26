@@ -26,10 +26,12 @@ public class Signout extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-	    if(session.getAttribute("myname") != null){
+	    
+		if(session.getAttribute("myname") != null){
 	    	session.removeAttribute("myname");
 	    	session.setAttribute("login", false);
 	    }
+	    
         response.sendRedirect("HomePage.jsp");
 	}
 
