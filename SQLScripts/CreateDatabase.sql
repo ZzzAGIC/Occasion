@@ -47,7 +47,10 @@ CREATE TABLE Attendance (
 	EventID INT(11),
 	UserID INT(11),
 	RSVPStatus INT(1),
+<<<<<<< HEAD
 	FavoriteStatus INT(1),
+=======
+>>>>>>> refs/heads/Leonardo
 	FOREIGN KEY (EventID) REFERENCES Event(EventID),
 	FOREIGN KEY (UserID) REFERENCES User(UserID)
 );

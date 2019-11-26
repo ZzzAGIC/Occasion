@@ -257,7 +257,18 @@ public class User {
 	
 	
 	public ArrayList<Event> getFutureEvent(){
-		return futureEvent;
+		String query = "select EventID from Attendance where UserID = ? AND RSVPStatus = 2;";
+
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
+				
+		ArrayList<Event> future = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			String itemUsername = item.get(0);
+			int e_ID = Integer.parseInt(itemUsername);
+			future.add(new Event(e_ID));
+		}
+		return future;
 	}
 	public void AddFutureEvent(Event E) {
 		futureEvent.add(E);
