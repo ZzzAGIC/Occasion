@@ -105,7 +105,16 @@
 			
 	    <%}}%> 
 	    </div>
+	    
+	    <h1 align=center><i><%=myusername%>'s Groups</i></h1>
+		<div class="list">
+		
+	    </div>
+	    
 	</div>
+	
+		
+	
 	
 	<div class="footer">
 	
