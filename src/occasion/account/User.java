@@ -253,9 +253,8 @@ public class User {
 	public void AddAttendedEvent(Event E) {
 		attendedEvent.add(E);
 	}
-	
-	
-	
+		
+
 	public ArrayList<Event> getFutureEvent(){
 		String query = "select EventID from Attendance where UserID = ? AND RSVPStatus = 2;";
 
@@ -274,7 +273,7 @@ public class User {
 		futureEvent.add(E);
 	}
 	
-	public ArrayList<Event> getRecommendedEvents(){
+	public ArrayList<Event> getRecommendedEvents() {
 		String query = "select * from Event;";
 
 		List<List<String>> details = Database.SelectQuery(query);
