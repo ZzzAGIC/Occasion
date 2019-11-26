@@ -17,11 +17,6 @@ CREATE TABLE User (
 	Status INT(2)
 );
 
---temporary table for image testing
-CREATE TABLE Test (
-	TestID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
-	img MEDIUMBLOB
-);
 
 CREATE TABLE PasswordRecovery (
 	RecoverID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
@@ -64,7 +59,7 @@ CREATE TABLE Group (
 	Description VARCHAR(200),
 	OwnerID INT(11),
 	Size INT(5),
-	FOREIGN KEY OwnerID REFERENCES User(UserID)
+	FOREIGN KEY (OwnerID) REFERENCES User(UserID)
 );
 
 CREATE TABLE GroupUser (

@@ -176,6 +176,10 @@ body{
 	height: 600px;
 	width: 60%;
 }
+#img-container > input {
+	display: none;
+}
+
 .footer{
 	display: flex;
     flex-direction: row;
