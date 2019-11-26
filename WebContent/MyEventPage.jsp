@@ -68,6 +68,7 @@
 		}
 		User curr_user = new User(myusername);
 		ArrayList<Event> CreatedEvents = curr_user.getCreatedEvent();
+		ArrayList<Event> FutureEvent = curr_user.getFutureEvent();
 		
 				
 		%>
@@ -89,7 +90,16 @@
 	    
 	    <h1 align=center><i><%=myusername%>'s Future Events</i></h1>
 		<div class="list">
-		
+			<%if(FutureEvent != null){
+			for(int i = 0; i < FutureEvent.size(); i++ ){%> 
+				
+				<a href="EventProfile.jsp?EventID=<%=FutureEvent.get(i).getEventID()%>">
+				<img src="<%=FutureEvent.get(i).getPictures() %>" 
+				alt="<%=FutureEvent.get(i).getEventName()%>'s event image" height="180" width="220">
+				</a>
+				<h4><%=FutureEvent.get(i).getEventName()%></h4>
+			
+	    <%}}%> 
 	    </div>
 	    
 	    <h1 align=center><i><%=myusername%>'s Past Events</i></h1>
