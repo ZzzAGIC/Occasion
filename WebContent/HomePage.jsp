@@ -61,25 +61,29 @@
 	<div class="header">
 		
 	</div>
-	
-	<h1 style="text-align: center;">Invitation</h1>
+
+	<h1 style="text-align: left;">Invitation</h1>
 	<div class="horizontal-events">
-		<div class="scroll-events">
+		<div class= "event-scroll back"></div>
+		<div class="event-list">
 			<img class="event" src="images/Event1.jpg" alt="Event1">
 			<img class="event" src="images/Event2.jpg" alt="Event2">
 			<img class="event" src="images/Event3.jpg" alt="Event3">
 			<img class="event" src="images/Event4.jpg" alt="Event4">
 		</div>
+		<div class="forward event-scroll"></div>
 	</div>
 	
-	<h1 style="text-align: center;">Trending</h1>
+	<h1 style="text-align: left;">Trending</h1>
 	<div class="horizontal-events">
-		<div class="scroll-events">
+		<div class="back event-scroll"></div>
+		<div class="event-list">
 			<img class="event" src="images/Event1.jpg" alt="Event1">
 			<img class="event" src="images/Event2.jpg" alt="Event2">
 			<img class="event" src="images/Event3.jpg" alt="Event3">
 			<img class="event" src="images/Event4.jpg" alt="Event4">
 		</div>
+		<div class="forward event-scroll"></div>
 	</div>
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
