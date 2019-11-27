@@ -28,8 +28,6 @@ body{
   	border-radius: 8px;
 }
 
-
-
 #Homepage_button{
 	margin-left: auto;
 }
@@ -61,17 +59,13 @@ body{
 	height: 80px;
 	width: 100%;
 }
-.invitation,.trending{
-	
-  	background-color: #333;
+.horizontal-events {
   	overflow: auto;
   	white-space: nowrap;
-
 	height: 20%;
     width: 100%;
     display: flex;
     flex-direction: row;
-	
 }
 .scroll-events {
   display: inline-block;
@@ -80,7 +74,18 @@ body{
   text-decoration: none;
 }
 
+.event {
+	height: 300px;
+	width: 370px;
+	margin-right: 20px;
+	margin-left: 20px;
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
 
+.event:hover {
+	transform: scale(1.1);
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
 .friend_activity{
 	align-items: center;
 	height: 80%;

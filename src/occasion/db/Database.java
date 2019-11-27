@@ -71,7 +71,7 @@ public class Database {
 			}
 			return result;
 		} catch(SQLException e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 		} finally {	
 			try {
 				if(rs != null) rs.close();
@@ -79,7 +79,7 @@ public class Database {
 				if(conn != null) conn.close();
 			}
 			catch(SQLException e) {
-				System.out.println(e.getMessage());
+				//System.out.println(e.getMessage());
 			}		
 		}
 		return result;
@@ -102,14 +102,14 @@ public class Database {
 			
 			st.executeUpdate();
 		} catch(SQLException e) {
-			System.out.println(e);
+			//System.out.println(e);
 		} finally {
 			try {
 				if(st != null) st.close();
 				if(conn != null) conn.close();
 			}
 			catch(SQLException e) {
-				System.out.println(e.getMessage());
+				//System.out.println(e.getMessage());
 			}
 		}
 	}

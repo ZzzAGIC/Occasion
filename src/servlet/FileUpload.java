@@ -73,7 +73,6 @@ public class FileUpload extends HttpServlet {
         } catch (IOException e) {
             System.out.println("IO Exception");
         }
-        System.out.println(uploadFolder);
 		
         RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/ProfilePage.jsp");
 		

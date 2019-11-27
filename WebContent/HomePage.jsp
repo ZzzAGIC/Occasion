@@ -63,32 +63,32 @@
 	</div>
 	
 	<h1 style="text-align: center;">Invitation</h1>
-	<div class="invitation">
+	<div class="horizontal-events">
 		<div class="scroll-events">
-		<img src="images/Event1.jpg" alt="Event1" height="200" width="360">
-		<img src="images/Event2.jpg" alt="Event2" height="200" width="360">
-		<img src="images/Event3.jpg" alt="Event3" height="200" width="360">
-		<img src="images/Event4.jpg" alt="Event4" height="200" width="360">
+			<img class="event" src="images/Event1.jpg" alt="Event1">
+			<img class="event" src="images/Event2.jpg" alt="Event2">
+			<img class="event" src="images/Event3.jpg" alt="Event3">
+			<img class="event" src="images/Event4.jpg" alt="Event4">
 		</div>
 	</div>
 	
 	<h1 style="text-align: center;">Trending</h1>
-	<div class="trending">
+	<div class="horizontal-events">
 		<div class="scroll-events">
-		<img src="images/Event1.jpg" alt="Event1" height="200" width="360">
-		<img src="images/Event2.jpg" alt="Event2" height="200" width="360">
-		<img src="images/Event3.jpg" alt="Event3" height="200" width="360">
-		<img src="images/Event4.jpg" alt="Event4" height="200" width="360">
+			<img class="event" src="images/Event1.jpg" alt="Event1">
+			<img class="event" src="images/Event2.jpg" alt="Event2">
+			<img class="event" src="images/Event3.jpg" alt="Event3">
+			<img class="event" src="images/Event4.jpg" alt="Event4">
 		</div>
 	</div>
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
 		<div class="vertical_scroll" >
-		<img src="images/Event1.jpg" alt="Event1" height="60%" width="60%">
-		<img src="images/Event2.jpg" alt="Event2" height="60%" width="60%">
-		<img src="images/Event3.jpg" alt="Event3" height="60%" width="60%">
-		<img src="images/Event4.jpg" alt="Event4" height="60%" width="60%">
+			<img src="images/Event1.jpg" alt="Event1" height="60%" width="60%">
+			<img src="images/Event2.jpg" alt="Event2" height="60%" width="60%">
+			<img src="images/Event3.jpg" alt="Event3" height="60%" width="60%">
+			<img src="images/Event4.jpg" alt="Event4" height="60%" width="60%">
 		</div>
 	</div>
 	
