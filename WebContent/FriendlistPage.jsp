@@ -124,11 +124,13 @@
 	    <div id="new_group" style="display:none;">
 	    
 	    <form class="form" action="new_group" method="post"> 
-	    
+	    <div id="formerror" style="color: red;"> 
+		<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+		</div>
 	    Group Name:<br/> <input class="bar"  type="text" name="GroupName"/><br/>
 		Image:<br/> <input class="bar"  type="text" name="Picture"/><br/>
 		Group Description:<br/> <input class="bar" type="text" name="Description"/><br/>
-		
+		Select Group members:<br/>
 		<%if(followingUsers != null){
 			for(int i = 0; i < followingUsers.size(); i++ ){%> 
 				<input type="checkbox" name="members" 

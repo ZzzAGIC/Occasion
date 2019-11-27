@@ -13,6 +13,11 @@
 <title>Event Profile</title>
 
 	<script>
+		function display_invitation() {
+			document.getElementById("new_invitation").style.display="initial"
+				
+		}
+		
 		function add(){
 			<%
 			String myname = null;
@@ -109,8 +114,11 @@
 		
 			boolean own_event = false;
 			String myusername = null;
+			ArrayList<User> followingUsers = null;
 			if(session.getAttribute("myname") != null) {
-				myusername = session.getAttribute("myname").toString(); 
+				myusername = session.getAttribute("myname").toString();
+				User curr_user = new User(myusername);
+				followingUsers = curr_user.getFollowingList();
 			}
 			
 
@@ -173,6 +181,27 @@
 				<%}}
 				else if(attendents == null){%> 
 				<h4>N/A</h4>
+				
+				<button id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
+			    <div id="new_invitation" style="display:none;">
+			    
+			    <form class="form" action="new_invitation" method="post"> 
+				<div id="formerror" style="color: red;"> 
+				<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+				</div>
+			    <%request.setAttribute("EventID", EventID); %>
+			    Select Users to invite:<br/>
+				<%if(followingUsers != null){
+					for(int i = 0; i < followingUsers.size(); i++ ){%> 
+						<input type="checkbox" name="members" 
+						value="<%=followingUsers.get(i).getUserID()%>"><%=followingUsers.get(i).getUsername()%>
+						<br>
+					
+			    <%}}%> 
+			    <input class="button" type="submit" value="Invite!"/>  
+				</form> 
+			    
+			    </div>
 				
 			<%} }%>
 		<div id="map"></div>
