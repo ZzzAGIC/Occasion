@@ -64,11 +64,11 @@
 	
 	<div><h1 style="text-align: left;">Invitation</h1></div>
 	<div class="horizontal-events">
-		<div class= "event-scroll back"></div>
+		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, invitedEvents);"></div>
 		<div class="event-list" id="invitedEvents">
 			
 		</div>
-		<div class="forward event-scroll"></div>
+		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, invitedEvents);"></div>
 	</div>
 	
 	<h1 style="text-align: left;">Trending</h1>
@@ -155,21 +155,45 @@
 			userPost = json.postActivity;
 			
 			//Add Initial events to display of Invited Events
-			for(var i = 0; i < 4; i++) {
+			for(var i = 0; i < inviteEvents.length; i++) {
 				if(i < inviteEvents.length - 1) {
 					var image = document.createElement("IMG");
 					image.className = "event";
 					image.src = inviteEvents[i].img;
+					image.id = i;
 					document.getElementById("invitedEvents").append(image);
 
 					inviteCurrentDisplay[i] = i;
 				}
 			}
+			
+			//Add Popular events
+			
+			//Add Post Activity
 		});
 		
+		function transitionElement(action, type) {
+			switch(action) {
+				case "back":
+					var translation = "-100vw";
+					for(var i = 0; i < inviteEvents.length; i++) {
+						document.getElementById(i).style.transition = "1s all ease-in-out";
+						document.getElementById(i).style.transform = "translateX(" + translation + ")";
+					}
+					break;
+				case "front":
+					var translation = "100vw";
+					for(var i = 0; i < inviteEvents.length; i++) {
+						document.getElementById(i).style.transition = "1s all ease-in-out";
+						document.getElementById(i).style.transform = "translateX(" + translation + ")";
+					}
+					break;
+			}
+			
+		}
 		
 		return {
-			
+			transitionElement : transitionElement,
 		};
 	})();
 </script>
