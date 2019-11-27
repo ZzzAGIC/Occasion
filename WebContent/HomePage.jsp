@@ -61,15 +61,12 @@
 	<div class="header">
 		
 	</div>
-
-	<h1 style="text-align: left;">Invitation</h1>
+	
+	<div><h1 style="text-align: left;">Invitation</h1></div>
 	<div class="horizontal-events">
 		<div class= "event-scroll back"></div>
-		<div class="event-list">
-			<img class="event" src="images/Event1.jpg" alt="Event1">
-			<img class="event" src="images/Event2.jpg" alt="Event2">
-			<img class="event" src="images/Event3.jpg" alt="Event3">
-			<img class="event" src="images/Event4.jpg" alt="Event4">
+		<div class="event-list" id="invitedEvents">
+			
 		</div>
 		<div class="forward event-scroll"></div>
 	</div>
@@ -101,7 +98,7 @@
 	</div>
 
 </body>
-	<script>
+<script>
 			var login  = <%=session.getAttribute("login")%>
 			if(login != null) {
 				if(login == true) {
@@ -125,17 +122,55 @@
 				document.getElementById("Login_button").style.display="initial"
 				document.getElementById("Register_button").style.display="initial"
 				document.getElementById("Profilepage_button").style.display="none"
-				document.getElementById("Signout_button").style.display="none"
-				
+				document.getElementById("Signout_button").style.display="none"			
 			}
 			
 			function signout() {
 				var sessionInfo = NewSession();
 				sessionInfo.Item("login") = null;
-			}
-			
-
-			
-			
+			}			
 		</script>
+		
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+	var module = (function(){
+		var inviteEvents = {};
+		var popularEvents = {};
+		var userPost = {};
+		
+		var inviteStart = 0;
+		var inviteCurrentDisplay = {};
+		
+		//Sets up initial State
+		$(document).ready(function() {
+			var xhttp = new XMLHttpRequest();
+
+			xhttp.open("GET", "GetEventHomePage", false);	
+			xhttp.send();
+				
+			var json = JSON.parse(xhttp.responseText); 
+			
+			inviteEvents = json.invited;
+			popularEvents = json.popular;
+			userPost = json.postActivity;
+			
+			//Add Initial events to display of Invited Events
+			for(var i = 0; i < 4; i++) {
+				if(i < inviteEvents.length - 1) {
+					var image = document.createElement("IMG");
+					image.className = "event";
+					image.src = inviteEvents[i].img;
+					document.getElementById("invitedEvents").append(image);
+
+					inviteCurrentDisplay[i] = i;
+				}
+			}
+		});
+		
+		
+		return {
+			
+		};
+	})();
+</script>
 </html>

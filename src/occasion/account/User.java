@@ -273,6 +273,7 @@ public class User {
 		futureEvent.add(E);
 	}
 	
+	//Placeholder Replace
 	public ArrayList<Event> getRecommendedEvents() {
 		String query = "select * from Event;";
 
@@ -288,7 +289,21 @@ public class User {
 		return recommend;
 	}
 	
-	
+	//Placeholder Replace
+	public ArrayList<Event> getInvitedEvents() {
+		String query = "select * from Event;";
+
+		List<List<String>> details = Database.SelectQuery(query);
+				
+		ArrayList<Event> invited = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			String itemUsername = item.get(0);
+			int e_ID = Integer.parseInt(itemUsername);
+			invited.add(new Event(e_ID));
+		}
+		return invited;
+	}
 
 	public TreeSet<String> getPreferenceType(){
 		return preferenceType;
