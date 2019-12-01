@@ -73,7 +73,7 @@
 				
 		%>
   
-	    <h1 align=center><i>Events created by <%=myusername%></i></h1>
+	    <h1 align=center>Events created by <%=myusername%></h1>
 		<div class="list">
 			<%if(CreatedEvents != null){
 			for(int i = 0; i < CreatedEvents.size(); i++ ){%> 
@@ -88,7 +88,7 @@
 		
 	    </div>
 	    
-	    <h1 align=center><i><%=myusername%>'s Future Events</i></h1>
+	    <h1 align=center><%=myusername%>'s Future Events</h1>
 		<div class="list">
 			<%if(FutureEvent != null){
 			for(int i = 0; i < FutureEvent.size(); i++ ){%> 
@@ -102,7 +102,7 @@
 	    <%}}%> 
 	    </div>
 	    
-	    <h1 align=center><i><%=myusername%>'s Past Events</i></h1>
+	    <h1 align=center><%=myusername%>'s Past Events</h1>
 		<div class="list">
 		
 	    </div>

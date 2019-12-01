@@ -133,7 +133,7 @@
 		ArrayList<Post> all_Posts = curr_user.getPost();
 				
 		%>
-    	<h1 align=center><i><%=curr_username%>'s Profile</i></h1>
+    	<h1 align=center><%=curr_username%>'s Profile</h1>
 
     	<form method="post" action="FileUpload" enctype="multipart/form-data">
 			<div id="img-container">
@@ -160,9 +160,12 @@
 		
 		</form>
 	</div>
-
 	
-	<h1 style="text-align: center;"><i>Recent events for <%=curr_username%></i></h1>
+	<div id="chat">
+	<button class="button" onclick="chat()">chat</button>
+	</div>
+	
+	<h1 style="text-align: center;">Recent events for <%=curr_username%></h1>
 	<div class="profile_activity">
 		<div class="scroll-events" >
 		<%if(all_Events != null){
@@ -177,7 +180,7 @@
 	    </div>
 	</div>
 	
-	<h1 style="text-align: center;"><i><%=curr_username%>'s Posts</i></h1>
+	<h1 style="text-align: center;"><%=curr_username%>'s Posts</h1>
 	<div class="profile_posts">
 		<div class="vertical_scroll" >
 		<%if(all_Posts != null){
@@ -195,7 +198,17 @@
 	<div class="footer">
 	
 	</div>
-
+	<script>
+		function chat(){
+			var un = "<%= myname.toLowerCase() %>";
+			var ou = "<%= curr_username.toLowerCase()%>";
+			document.getElementById('chat').innerHTML = "<iframe src=\"http://localhost:3000/?username="
+					+un+"&otherUser="+ou+"\"></iframe>"+"<br><button class=\"button\" onclick=\"closeChat()\">close chat</button>";
+		}
+		function closeChat(){
+			document.getElementById('chat').innerHTML = "<button class=\"button\" onclick=\"chat()\">chat</button>";
+		}
+	</script>
 </body>
 	<script>
 		var module = (function(){

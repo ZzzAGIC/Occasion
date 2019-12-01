@@ -198,7 +198,6 @@ body{
   	padding: 40px;
 }
 .profile_all{
-	background-image: linear-gradient(#ccffff, #ff9999);
 }
 
 .submitButtonElement {
@@ -260,5 +259,13 @@ body{
 	display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+#chat{
+	margin-left: 40px;
+}
+
+iframe{
+	width: 500px;
 }
 
