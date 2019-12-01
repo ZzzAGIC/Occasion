@@ -156,11 +156,14 @@
 			//Add Initial events to display of Invited Events
 			for(var i = 0; i < inviteEvents.length; i++) {
 				if(i < inviteEvents.length - 1) {
+					var a = document.createElement("a");
+					a.href = "EventProfile.jsp?EventID=" + inviteEvents[i].id;
 					var image = document.createElement("IMG");
 					image.className = "event";
 					image.src = inviteEvents[i].img;
 					image.id = "inv" + i;
-					document.getElementById("invitedEvents").append(image);
+					a.append(image);	
+					document.getElementById("invitedEvents").append(a);
 				}
 			}
 			

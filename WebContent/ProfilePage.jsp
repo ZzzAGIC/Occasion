@@ -142,7 +142,7 @@
 				</label>
 				<% if(own_profile) %><input id="newimg" type="file" name="newfile"/>
 			</div>
-			<% if(own_profile) %> <input type="submit" value="submit" name="submit"/>
+			<% if(own_profile) %><input type="submit" value="submit" name="submit"/>
 		</form>
 		
 		
@@ -183,7 +183,7 @@
 		<%if(all_Posts != null){
 			for(int i = 0; i < all_Posts.size(); i++ ){%> 
 				<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
-				<img src="<%=all_Events.get(i).getPictures() %>" 
+				<img src="<%=all_Posts.get(i).getPictures() %>" 
 				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
 				</a>
 	    <%}}%> 

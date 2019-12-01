@@ -36,9 +36,7 @@ public class User {
 	private TreeSet<String> preferenceType;
 	private int preferenceDistance;
 	private Location curr_Loc;
-	private ArrayList<Post> sharedPost;
-		
-	
+			
 	public User() {
 	}
 	
@@ -201,8 +199,7 @@ public class User {
 		ArrayList<User> following = new ArrayList<User>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			following.add(new User(itemUsername));
+			following.add(new User(item.get(0)));
 		}
 		return following;
 	}
@@ -310,10 +307,12 @@ public class User {
 	}
 
 	public ArrayList<Post> getPost(){
-		return sharedPost;
-	}
-	public void AddPost(Post P) {
-		sharedPost.add(P);
+		List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post WHERE UserID = ?", Integer.toString(this.userID));
+		ArrayList<Post> postList = new ArrayList<Post>();
+		for(List<String> post : posts) {
+			postList.add(new Post(post));
+		}
+		return postList;
 	}
 	
 	public static String getUsernameFromId(int id) {

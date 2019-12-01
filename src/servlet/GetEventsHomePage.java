@@ -45,7 +45,7 @@ public class GetEventsHomePage extends HttpServlet {
 	    ArrayList<Event> invitedEvents = currentUser.getInvitedEvents();
 	    ArrayList<EventData> invitedData = new ArrayList<EventData>();	    
 	    for(Event event : invitedEvents) {
-	    	invitedData.add(new EventData(event.getEventName(), event.getPictures()));
+	    	invitedData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID()));
 	    }
 	    
 	    List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowingUserID = ?) ", username);
@@ -72,11 +72,14 @@ public class GetEventsHomePage extends HttpServlet {
 	class EventData {
 		private String event_name;
 		private String img;
+		private int id;
 		
-		public EventData(String name, String image) {
+		public EventData(String name, String image, int id) {
 			this.event_name = name;
 			this.img = image;
+			this.id = id;
 		}
+		
 		public String getEvent_name() {
 			return event_name;
 		}
@@ -88,6 +91,16 @@ public class GetEventsHomePage extends HttpServlet {
 		}
 		public void setImg(String img) {
 			this.img = img;
+		}
+
+
+		public int getId() {
+			return id;
+		}
+
+
+		public void setId(int id) {
+			this.id = id;
 		}
 
 	}
