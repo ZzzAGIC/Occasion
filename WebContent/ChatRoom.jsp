@@ -8,8 +8,32 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/homepage.css">
 <title>CHATROOM</title>
+	<script>
+	var socket;
+	
+	function connectToServer(){
+		socket = new WebSocket("ws://localhost:8080/Occasion/ws/");
+		socket.onopen = function(event){
+			document.getElementById("mychat").innerHTML += "Connected";
+		}
+		socket.onmessage = function(event) {
+			document.getElementById("mychat").innerHTML += event.data + "<br />";
+		}
+		socket.onclose = function(event) {
+			document.getElementById("mychat").innerHTML += "disconnected";
+		}
+		socket.onerror = function(event) {
+			document.getElementById("mychat").innerHTML += "error";
+		}
+	}
+	
+	function sendMessage() {
+		socket.send("Jeff: " + document.chatform.message.value);
+		return false;
+	}
+	</script>
 </head>
-<body>
+<body onload="connectToServer()">
 	<div class="navbar">
 		<h1 class="logo">Occasion</h1>
 		<button class="button" id="Homepage_button" type="button" onclick="window.location='HomePage.jsp'">Home Page</button>
@@ -56,43 +80,14 @@
 		
 	</div>
 	
-	<form>
-		<input id="textMessage" type="text">
-		<input onclick="sendMessage();" value="Send" type="button">	
+	<form name="chatform" onsubmit = "return sendMessage();">
+		<input type="text" name="message" value="Type here"/><br />
+		<input type="submit" name="submit" value="send message">	
 	</form>
-	<br> <textarea id="messagesTextArea" rows="10" cols="50"></textarea> <br>
-	<script type="text/javascript">
-	var webSocket = new WebSocket("ws://localhost:8080/Occasion/serverendpointdemo");
-	var messagesTextArea = document.getElementById("messagesTextArea");
-	messagesTextArea.value +=("Opened websocket successfully");
-	webSocket.onopen = function(message) {processOpen(message);};
-	webSocket.onclose = function(message) {processClose(message);};
-	webSocket.onerror = function(message) {processError(message);};
-	webSocket.onmessage = function(message) {processMessage(message);};
-	
-	function processOpen(message) {
-		messagesTextArea.value += "Server connect ...\n";
-	}
-	function sendMessage() {
-			webSocket.send(textMessage.value);
-			messagesTextArea.value += textMessage.value + "\n";
-			textMessage.value="";	
-	}
-	function processMessage(message) {
-		var jsonData = JSON.parse(message.data);
-		if(jsonData.message != null) messagesTextArea.value += jsonData.message + "\n";
-		messagesTextArea.value += message.data + "\n";
-	}
-	function processClose(message) {
-		webSocket.send("Client disconnected...");
-		messagesTextArea.value += message.code + "\n";
-		messagesTextArea.value += message.reason + "\n";
-		messagesTextArea.value += "Server Disconnecting...\n";
-	}
-	function processError(message) {
-		messagesTextArea.value += "error...\n";
-	}
-	</script>
+	<br /> 
+	<div id="mychat"></div>
+	<textarea id="messagesTextArea" rows="10" cols="50"></textarea> <br>
+	<input onclick="connectToServer();" value="connect" type="button">	
 	
 	
 	<div class="footer">

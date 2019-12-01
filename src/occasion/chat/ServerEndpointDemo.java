@@ -1,49 +1,41 @@
 package occasion.chat;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.*;
-import javax.json.*;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/serverendpointdemo")
+@ServerEndpoint(value = "/ws")
 public class ServerEndpointDemo {
-	static Set<Session> chatroomUsers = Collections.synchronizedSet(new HashSet<Session>());
+	private static Vector<Session> sessionVector = new Vector<Session>();
 	
 	@OnOpen
-	public void handleOpen(Session userSession) {
-		chatroomUsers.add(userSession);
-		System.out.println("Client is now connected");
-		System.out.println("Client2222222222222222222");
+	public void open(Session session) {
+		System.out.println("Connection made!");
+		sessionVector.add(session);
 	}
 	@OnMessage
-	public void handleMessage(String message, Session userSession) throws IOException{
-		System.out.println("Message to be handled= " + message);
-		String username = (String) userSession.getUserProperties().get("username");
-		if(username == null) {
-			userSession.getUserProperties().put("username",  message);
-			userSession.getBasicRemote().sendText(buildJsonData("System","You are now connected as " + message));
-		} else {
-			Iterator<Session> iterator = chatroomUsers.iterator();
-			while(iterator.hasNext()) iterator.next().getBasicRemote().sendText(buildJsonData(username, message));
+	public void onMessage(String message, Session userSession) {
+		System.out.println(message);
+		try {
+			for(Session s : sessionVector) {
+				s.getBasicRemote().sendText(message);
+			}
+		} catch (IOException ioe) {
+			System.out.println( "ioe: " + ioe.getMessage());
+			close(userSession);
 		}
+
 	}
 	@OnClose
-	public void handleClose(Session userSession) {
-		chatroomUsers.remove(userSession);
-		System.out.println("Client is now disconnected");
+	public void close(Session userSession) {
+		System.out.println("Disconnecting");
+		sessionVector.remove(userSession);
 	}
 	@OnError 
 	public void handleError(Throwable t) {
-		t.printStackTrace();
+		System.out.println("Error!");
 	}
 	
-	private String buildJsonData(String username, String message) {
-		JsonObject jsonObject = Json.createObjectBuilder().add("message", username+": " + message).build();
-		StringWriter sw = new StringWriter();
-		try (JsonWriter jsonWriter = Json.createWriter(sw)) {jsonWriter.write(jsonObject);}
-		return sw.toString();
-	}
 }
