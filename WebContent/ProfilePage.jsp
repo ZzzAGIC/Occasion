@@ -140,9 +140,9 @@
 				<label for="newimg">
 					<img src="<%=profile_img%>" alt="profile image" align="left" height="180" width="240">
 				</label>
-				<input id="newimg" type="file" name="newfile"/>
+				<% if(own_profile) %><input id="newimg" type="file" name="newfile"/>
 			</div>
-			<input type="submit" value="submit" name="submit"/>
+			<% if(own_profile) %> <input type="submit" value="submit" name="submit"/>
 		</form>
 		
 		

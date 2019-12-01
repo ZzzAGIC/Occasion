@@ -230,7 +230,7 @@ public class User {
 	
 	
 	public ArrayList<Event> getCreatedEvent(){
-		String query = "select EventID from Event where HostID = ?;";
+		String query = "select * from Event where HostID = ?;";
 
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
@@ -261,7 +261,7 @@ public class User {
 		ArrayList<Event> future = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			future.add(new Event(item));
+			future.add(new Event(Integer.parseInt(item.get(0))));
 		}
 		return future;
 	}

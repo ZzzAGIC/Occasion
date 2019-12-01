@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <%@ page import="occasion.account.User" %>
 <%@ page import="occasion.account.Post" %>
-<%@ page import="occasion.event.Event" %>
+<%@ page import="occasion.event.Event, occasion.db.Database" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
 <link rel="stylesheet" href="css/homepage.css">
@@ -124,7 +124,9 @@
 
 			Event curr_Event = new Event(EventID);
 			String name = curr_Event.getEventName();
-			String initiator = curr_Event.getInitiator().getUsername();
+			int initiatorID = curr_Event.getInitiator();
+			String initiator = User.getUsernameFromId(initiatorID);
+			
 			if(initiator.compareTo(myusername) == 0) {
 				own_event = true;
 			}
