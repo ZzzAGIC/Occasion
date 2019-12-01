@@ -138,7 +138,7 @@
     	<form method="post" action="FileUpload" enctype="multipart/form-data">
 			<div id="img-container">
 				<label for="newimg">
-					<img src="<%=profile_img%>" alt="profile image" align="left" height="180" width="240">
+					<img src="<%=profile_img%>" alt="profile image" align="left" height="180" width="180">
 				</label>
 				<% if(own_profile) %><input id="newimg" type="file" name="newfile"/>
 			</div>
@@ -162,7 +162,7 @@
 	</div>
 	
 	<div id="chat">
-	<button class="button" onclick="chat()">chat</button>
+	<button class="button" onclick="chat()">Chat</button>
 	</div>
 	
 	<h1 style="text-align: center;">Recent events for <%=curr_username%></h1>
@@ -203,10 +203,10 @@
 			var un = "<%= myname.toLowerCase() %>";
 			var ou = "<%= curr_username.toLowerCase()%>";
 			document.getElementById('chat').innerHTML = "<iframe src=\"http://localhost:3000/?username="
-					+un+"&otherUser="+ou+"\"></iframe>"+"<br><button class=\"button\" onclick=\"closeChat()\">close chat</button>";
+					+un+"&otherUser="+ou+"\"></iframe>"+"<br><button id=\"chat_button\" class=\"button\" onclick=\"closeChat()\">Close chat</button>";
 		}
 		function closeChat(){
-			document.getElementById('chat').innerHTML = "<button class=\"button\" onclick=\"chat()\">chat</button>";
+			document.getElementById('chat').innerHTML = "<button class=\"button\" onclick=\"chat()\">Chat</button>";
 		}
 	</script>
 </body>

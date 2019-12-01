@@ -210,6 +210,10 @@ body{
   	border-radius: 8px;
 }
 
+#prof-text{
+	margin-left:300px;
+}
+
 .profile_activity{
     overflow: auto;
   	white-space: nowrap;
@@ -263,6 +267,10 @@ body{
 
 #chat{
 	margin-left: 40px;
+}
+
+#chat_button{
+	margin-top: 10px
 }
 
 iframe{
