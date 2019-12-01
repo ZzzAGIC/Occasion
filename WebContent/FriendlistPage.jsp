@@ -86,10 +86,7 @@
 			<button id="button" type="submit"> Search!</button>
 		</form>
 
-	
-	
-	<div class="friend_list">
-		<% 
+	<% 
 		String myusername = null;
 		if(session.getAttribute("myname") != null) {
 			myusername = session.getAttribute("myname").toString(); 
@@ -100,22 +97,28 @@
 		ArrayList<User> followingUsers = curr_user.getFollowingList();
 		
 				
-		%>
-    	<h1 align=center><i><%=myusername%>'s Following Users</i></h1>
+	%>
+	<h1 align=center><%=myusername%>'s Following Users</h1>
+	
+	<div class="friend_list">
+		
 		<div class="list">
 		<%if(followingUsers != null){
 			for(int i = 0; i < followingUsers.size(); i++ ){%> 
-				
-				<a href="ProfilePage.jsp?Friend_User=<%=followingUsers.get(i).getUsername()%>">
-				<img src="<%=followingUsers.get(i).getImage() %>" 
-				alt="<%=followingUsers.get(i).getUsername()%>'s profile image" height="180" width="220">
-				</a>
-				<h4><%=followingUsers.get(i).getUsername()%></h4>
-			
+				<div class = "friend-panel">
+					<div class="friend-image-container">
+						<a href="ProfilePage.jsp?Friend_User=<%=followingUsers.get(i).getUsername()%>">
+						<img class="friend-image" src="<%=followingUsers.get(i).getImage() %>" 
+						alt="<%=followingUsers.get(i).getUsername()%>'s profile image" >
+						</a>
+					</div>
+					<h4 class="friend-text"><%=followingUsers.get(i).getUsername()%></h4>
+				</div>
 	    <%}}%> 
 	    </div>
-	    
-	    <h1 align=center><i><%=myusername%>'s Groups</i></h1>
+	</div>
+	<div>
+	    <h1 align=center><%=myusername%>'s Groups</h1>
 		<div class="list">
 		
 	    </div>
@@ -142,7 +145,6 @@
 		</form> 
 	    
 	    </div>
-	    
 	</div>
 	
 		

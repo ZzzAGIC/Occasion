@@ -83,10 +83,21 @@
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
 		<div class="vertical_scroll" >
-			<img src="images/Event1.jpg" alt="Event1" height="60%" width="60%">
-			<img src="images/Event2.jpg" alt="Event2" height="60%" width="60%">
-			<img src="images/Event3.jpg" alt="Event3" height="60%" width="60%">
-			<img src="images/Event4.jpg" alt="Event4" height="60%" width="60%">
+			<div class="post-activity">
+				<img class="post-img" src="images/Event1.jpg" alt="Event1">
+				<div class="post-description">
+					<b>Text Description</b>
+				</div>
+			</div>
+			<div class="post-activity">
+				<img class="post-img" src="images/Event2.jpg" alt="Event1">
+			</div>
+			<div class="post-activity">
+				<img class="post-img" src="images/Event3.jpg" alt="Event1">
+			</div>
+			<div class="post-activity">
+				<img class="post-img" src="images/Event4.jpg" alt="Event1">
+			</div>
 		</div>
 	</div>
 	

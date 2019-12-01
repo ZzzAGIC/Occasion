@@ -1,5 +1,6 @@
 package occasion.account;
 
+import java.io.File;
 import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
@@ -127,6 +128,8 @@ public class User {
 	}
 
 	public String getImage() {
+		if(image.equals("")) return "images/placeholder-person.jpg";
+		
 		return image;
 	}
 
