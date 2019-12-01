@@ -67,7 +67,7 @@ body{
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin: 0 auto;    
+    margin: 0 auto;
 }
 .event-list {
   overflow: scroll;

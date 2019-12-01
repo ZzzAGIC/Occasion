@@ -59,7 +59,7 @@ public class Going_Event extends HttpServlet {
 		String U_ID = Integer.toString(UserID);
 		String E_ID = Integer.toString(EventID);
 		
-		String toinsert = "INSERT INTO Attendance (EventID,UserID,RSVPStatus) VALUES ('?', '?', '?')";
+		String toinsert = "INSERT INTO Attendance (EventID,UserID,RSVPStatus) VALUES (?, ?, ?)";
 		//RSVPStatus: 0: nothing/1: invited/2: invitation accepted & the user will attend/
 		Database.UpdateQuery(toinsert, E_ID, U_ID, "2");
 		

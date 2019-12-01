@@ -73,7 +73,7 @@ public class new_invitation extends HttpServlet {
 	public static void AddAttendance(String[] MembersID, String EventID) throws SQLException, ClassNotFoundException {
 		for(int i = 0; i < MembersID.length; i++) {
 			String toinsert = "INSERT INTO Attendance (EventID,UserID,RSVPStatus) "
-					+ "VALUES ('?','?','?')";			
+					+ "VALUES (?, ?, ?)";			
 			Database.UpdateQuery(toinsert, EventID ,MembersID[i], "1");
 		}
 			
