@@ -48,15 +48,18 @@ public class GetEventsHomePage extends HttpServlet {
 	    	invitedData.add(new EventData(event.getEventName(), event.getPictures()));
 	    }
 	    
-	    /*List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where Post.UserID IN (SELECT Relationship.followingID FROM Relationship.FollowerID = User.UserID AND User.Username = ?) ", username);
+	    List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowingUserID = ?) ", username);
+	    
+	    ArrayList<Post> postData = new ArrayList<Post>();
 	    for(List<String> post : posts) {
-	    	
-	    }*/
+	    	postData.add(new Post(post));
+	    }
+	    
 	    EventList list = new EventList();
 	    
 	    list.setInvited(invitedData);
 	    list.setPopular(new ArrayList<Event>());
-	    list.setPostActivity(new ArrayList<Post>());
+	    list.setPostActivity(postData);
 	    
 	    String json = new Gson().toJson(list);
 	    
