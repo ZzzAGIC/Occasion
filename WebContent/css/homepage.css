@@ -2,22 +2,24 @@
 body{
 	background-color:#f2f2f2;
 	font-family: 'Helvetica', 'Arial', sans-serif;
+	margin: 0;
 }
 
 .navbar{
-	background-image: linear-gradient(#ccffff, #e6ffff);
+	background-color: purple;
 	height: 60px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
+    border-bottom: 1px solid #602f6b;
 }
+	
 .logo{
-	font-family: "Times New Roman", Times, serif;
+	color: white;
 	font-size: 30px;
 	vertical-align: middle;
 	align: left;
-	
 }
 
 .button{
@@ -118,27 +120,6 @@ body{
 	transform: scale(1.1);
 }
 
-.post-activity {}
-
-.post-img {
-	float: left;
-	position: relative;
-	height: 200px;
-	width: 200px;
-}
-
-.post-description {
-	
-}
-
-.friend_activity{
-	align-items: center;
-	height: 80%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-   	position: absolute;
-}
 .vertical_scroll{
 	text-align: center;
 	flex: 2;
@@ -146,12 +127,45 @@ body{
   	overflow-x: hidden;
 }
 
+.postTitle {
+	font-size: 50px;	
+}
+
+.post-activity {
+	margin-left: 300px;
+	margin-right: 300px;
+	margin-bottom: 100px;
+	height: 400px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	background-color: white;
+}
+
+.post-img {
+	position: relative;
+	float: left;
+	height: 400px;
+	width: 400px;
+}
+
+.post-description {
+	text-align: center;
+	float: left;
+}
+
+.friend_activity{
+	height:80%;
+    width:100%;
+}
+
+
 .friend_list{
   	width: 100%;
   	height: 100%;
   	margin: auto;
   	padding: 40px;
-  	background-color: #3b3a3b; 	
 }
 
 .friend-panel {
@@ -161,7 +175,7 @@ body{
 .friend-text {
 	margin-top: 5px;
 	text-align: center;
-	color: white;
+	color: black;
 }
 
 .friend-image-container {
@@ -171,6 +185,7 @@ body{
 .friend-image {
 	height: 240px;
 	width: 240px;
+	border: 2px solid black;
 }
 
 .friend-image-container:hover {
@@ -276,4 +291,3 @@ body{
 iframe{
 	width: 500px;
 }
-

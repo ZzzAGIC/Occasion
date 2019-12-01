@@ -99,7 +99,6 @@ public class GetEventsHomePage extends HttpServlet {
 			this.img = img;
 		}
 
-
 		public int getId() {
 			return id;
 		}

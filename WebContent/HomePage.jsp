@@ -82,21 +82,30 @@
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
-		<div class="vertical_scroll" >
+		<div>
 			<div class="post-activity">
 				<img class="post-img" src="images/Event1.jpg" alt="Event1">
 				<div class="post-description">
-					<b>Text Description</b>
+					<b class = "postTitle">Text Description</b>
 				</div>
 			</div>
 			<div class="post-activity">
 				<img class="post-img" src="images/Event2.jpg" alt="Event1">
+				<div class="post-description">
+					<b class = "postTitle">Text Description</b>
+				</div>
 			</div>
 			<div class="post-activity">
 				<img class="post-img" src="images/Event3.jpg" alt="Event1">
+				<div class="post-description">
+					<b class = "postTitle">Text Description</b>
+				</div>
 			</div>
 			<div class="post-activity">
 				<img class="post-img" src="images/Event4.jpg" alt="Event1">
+				<div class="post-description">
+					<b class = "postTitle">Text Description</b>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -163,6 +172,7 @@
 			
 			//Add Initial events to display of Invited Events
 			for(var i = 0; i < inviteEvents.length; i++) {
+				var container = document.createElement("div");
 				var a = document.createElement("a");
 				a.href = "EventProfile.jsp?EventID=" + inviteEvents[i].id;
 				var image = document.createElement("IMG");
@@ -170,9 +180,20 @@
 				image.src = inviteEvents[i].img;
 				image.id = "inv" + i;
 				a.append(image);	
-				document.getElementById("invitedEvents").append(a);
+				container.append(a);
+				
+				var message = "You have been invited to the <b>" + inviteEvents[i].event_name + "</b> event!";
+				var textContainer = document.createElement("div");
+				textContainer.innerHTML = message;
+				container.append(textContainer);
+				document.getElementById("invitedEvents").append(container);
 			}
 			
+			if(inviteEvents.length == 0) {
+				var b = document.createElement("b");
+				b.innerHTML = "You currently have no invites";
+				document.getElementById("invitedEvents").append(b);
+			}
 			//Add Popular events
 			for(var i = 0; i < popularEvents.length; i++) {
 				var a = document.createElement("a");
