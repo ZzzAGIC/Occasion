@@ -6,15 +6,52 @@
 <meta charset="UTF-8">
 <%@ page import="occasion.account.User" %>
 <%@ page import="occasion.account.Post" %>
-<%@ page import="occasion.event.Event" %>
+<%@ page import="occasion.event.Event, occasion.db.Database" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>Event Profile</title>
 
 	<script>
+		function display_invitation() {
+			document.getElementById("new_invitation").style.display="initial"
+				
+		}
+		
 		function add(){
+			<%
+			String myname = null;
+			String follow_username = null;
 			
+			if(session.getAttribute("myname") != null) {
+					myname = session.getAttribute("myname").toString();
+			
+			}
+			
+			String E_ID = request.getParameter("EventID").toString();
+			
+			%>
+			var myUsername = "<%=myname%>";
+			console.log(myUsername);
+			var EventID = "<%=E_ID%>";
+			console.log(EventID);
+			
+			var mylink = "Going_Event?Username="+myUsername+"&EventID="+EventID;
+	
+			console.log(mylink);
+			var xhttp= new XMLHttpRequest();
+			xhttp.open("GET", mylink, false);
+			xhttp.send();
+			
+			if (xhttp.responseText.trim().length > 0) {
+				document.getElementById("formerror").innerHTML= xhttp.responseText;
+				
+			}
+				
+            else{
+	            document.getElementById("RemoveEvent_button").style.display="initial";
+	 			document.getElementById("AddEvent_button").style.display="none";
+            }
 			
 		}
 	
@@ -75,12 +112,25 @@
 			<% 
 			int EventID = Integer.parseInt(request.getParameter("EventID").toString());
 		
-			/* boolean own_event = false; */
+			boolean own_event = false;
+			String myusername = null;
+			ArrayList<User> followingUsers = null;
+			if(session.getAttribute("myname") != null) {
+				myusername = session.getAttribute("myname").toString();
+				User curr_user = new User(myusername);
+				followingUsers = curr_user.getFollowingList();
+			}
 			
 
 			Event curr_Event = new Event(EventID);
 			String name = curr_Event.getEventName();
-			String initiator = curr_Event.getInitiator().getUsername();
+			int initiatorID = curr_Event.getInitiator();
+			String initiator = User.getUsernameFromId(initiatorID);
+			
+			if(initiator.compareTo(myusername) == 0) {
+				own_event = true;
+			}
+				
 			String img = curr_Event.getPictures();
 			String type = curr_Event.getType();
 			String description = curr_Event.getDescription();
@@ -95,6 +145,8 @@
 			String lat_ = curr_Event.getLocation().getlatitude();
 			
 			String location = street + " " + city;
+			
+			ArrayList<User> attendents = curr_Event.getAttendants();
 					
 			%>
 			
@@ -114,9 +166,46 @@
 		    	<h4>Free spots: <%=freespots%></h4>
 		    	<h4>Location: <%=location%></h4>
 	    	</div>
+	    	<%if(!own_event) {%>
 	    	<button class="button" id="AddEvent_button" type="button" onclick="add();">Going event</button>
 			<button class="button" id="RemoveEvent_button" type="button" onclick="remove();" style="display: none;">Not Going</button>
-
+			<%}
+	    	else if(own_event) {%>
+				<h4>Attendents: </h4>
+				<%if(attendents != null){
+				for(int i = 0; i < attendents.size(); i++ ){%> 
+					
+					<a href="ProfilePage.jsp?Friend_User=<%=attendents.get(i).getUsername()%>">
+					<h4><%=attendents.get(i).getUsername()%></h4>
+					</a>
+					
+				
+				<%}}
+				else if(attendents == null){%> 
+				<h4>N/A</h4>
+				
+				<button id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
+			    <div id="new_invitation" style="display:none;">
+			    
+			    <form class="form" action="new_invitation" method="post"> 
+				<div id="formerror" style="color: red;"> 
+				<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+				</div>
+			    <%request.setAttribute("EventID", EventID); %>
+			    Select Users to invite:<br/>
+				<%if(followingUsers != null){
+					for(int i = 0; i < followingUsers.size(); i++ ){%> 
+						<input type="checkbox" name="members" 
+						value="<%=followingUsers.get(i).getUserID()%>"><%=followingUsers.get(i).getUsername()%>
+						<br>
+					
+			    <%}}%> 
+			    <input class="button" type="submit" value="Invite!"/>  
+				</form> 
+			    
+			    </div>
+				
+			<%} }%>
 		<div id="map"></div>
 		
 		

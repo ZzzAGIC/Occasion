@@ -17,11 +17,6 @@ CREATE TABLE User (
 	Status INT(2)
 );
 
---temporary table for image testing
-CREATE TABLE Test (
-	TestID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
-	img MEDIUMBLOB
-);
 
 CREATE TABLE PasswordRecovery (
 	RecoverID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
@@ -52,28 +47,26 @@ CREATE TABLE Attendance (
 	EventID INT(11),
 	UserID INT(11),
 	RSVPStatus INT(1),
-	Favourite INT(1),
-	FOREIGN KEY EventID REFERENCES Event(EventID),
-	FOREIGN KEY UserID REFERENCES User(UserID)
+	FOREIGN KEY (EventID) REFERENCES Event(EventID),
+	FOREIGN KEY (UserID) REFERENCES User(UserID)
 );
 
-CREATE TABLE Group (
+CREATE TABLE FriendGroup (
 	GroupID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	GroupName VARCHAR(50),
 	Picture VARCHAR(50),
 	Description VARCHAR(200),
 	OwnerID INT(11),
 	Size INT(5),
-	FOREIGN KEY OwnerID REFERENCES User(UserID)
+	FOREIGN KEY (OwnerID) REFERENCES User(UserID)
 );
 
 CREATE TABLE GroupUser (
 	GroupUserID INT(11) PRIMARY KEY not null AUTO_INCREMENT,
 	GroupID INT(11),
 	UserID INT(11),
-	Description VARCHAR(200),
-	FOREIGN KEY GroupID REFERENCES Group(GroupID),
-	FOREIGN KEY UserID REFERENCES User(UserID)	
+	FOREIGN KEY (GroupID) REFERENCES FriendGroup(GroupID),
+	FOREIGN KEY (UserID) REFERENCES User(UserID)	
 );
 
 CREATE TABLE Relationship (
@@ -90,8 +83,8 @@ CREATE TABLE Chat (
 	Message VARCHAR(200),
 	SenderID INT(11),
 	ReceiverID INT(11),
-	FOREIGN KEY SenderID REFERENCES User(UserID),
-	FOREIGN KEY ReceiverID REFERENCES User(UserID)	
+	FOREIGN KEY (SenderID) REFERENCES User(UserID),
+	FOREIGN KEY (ReceiverID) REFERENCES User(UserID)	
 );
 
 CREATE TABLE Post (
@@ -101,6 +94,7 @@ CREATE TABLE Post (
 	LikeNum INT(11),
 	Description VARCHAR(200),
 	Image VARCHAR(50),
+	Type INT(1),
 	FOREIGN KEY (UserID) REFERENCES User(UserID),
 	FOREIGN KEY (EventID) REFERENCES Event(EventID)	
 );

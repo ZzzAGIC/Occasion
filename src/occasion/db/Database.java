@@ -3,9 +3,12 @@ package occasion.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.tomcat.util.codec.binary.Base64;
 
 public class Database {
 	
@@ -14,7 +17,7 @@ public class Database {
 	 * @return A connection object to the database
 	 * @throws SQLException
 	 */
-	private static Connection getConnection() throws SQLException {
+	public static Connection getConnection() throws SQLException {
 		String databaseName = "EventProject";
 		String instanceName = "occassion:us-central1:project-instance1";
 		String username = "developer";
@@ -73,11 +76,16 @@ public class Database {
 			try {
 				if(rs != null) rs.close();
 				if(st != null) st.close();
+			}
+			catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}	
+			try {
 				if(conn != null) conn.close();
 			}
 			catch(SQLException e) {
 				System.out.println(e.getMessage());
-			}		
+			}
 		}
 		return result;
 	}
@@ -96,13 +104,19 @@ public class Database {
 			for(int i = 0; i < args.length; i++) {
 				st.setString(i + 1, args[i]);
 			}
-			
+			System.out.println(st.toString());			
 			st.executeUpdate();
 		} catch(SQLException e) {
 			System.out.println(e);
 		} finally {
 			try {
 				if(st != null) st.close();
+				if(conn != null) conn.close();
+			}
+			catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
 				if(conn != null) conn.close();
 			}
 			catch(SQLException e) {

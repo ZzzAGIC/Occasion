@@ -60,7 +60,7 @@ public class follow_user extends HttpServlet {
 		if(output.size() == 0) {
 			System.out.println(followerid_ +" "+ followingid_);
 			String toinsert = "INSERT INTO Relationship (FollowerUserID,FollowingUserID, BlockCode) VALUES (?, ?, ?)";
-		
+			
 			Database.UpdateQuery(toinsert, followerid_, followingid_, "0");
 		}
 		

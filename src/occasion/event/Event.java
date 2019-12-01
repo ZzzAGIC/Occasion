@@ -13,7 +13,7 @@ import occasion.event.Location;
 public class Event {
 	private int eventID;
 	private String event_name;
-	private User initiator;
+	private int initiator;
 	private String type;
 	private Location location;
 	private Date event_time;
@@ -28,8 +28,44 @@ public class Event {
 	private int private_event;
 	//public event = 0; private event = 1; exclusive event = 2;
 	
-	public Event() {
+	public Event(List<String> result) {		
+		setEventID(Integer.parseInt(result.get(0)));
+		setEventName(result.get(1));
 		
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			setEventTime(formatter.parse(result.get(2)));
+		} catch (ParseException e) {
+			//NOTE TO SELF: Add placeholder date
+		}
+		
+		//Set Location
+		int loc_id = Integer.parseInt(result.get(3));
+		Location curr_loc = new Location(loc_id);
+		setLocation(curr_loc);
+		//Set Event Type
+		setType(result.get(4));
+		
+		//Set Picture
+		setPictures(result.get(5));
+		
+		//Set Host
+		setInitiator(Integer.parseInt(result.get(6)));
+		
+		//Set Capacity
+		setCapacity(Integer.parseInt(result.get(7)));
+		
+		//Set Size
+		setCurrNum(Integer.parseInt(result.get(8)));
+		
+		//Set Price
+		setPrice(Integer.parseInt(result.get(9)));
+		
+		//set description result.get(10)
+		setDescription(result.get(10));
+		
+		//set privacy result.get(11)
+		setPrivacy(Integer.parseInt(result.get(11)));
 	}
 	
 	//constructor
@@ -60,8 +96,7 @@ public class Event {
 		setPictures(result.get(5));
 		
 		//Set Host
-		String name = User.getUsernameFromId(Integer.parseInt(result.get(6)));
-		setInitiator(new User(name));
+		setInitiator(Integer.parseInt(result.get(6)));
 		
 		//Set Capacity
 		setCapacity(Integer.parseInt(result.get(7)));
@@ -93,11 +128,11 @@ public class Event {
 		event_name = name_;
 	}
 
-	public User getInitiator() {
+	public int getInitiator() {
 		return initiator;
 	}
-	public void setInitiator(User U) {
-		initiator = U;
+	public void setInitiator(int u) {
+		initiator = u;
 	}
 
 	public String getType() {

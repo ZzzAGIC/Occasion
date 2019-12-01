@@ -62,33 +62,34 @@
 		
 	</div>
 	
-	<h1 style="text-align: center;">Invitation</h1>
-	<div class="invitation">
-		<div class="scroll-events">
-		<img src="images/Event1.jpg" alt="Event1" height="200" width="360">
-		<img src="images/Event2.jpg" alt="Event2" height="200" width="360">
-		<img src="images/Event3.jpg" alt="Event3" height="200" width="360">
-		<img src="images/Event4.jpg" alt="Event4" height="200" width="360">
+	<div><h1 style="text-align: left;">Invitation</h1></div>
+	<div class="horizontal-events">
+		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'inv');"></div>
+		<div class="event-list" id="invitedEvents">
+			
 		</div>
+		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'inv');"></div>
 	</div>
 	
-	<h1 style="text-align: center;">Trending</h1>
-	<div class="trending">
-		<div class="scroll-events">
-		<img src="images/Event1.jpg" alt="Event1" height="200" width="360">
-		<img src="images/Event2.jpg" alt="Event2" height="200" width="360">
-		<img src="images/Event3.jpg" alt="Event3" height="200" width="360">
-		<img src="images/Event4.jpg" alt="Event4" height="200" width="360">
+	<h1 style="text-align: left;">Trending</h1>
+	<div class="horizontal-events">
+		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'trend');"></div>
+		<div class="event-list">
+			<img class="event" src="images/Event1.jpg" id="trend1">
+			<img class="event" src="images/Event2.jpg" id="trend2">
+			<img class="event" src="images/Event3.jpg" id="trend3">
+			<img class="event" src="images/Event4.jpg" id="trend4">
 		</div>
+		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'trend');"></div>
 	</div>
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
 		<div class="vertical_scroll" >
-		<img src="images/Event1.jpg" alt="Event1" height="60%" width="60%">
-		<img src="images/Event2.jpg" alt="Event2" height="60%" width="60%">
-		<img src="images/Event3.jpg" alt="Event3" height="60%" width="60%">
-		<img src="images/Event4.jpg" alt="Event4" height="60%" width="60%">
+			<img src="images/Event1.jpg" alt="Event1" height="60%" width="60%">
+			<img src="images/Event2.jpg" alt="Event2" height="60%" width="60%">
+			<img src="images/Event3.jpg" alt="Event3" height="60%" width="60%">
+			<img src="images/Event4.jpg" alt="Event4" height="60%" width="60%">
 		</div>
 	</div>
 	
@@ -97,7 +98,7 @@
 	</div>
 
 </body>
-	<script>
+<script>
 			var login  = <%=session.getAttribute("login")%>
 			if(login != null) {
 				if(login == true) {
@@ -121,17 +122,76 @@
 				document.getElementById("Login_button").style.display="initial"
 				document.getElementById("Register_button").style.display="initial"
 				document.getElementById("Profilepage_button").style.display="none"
-				document.getElementById("Signout_button").style.display="none"
-				
+				document.getElementById("Signout_button").style.display="none"			
 			}
 			
 			function signout() {
 				var sessionInfo = NewSession();
 				sessionInfo.Item("login") = null;
+			}			
+		</script>
+		
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+	var module = (function(){
+		var inviteEvents = {};
+		var popularEvents = {};
+		var userPost = {};
+		
+		
+		
+		//Sets up initial State
+		$(document).ready(function() {
+			var xhttp = new XMLHttpRequest();
+
+			xhttp.open("GET", "GetEventHomePage", false);	
+			xhttp.send();
+				
+			var json = JSON.parse(xhttp.responseText); 
+			
+			inviteEvents = json.invited;
+			popularEvents = json.popular;
+			userPost = json.postActivity;
+			
+			//Add Initial events to display of Invited Events
+			for(var i = 0; i < inviteEvents.length; i++) {
+				if(i < inviteEvents.length - 1) {
+					var image = document.createElement("IMG");
+					image.className = "event";
+					image.src = inviteEvents[i].img;
+					image.id = "inv" + i;
+					document.getElementById("invitedEvents").append(image);
+				}
 			}
 			
-
+			//Add Popular events
 			
-			
-		</script>
+			//Add Post Activity
+		});
+		
+		function transitionElement(action, type) {
+			/*switch(action) {
+			case "back":
+				var translation = "-100vw";
+				for(var i = 0; i < 4; i++) {
+					document.getElementById(type + i + 1).style.transition = "1s all ease-in-out";
+					document.getElementById(type + i + 1).style.transform = "translateX(" + translation + ")";
+				}
+				break;
+			case "front":
+				var translation = "100vw";
+				for(var i = 0; i < 4; i++) {
+					id = type + (i + 1);
+					document.getElementById(id).style.transition = "1s all ease-in-out";
+					document.getElementById(id).style.transform = "translateX(" + translation + ")";
+				}
+				break;
+			}*/
+		} 
+		
+		return {
+			transitionElement : transitionElement,
+		};
+	})();
+</script>
 </html>

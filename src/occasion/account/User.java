@@ -230,16 +230,14 @@ public class User {
 	
 	
 	public ArrayList<Event> getCreatedEvent(){
-		String query = "select EventID from Event where HostID = ?;";
+		String query = "select * from Event where HostID = ?;";
 
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
 		ArrayList<Event> created = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			int e_ID = Integer.parseInt(itemUsername);
-			created.add(new Event(e_ID));
+			created.add(new Event(item));
 		}
 		return created;
 	}
@@ -253,17 +251,26 @@ public class User {
 	public void AddAttendedEvent(Event E) {
 		attendedEvent.add(E);
 	}
-	
-	
-	
+		
+
 	public ArrayList<Event> getFutureEvent(){
-		return futureEvent;
+		String query = "select EventID from Attendance where UserID = ? AND RSVPStatus = 2;";
+
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
+				
+		ArrayList<Event> future = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			future.add(new Event(Integer.parseInt(item.get(0))));
+		}
+		return future;
 	}
 	public void AddFutureEvent(Event E) {
 		futureEvent.add(E);
 	}
 	
-	public ArrayList<Event> getRecommendedEvents(){
+	//Placeholder Replace
+	public ArrayList<Event> getRecommendedEvents() {
 		String query = "select * from Event;";
 
 		List<List<String>> details = Database.SelectQuery(query);
@@ -271,14 +278,24 @@ public class User {
 		ArrayList<Event> recommend = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			int e_ID = Integer.parseInt(itemUsername);
-			recommend.add(new Event(e_ID));
+			recommend.add(new Event(item));
 		}
 		return recommend;
 	}
 	
-	
+	//Placeholder Replace
+	public ArrayList<Event> getInvitedEvents() {
+		String query = "select * from Event;";
+
+		List<List<String>> details = Database.SelectQuery(query);
+				
+		ArrayList<Event> invited = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			invited.add(new Event(item));
+		}
+		return invited;
+	}
 
 	public TreeSet<String> getPreferenceType(){
 		return preferenceType;

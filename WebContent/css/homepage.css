@@ -2,6 +2,7 @@
 body{
 	background-color:#f2f2f2;
 }
+
 .navbar{
 	background-image: linear-gradient(#ccffff, #e6ffff);
 	height: 60px;
@@ -27,8 +28,6 @@ body{
   	border: 2px solid black;
   	border-radius: 8px;
 }
-
-
 
 #Homepage_button{
 	margin-left: auto;
@@ -61,25 +60,62 @@ body{
 	height: 80px;
 	width: 100%;
 }
-.invitation,.trending{
-	
-  	background-color: #333;
-  	overflow: auto;
-  	white-space: nowrap;
 
+.horizontal-events {
+  	white-space: nowrap;
 	height: 20%;
     width: 100%;
     display: flex;
     flex-direction: row;
-	
+    margin: 0 auto;    
 }
-.scroll-events {
+.event-list {
+  overflow: scroll;
   display: inline-block;
   text-align: center;
   padding: 14px;
   text-decoration: none;
+  position: relative;
+  margin: 0 auto;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; 
+}
+
+.event-scroll {
+	width: 100px;
+	height: 200px;	
+	position: absolute;
+	z-index: 1;
+	padding: 14px;
+}
+
+.back {
+	left: 0;
+}
+
+.forward {
+	right: 0;
+}
+
+.event-scroll:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.event {
+	height: 200px;
+	width: 370px;
+	margin-right: 20px;
+	margin-left: 20px;
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.event:hover {
+	transform: scale(1.1);
+}
 
 .friend_activity{
 	align-items: center;
@@ -176,6 +212,10 @@ body{
 	height: 600px;
 	width: 60%;
 }
+#img-container > input {
+	display: none;
+}
+
 .footer{
 	display: flex;
     flex-direction: row;
