@@ -237,9 +237,7 @@ public class User {
 		ArrayList<Event> created = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			int e_ID = Integer.parseInt(itemUsername);
-			created.add(new Event(e_ID));
+			created.add(new Event(item));
 		}
 		return created;
 	}
@@ -263,9 +261,7 @@ public class User {
 		ArrayList<Event> future = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			int e_ID = Integer.parseInt(itemUsername);
-			future.add(new Event(e_ID));
+			future.add(new Event(item));
 		}
 		return future;
 	}
@@ -282,9 +278,7 @@ public class User {
 		ArrayList<Event> recommend = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			int e_ID = Integer.parseInt(itemUsername);
-			recommend.add(new Event(e_ID));
+			recommend.add(new Event(item));
 		}
 		return recommend;
 	}
@@ -298,9 +292,7 @@ public class User {
 		ArrayList<Event> invited = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			int e_ID = Integer.parseInt(itemUsername);
-			invited.add(new Event(e_ID));
+			invited.add(new Event(item));
 		}
 		return invited;
 	}

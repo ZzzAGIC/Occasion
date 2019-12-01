@@ -71,16 +71,21 @@ public class Database {
 			}
 			return result;
 		} catch(SQLException e) {
-			//System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 		} finally {	
 			try {
 				if(rs != null) rs.close();
 				if(st != null) st.close();
+			}
+			catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}	
+			try {
 				if(conn != null) conn.close();
 			}
 			catch(SQLException e) {
-				//System.out.println(e.getMessage());
-			}		
+				System.out.println(e.getMessage());
+			}
 		}
 		return result;
 	}
@@ -99,17 +104,23 @@ public class Database {
 			for(int i = 0; i < args.length; i++) {
 				st.setString(i + 1, args[i]);
 			}
-			
+			System.out.println(st.toString());			
 			st.executeUpdate();
 		} catch(SQLException e) {
-			//System.out.println(e);
+			System.out.println(e);
 		} finally {
 			try {
 				if(st != null) st.close();
 				if(conn != null) conn.close();
 			}
 			catch(SQLException e) {
-				//System.out.println(e.getMessage());
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) conn.close();
+			}
+			catch(SQLException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 	}

@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 import occasion.event.Event;
 import occasion.account.Post;
 import occasion.account.User;
+import occasion.db.Database;
 
 /**
  * Servlet implementation class follow_user
@@ -46,6 +48,10 @@ public class GetEventsHomePage extends HttpServlet {
 	    	invitedData.add(new EventData(event.getEventName(), event.getPictures()));
 	    }
 	    
+	    /*List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where Post.UserID IN (SELECT Relationship.followingID FROM Relationship.FollowerID = User.UserID AND User.Username = ?) ", username);
+	    for(List<String> post : posts) {
+	    	
+	    }*/
 	    EventList list = new EventList();
 	    
 	    list.setInvited(invitedData);

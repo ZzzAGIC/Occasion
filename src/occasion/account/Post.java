@@ -27,7 +27,6 @@ public class Post {
 		String query = "SELECT * FROM Post WHERE PostID = ?";
 		
 		List<String> result = Database.SelectQuery(query, postID).get(0);
-		
 	}
 	
 }

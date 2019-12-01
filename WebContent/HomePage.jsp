@@ -64,23 +64,23 @@
 	
 	<div><h1 style="text-align: left;">Invitation</h1></div>
 	<div class="horizontal-events">
-		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, invitedEvents);"></div>
+		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'inv');"></div>
 		<div class="event-list" id="invitedEvents">
 			
 		</div>
-		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, invitedEvents);"></div>
+		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'inv');"></div>
 	</div>
 	
 	<h1 style="text-align: left;">Trending</h1>
 	<div class="horizontal-events">
-		<div class="back event-scroll"></div>
+		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'trend');"></div>
 		<div class="event-list">
-			<img class="event" src="images/Event1.jpg" alt="Event1">
-			<img class="event" src="images/Event2.jpg" alt="Event2">
-			<img class="event" src="images/Event3.jpg" alt="Event3">
-			<img class="event" src="images/Event4.jpg" alt="Event4">
+			<img class="event" src="images/Event1.jpg" id="trend1">
+			<img class="event" src="images/Event2.jpg" id="trend2">
+			<img class="event" src="images/Event3.jpg" id="trend3">
+			<img class="event" src="images/Event4.jpg" id="trend4">
 		</div>
-		<div class="forward event-scroll"></div>
+		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'trend');"></div>
 	</div>
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
@@ -138,8 +138,7 @@
 		var popularEvents = {};
 		var userPost = {};
 		
-		var inviteStart = 0;
-		var inviteCurrentDisplay = {};
+		
 		
 		//Sets up initial State
 		$(document).ready(function() {
@@ -160,10 +159,8 @@
 					var image = document.createElement("IMG");
 					image.className = "event";
 					image.src = inviteEvents[i].img;
-					image.id = i;
+					image.id = "inv" + i;
 					document.getElementById("invitedEvents").append(image);
-
-					inviteCurrentDisplay[i] = i;
 				}
 			}
 			
@@ -173,24 +170,24 @@
 		});
 		
 		function transitionElement(action, type) {
-			switch(action) {
-				case "back":
-					var translation = "-100vw";
-					for(var i = 0; i < inviteEvents.length; i++) {
-						document.getElementById(i).style.transition = "1s all ease-in-out";
-						document.getElementById(i).style.transform = "translateX(" + translation + ")";
-					}
-					break;
-				case "front":
-					var translation = "100vw";
-					for(var i = 0; i < inviteEvents.length; i++) {
-						document.getElementById(i).style.transition = "1s all ease-in-out";
-						document.getElementById(i).style.transform = "translateX(" + translation + ")";
-					}
-					break;
-			}
-			
-		}
+			/*switch(action) {
+			case "back":
+				var translation = "-100vw";
+				for(var i = 0; i < 4; i++) {
+					document.getElementById(type + i + 1).style.transition = "1s all ease-in-out";
+					document.getElementById(type + i + 1).style.transform = "translateX(" + translation + ")";
+				}
+				break;
+			case "front":
+				var translation = "100vw";
+				for(var i = 0; i < 4; i++) {
+					id = type + (i + 1);
+					document.getElementById(id).style.transition = "1s all ease-in-out";
+					document.getElementById(id).style.transform = "translateX(" + translation + ")";
+				}
+				break;
+			}*/
+		} 
 		
 		return {
 			transitionElement : transitionElement,
