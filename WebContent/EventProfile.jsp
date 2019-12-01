@@ -191,7 +191,6 @@
 				<div id="formerror" style="color: red;"> 
 				<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 				</div>
-			    <%request.setAttribute("EventID", EventID); %>
 			    Select Users to invite:<br/>
 				<%if(followingUsers != null){
 					for(int i = 0; i < followingUsers.size(); i++ ){%> 
@@ -200,6 +199,7 @@
 						<br>
 					
 			    <%}}%> 
+			    <input type="hidden" name ="EventID" value="<%= EventID %>"/>
 			    <input class="button" type="submit" value="Invite!"/>  
 				</form> 
 			    

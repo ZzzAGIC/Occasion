@@ -74,11 +74,8 @@
 	<h1 style="text-align: left;">Trending</h1>
 	<div class="horizontal-events">
 		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'trend');"></div>
-		<div class="event-list">
-			<img class="event" src="images/Event1.jpg" id="trend1">
-			<img class="event" src="images/Event2.jpg" id="trend2">
-			<img class="event" src="images/Event3.jpg" id="trend3">
-			<img class="event" src="images/Event4.jpg" id="trend4">
+		<div class="event-list" id="popularEvents">
+			
 		</div>
 		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'trend');"></div>
 	</div>
@@ -168,7 +165,18 @@
 			}
 			
 			//Add Popular events
-			
+			for(var i = 0; i < popularEvents.length; i++) {
+				if(i < popularEvents.length - 1) {
+					var a = document.createElement("a");
+					a.href = "EventProfile.jsp?EventID=" + popularEvents[i].id;
+					var image = document.createElement("IMG");
+					image.className = "event";
+					image.src = popularEvents[i].img;
+					image.id = "popular" + i;
+					a.append(image);	
+					document.getElementById("popularEvents").append(a);
+				}
+			}
 			//Add Post Activity
 		});
 		

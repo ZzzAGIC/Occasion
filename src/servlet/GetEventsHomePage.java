@@ -48,6 +48,12 @@ public class GetEventsHomePage extends HttpServlet {
 	    	invitedData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID()));
 	    }
 	    
+	    ArrayList<Event> popularEvents = Event.getPopularEvents();
+	    ArrayList<EventData> popularData = new ArrayList<EventData>();	    
+	    for(Event event : popularEvents) {
+	    	popularData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID()));
+	    }
+	    
 	    List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowingUserID = ?) ", username);
 	    
 	    ArrayList<Post> postData = new ArrayList<Post>();
@@ -58,7 +64,7 @@ public class GetEventsHomePage extends HttpServlet {
 	    EventList list = new EventList();
 	    
 	    list.setInvited(invitedData);
-	    list.setPopular(new ArrayList<Event>());
+	    list.setPopular(popularData);
 	    list.setPostActivity(postData);
 	    
 	    String json = new Gson().toJson(list);
@@ -107,7 +113,7 @@ public class GetEventsHomePage extends HttpServlet {
 	
 	class EventList {
 		private ArrayList<EventData> invited;
-		private ArrayList<Event> popular;
+		private ArrayList<EventData> popular;
 		private ArrayList<Post> postActivity;
 		
 		public ArrayList<EventData> getInvited() {
@@ -116,10 +122,10 @@ public class GetEventsHomePage extends HttpServlet {
 		public void setInvited(ArrayList<EventData> invited) {
 			this.invited = invited;
 		}
-		public ArrayList<Event> getPopular() {
+		public ArrayList<EventData> getPopular() {
 			return popular;
 		}
-		public void setPopular(ArrayList<Event> popular) {
+		public void setPopular(ArrayList<EventData> popular) {
 			this.popular = popular;
 		}
 		public ArrayList<Post> getPostActivity() {

@@ -282,15 +282,18 @@ public class User {
 	
 	//Placeholder Replace
 	public ArrayList<Event> getInvitedEvents() {
-		String query = "select * from Event;";
+		String query = "select Event.EventID, Event.EventName, Event.EventDate, Event.LocationID, Event.Type, Event.Picture, Event.HostID, Event.Capacity, Event.Size, Event.Price, Event.Description, Privacy from Event, Attendance WHERE Event.EventID = Attendance.EventID AND Attendance.UserID = '1' AND Attendance.UserID = ?;";
 
-		List<List<String>> details = Database.SelectQuery(query);
-				
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
+		
+		System.out.println(details.size());
+		
 		ArrayList<Event> invited = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
 			invited.add(new Event(item));
 		}
+		
 		return invited;
 	}
 

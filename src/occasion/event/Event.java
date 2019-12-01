@@ -226,7 +226,19 @@ public class Event {
 		}
 		return type_;
 	}
-
+	
+	public static ArrayList<Event> getPopularEvents() {
+		String query = "SELECT * FROM Event ORDER BY Size DESC LIMIT 20";
+		
+		List<List<String>> result = Database.SelectQuery(query);
+		System.out.println("+++" + result.size());
+		ArrayList<Event> events = new ArrayList<Event>();
+		for(List<String> item : result) {
+			events.add(new Event(item));
+		}
+		return events;
+	}
+	
 	public void PrintDetails() {
 		System.out.println("EventName: " + getEventName());
 		System.out.println("Type: " + getType());
