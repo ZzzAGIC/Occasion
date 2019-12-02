@@ -182,7 +182,7 @@
 				a.append(image);	
 				container.append(a);
 				
-				var message = "You have been invited to the <b>" + inviteEvents[i].event_name + "</b> event!";
+				var message = "<b>You have been invited to " + inviteEvents[i].event_name + "</b>!";
 				var textContainer = document.createElement("div");
 				textContainer.innerHTML = message;
 				container.append(textContainer);
