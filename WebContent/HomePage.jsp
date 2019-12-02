@@ -183,9 +183,11 @@
 				container.append(a);
 				
 				var message = "<b>You have been invited to " + inviteEvents[i].event_name + "</b>!";
+				message += "<br> <b> Date:</b> " + inviteEvents[i].date;
 				var textContainer = document.createElement("div");
 				textContainer.innerHTML = message;
 				container.append(textContainer);
+				container.style = "display: inline-block;";
 				document.getElementById("invitedEvents").append(container);
 			}
 			

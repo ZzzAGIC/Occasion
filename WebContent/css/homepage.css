@@ -71,8 +71,14 @@ input[type=text] {
 	width: 100%;
 }
 
+#invited-events {
+	white-space: nowrap;
+  	overflow: scroll;
+}
+
 .horizontal-events {
   	white-space: nowrap;
+  	overflow: scroll;
 	height: 20%;
     width: 100%;
     display: flex;
@@ -80,7 +86,7 @@ input[type=text] {
     margin: 0 auto;
 }
 .event-list {
-  overflow: scroll;
+
   display: inline-block;
   text-align: center;
   padding: 14px;

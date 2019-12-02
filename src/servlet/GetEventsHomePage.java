@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -45,13 +46,13 @@ public class GetEventsHomePage extends HttpServlet {
 	    ArrayList<Event> invitedEvents = currentUser.getInvitedEvents();
 	    ArrayList<EventData> invitedData = new ArrayList<EventData>();	    
 	    for(Event event : invitedEvents) {
-	    	invitedData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID()));
+	    	invitedData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID(), event.getEventTime()));
 	    }
 	    
 	    ArrayList<Event> popularEvents = Event.getPopularEvents();
 	    ArrayList<EventData> popularData = new ArrayList<EventData>();	    
 	    for(Event event : popularEvents) {
-	    	popularData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID()));
+	    	popularData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID(), event.getEventTime()));
 	    }
 	    
 	    List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowingUserID = ?) ", username);
@@ -78,12 +79,14 @@ public class GetEventsHomePage extends HttpServlet {
 	class EventData {
 		private String event_name;
 		private String img;
+		private Date date;
 		private int id;
 		
-		public EventData(String name, String image, int id) {
+		public EventData(String name, String image, int id, Date date) {
 			this.event_name = name;
 			this.img = image;
 			this.id = id;
+			this.date = date;
 		}
 		
 		public String getEvent_name() {
@@ -106,6 +109,14 @@ public class GetEventsHomePage extends HttpServlet {
 
 		public void setId(int id) {
 			this.id = id;
+		}
+
+		public Date getDate() {
+			return date;
+		}
+
+		public void setDate(Date date) {
+			this.date = date;
 		}
 
 	}
