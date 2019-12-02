@@ -95,12 +95,12 @@
 		User curr_user = new User(myusername);
 		
 		
-		ArrayList<Event> all_Events = curr_user.getRecommendedEvents();
+		ArrayList<Event> all_Events = curr_user.getAttendedEvent();
 		
 	%>
 	
 	<div class="eventList">
-		<h1 align=center><i>Events for <%=myusername%></i></h1>
+		<h1 align=center><i>Events you are attending <%=myusername%></i></h1>
 		
 		<div class="vertical_scroll" >
 		
@@ -123,7 +123,6 @@
 
 
 	
-
 	<script>
 			var login  = <%=session.getAttribute("login")%>
 			if(login != null) {

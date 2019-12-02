@@ -246,11 +246,19 @@ public class User {
 		createdEvent.add(E);
 	}
 	public ArrayList<Event> getAttendedEvent(){
-		return attendedEvent;
+		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ? AND RSVPStatus = '2');";
+		
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
+				
+		ArrayList<Event> invited = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			invited.add(new Event(item));
+		}
+		
+		return invited;
 	}
-	public void AddAttendedEvent(Event E) {
-		attendedEvent.add(E);
-	}
+	
 		
 
 	public ArrayList<Event> getFutureEvent(){

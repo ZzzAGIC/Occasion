@@ -59,7 +59,6 @@ public class Going_Event extends HttpServlet {
 		String U_ID = Integer.toString(UserID);
 		String E_ID = Integer.toString(EventID);
 		
-		boolean alreadyFollowed = false;
 		String toinsert = "SELECT * FROM Attendance WHERE EventID = ? AND UserID = ?";
 		if(Database.SelectQuery(toinsert, E_ID, U_ID).size() == 0) {
 			toinsert = "INSERT INTO Attendance (EventID,UserID,RSVPStatus) VALUES (?, ?, ?)";
