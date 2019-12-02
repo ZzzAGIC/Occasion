@@ -55,13 +55,20 @@ public class Going_Event extends HttpServlet {
 	}
 	
 	public static void add_event(int UserID, int EventID) throws SQLException, ClassNotFoundException {
-		
+		//RSVPStatus: 0: nothing/1: invited/2: invitation accepted & the user will attend/
 		String U_ID = Integer.toString(UserID);
 		String E_ID = Integer.toString(EventID);
 		
-		String toinsert = "INSERT INTO Attendance (EventID,UserID,RSVPStatus) VALUES (?, ?, ?)";
-		//RSVPStatus: 0: nothing/1: invited/2: invitation accepted & the user will attend/
-		Database.UpdateQuery(toinsert, E_ID, U_ID, "2");
+		boolean alreadyFollowed = false;
+		String toinsert = "SELECT * FROM Attendance WHERE EventID = ? AND UserID = ?";
+		if(Database.SelectQuery(toinsert, E_ID, U_ID).size() == 0) {
+			toinsert = "INSERT INTO Attendance (EventID,UserID,RSVPStatus) VALUES (?, ?, ?)";
+			Database.UpdateQuery(toinsert, E_ID, U_ID, "2");
+		}
+		else {
+			toinsert = "UPDATE Attendance SET RSVPStatus = '2' WHERE EventID = ? AND UserID = ?";
+			Database.UpdateQuery(toinsert, E_ID, U_ID);
+		}
 		
 		toinsert = "UPDATE Event SET size = size + 1 WHERE EventID = ?";
 		Database.UpdateQuery(toinsert, E_ID);

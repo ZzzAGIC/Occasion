@@ -115,20 +115,25 @@
 			boolean own_event = false;
 			String myusername = null;
 			ArrayList<User> followingUsers = null;
+			User curr_user = null;
 			if(session.getAttribute("myname") != null) {
 				myusername = session.getAttribute("myname").toString();
-				User curr_user = new User(myusername);
+				curr_user = new User(myusername);
 				followingUsers = curr_user.getFollowingList();
+				
 			}
-			
+						
 
 			Event curr_Event = new Event(EventID);
 			String name = curr_Event.getEventName();
 			int initiatorID = curr_Event.getInitiator();
 			String initiator = User.getUsernameFromId(initiatorID);
 			
+			boolean followed = false;
 			if(initiator.compareTo(myusername) == 0) {
 				own_event = true;
+			} else {
+				followed = curr_Event.userAlreadyFollowed(curr_user.getUserID());
 			}
 				
 			String img = curr_Event.getPictures();
@@ -166,10 +171,13 @@
 		    	<h4>Free spots: <%=freespots%></h4>
 		    	<h4>Location: <%=location%></h4>
 	    	</div>
-	    	<%if(!own_event) {%>
-	    	<button class="button" id="AddEvent_button" type="button" onclick="add();">Going event</button>
-			<button class="button" id="RemoveEvent_button" type="button" onclick="remove();" style="display: none;">Not Going</button>
-			<%}
+	    	<%if(!own_event) {
+	    		if(!followed){%>
+	    			<button class="button" id="AddEvent_button" type="button" onclick="add();">Going event</button>
+				<% } else { %>
+					<button class="button" id="RemoveEvent_button" type="button" onclick="remove();">Unfollow</button>	
+			<% }
+	    	}
 	    	else if(own_event) {%>
 				<h4>Attendents: </h4>
 				<%if(attendents != null){
