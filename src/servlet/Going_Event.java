@@ -59,8 +59,10 @@ public class Going_Event extends HttpServlet {
 		String E_ID = Integer.toString(EventID);
 		
 		//first search from table (get invited or not)
+		
 		String tosearch = "SELECT * FROM Attendance WHERE EventID = ? AND UserID = ?";
-		List<List<String>> output = Database.SelectQuery(tosearch, E_ID, U_ID);		
+		List<List<String>> output = Database.SelectQuery(tosearch, E_ID, U_ID);
+		
 		
 		//if not invited, insert into Attendance
 		if(output.isEmpty()) {
@@ -68,7 +70,8 @@ public class Going_Event extends HttpServlet {
 			//RSVPStatus: 0: nothing/1: invited/2: invitation accepted & the user will attend/
 			Database.UpdateQuery(toinsert, E_ID, U_ID, "2");
 		}
-				
+		
+		
 		//if get invited, just update the RSVPStatus
 		else {
 			String update_RSVP = "UPDATE Attendance SET RSVPStatus = 2 WHERE EventID = ? AND UserID = ?";
