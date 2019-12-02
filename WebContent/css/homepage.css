@@ -258,25 +258,29 @@ input[type=text] {
 	margin-left: 25%;
 }
 
+.col {
+	flex: 50%;
+}
+
+.row {
+	display: flex;
+}
 
 .eventList{
-	float: left;
 	width: 40%;
 	height:600px;
-	display: flex;
-    flex-direction: column;
-   	position: absolute;
 }
+
 .profile_posts{
 	display: flex;
     flex-direction: column;
    	position: absolute;
 }
 #map{
-	float: right;
 	height: 600px;
 	width: 60%;
 }
+
 #img-container > input {
 	display: none;
 }

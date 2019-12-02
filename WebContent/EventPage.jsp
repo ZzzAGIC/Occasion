@@ -98,28 +98,32 @@
 		ArrayList<Event> all_Events = curr_user.getAttendedEvent();
 		
 	%>
-	
-	<div class="eventList">
-		<h1 align=center><i>Events you are attending <%=myusername%></i></h1>
+	<div class="content">
+		<div class="row">
+			<div class="col eventList">
+				<h1 align=center><i>Events you are attending</i></h1>
+				<div class="vertical_scroll" >
+				<%if(all_Events != null){
+					for(int i = 0; i < all_Events.size(); i++ ){%> 
+						
+						<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
+						<img src="<%=all_Events.get(i).getPictures() %>" 
+						alt="<%=all_Events.get(i).getEventName()%>'s event image" height="180" width="220">
+						</a>
+						<h4><%=all_Events.get(i).getEventName()%></h4>			
+			    <%}}%> 
+			    </div>
+			</div>
+						
+			<div class="col" id="map"></div>
+		</div>
+		<div class="row">
+			<div class="recommended">
+				<!-- <h1>Recommended Events For You</h1> -->
+			</div>
+		</div>
 		
-		<div class="vertical_scroll" >
-		
-
-		<%if(all_Events != null){
-			for(int i = 0; i < all_Events.size(); i++ ){%> 
-				
-				<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
-				<img src="<%=all_Events.get(i).getPictures() %>" 
-				alt="<%=all_Events.get(i).getEventName()%>'s event image" height="180" width="220">
-				</a>
-				<h4><%=all_Events.get(i).getEventName()%></h4>
-			
-	    <%}}%> 
-	    </div>
 	</div>
-		
-		
-	<div id="map"></div>
 
 
 	
