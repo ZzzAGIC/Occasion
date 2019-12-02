@@ -14,11 +14,6 @@ app.get('/',function(req,res){
     res.render(__dirname+'/index',{"username": username,"prevMessage":prevMessage[roomname],"otherUser":otherUser});
 });
 
-app.get('/notification',function(req,res){
-    var username = req.query.username;
-    res.render(__dirname+'/notification',{"username": username});
-})
-
 io.on('connection', function(socket){
     socket.on('room name', function(room){
         socket.join(room);
