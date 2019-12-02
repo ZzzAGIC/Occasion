@@ -14,10 +14,9 @@ app.get('/',function(req,res){
     res.render(__dirname+'/index',{"username": username,"prevMessage":prevMessage[roomname],"otherUser":otherUser});
 });
 
-app.get('/chat',function(req,res){
+app.get('/notification',function(req,res){
     var username = req.query.username;
-    var otherUser = req.query.otherUser;
-    res.render(__dirname+'/chat',{"username": username,"otherUser":otherUser});
+    res.render(__dirname+'/notification',{"username": username});
 })
 
 io.on('connection', function(socket){
