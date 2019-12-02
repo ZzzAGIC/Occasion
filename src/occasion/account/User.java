@@ -327,6 +327,14 @@ public class User {
 		return postList;
 	}
 	
+	public ArrayList<Post> getFriendPost(){
+		List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post WHERE UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowerUserID = ?)", Integer.toString(this.userID));
+		ArrayList<Post> postList = new ArrayList<Post>();
+		for(List<String> post : posts) {
+			postList.add(new Post(post));
+		}
+		return postList;
+	}	
 	public static String getUsernameFromId(int id) {
 		String query = "SELECT username FROM User Where userID = ?";
 		

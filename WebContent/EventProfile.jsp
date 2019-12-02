@@ -117,7 +117,7 @@
 			ArrayList<User> followingUsers = null;
 			User curr_user = null;
 			if(session.getAttribute("myname") != null) {
-				myusername = session.getAttribute("myname").toString();
+				myusername = session.getAttribute("myname").toString().toLowerCase();
 				curr_user = new User(myusername);
 				followingUsers = curr_user.getFollowingList();
 				
@@ -127,8 +127,7 @@
 			Event curr_Event = new Event(EventID);
 			String name = curr_Event.getEventName();
 			int initiatorID = curr_Event.getInitiator();
-			String initiator = User.getUsernameFromId(initiatorID);
-			
+			String initiator = User.getUsernameFromId(initiatorID).toLowerCase();
 			boolean followed = false;
 			if(initiator.compareTo(myusername) == 0) {
 				own_event = true;
