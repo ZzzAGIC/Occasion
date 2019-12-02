@@ -246,11 +246,19 @@ public class User {
 		createdEvent.add(E);
 	}
 	public ArrayList<Event> getAttendedEvent(){
-		return attendedEvent;
+		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ? AND RSVPStatus = '2');";
+		
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
+				
+		ArrayList<Event> invited = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			invited.add(new Event(item));
+		}
+		
+		return invited;
 	}
-	public void AddAttendedEvent(Event E) {
-		attendedEvent.add(E);
-	}
+	
 		
 
 	public ArrayList<Event> getFutureEvent(){
@@ -319,6 +327,14 @@ public class User {
 		return postList;
 	}
 	
+	public ArrayList<Post> getFriendPost(){
+		List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post WHERE UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowerUserID = ?)", Integer.toString(this.userID));
+		ArrayList<Post> postList = new ArrayList<Post>();
+		for(List<String> post : posts) {
+			postList.add(new Post(post));
+		}
+		return postList;
+	}	
 	public static String getUsernameFromId(int id) {
 		String query = "SELECT username FROM User Where userID = ?";
 		

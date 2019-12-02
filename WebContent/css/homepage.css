@@ -5,6 +5,13 @@ body{
 	margin: 0;
 }
 
+input[type=text] {
+	width:200px;
+	padding: 5px 1px 5px 1px;
+	border-radius: 3px;
+	border: 0.7px solid black;
+}
+
 .navbar{
 	background-color: purple;
 	height: 60px;
@@ -64,8 +71,14 @@ body{
 	width: 100%;
 }
 
+#invited-events {
+	white-space: nowrap;
+  	overflow: scroll;
+}
+
 .horizontal-events {
   	white-space: nowrap;
+  	overflow: scroll;
 	height: 20%;
     width: 100%;
     display: flex;
@@ -73,7 +86,7 @@ body{
     margin: 0 auto;
 }
 .event-list {
-  overflow: scroll;
+
   display: inline-block;
   text-align: center;
   padding: 14px;
@@ -131,15 +144,14 @@ body{
 }
 
 .post-activity {
-	margin-left: 400px;
-	margin-right: 400px;
+	margin-left: 200px;
+	margin-right: 200px;
 	margin-bottom: 100px;
 	height: 350px;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	padding-left: 20px;
 	background-color: white;
-	border: 1px solid black;
 }
 
 .post-img {
@@ -242,32 +254,33 @@ body{
 	padding-bottom: 20px;		
 }
 
-.bar{
-	width:200px;
-}
 .AddEvent{
 	margin-left: 25%;
 }
 
+.col {
+	flex: 50%;
+}
+
+.row {
+	display: flex;
+}
 
 .eventList{
-	float: left;
 	width: 40%;
 	height:600px;
-	display: flex;
-    flex-direction: column;
-   	position: absolute;
 }
+
 .profile_posts{
 	display: flex;
     flex-direction: column;
    	position: absolute;
 }
 #map{
-	float: right;
 	height: 600px;
 	width: 60%;
 }
+
 #img-container > input {
 	display: none;
 }

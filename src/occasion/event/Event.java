@@ -245,4 +245,10 @@ public class Event {
 		System.out.println("Private: " + getPrivate_event());
 	}
 	
+	public boolean userAlreadyFollowed(int userID) {
+		List<List<String>> result = Database.SelectQuery("SELECT RSVPStatus FROM Attendance WHERE EventID = ? AND UserID = ?;", Integer.toString(this.eventID), Integer.toString(userID));
+		if(result.size() == 0) return false;
+		if(result.get(0).get(0).equals("1")) return false;
+		return true;
+	}
 }
