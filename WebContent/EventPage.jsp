@@ -77,7 +77,7 @@
 		
 		<div class="event_search">
 		<form id="Eventsearch" method="Post" action="Event_search_validate" >
-			<input id="search_content" type="text" name="search" placeholder="Search an event!" style="width:35%; display:none;"> 
+			<input id="search_content" type="text" name="Event_name" placeholder="Search an event!" style="width:35%; display:none;"> 
 			<br>
 			<input id="selection" type="radio" name="selection" value="EventName" onclick="display_name()">
 			<label for="EventName">Search Name</label>
@@ -109,13 +109,25 @@
 		
 	<%
 		String myusername = null;
+		boolean from_Search = false;
 		if(session.getAttribute("myname") != null) {
 			myusername = session.getAttribute("myname").toString(); 
 		}
 		User curr_user = new User(myusername);
 		
+		if(session.getAttribute("from_search") != null) {
+			from_Search = Boolean.getBoolean(request.getAttribute("from_search").toString()); 
+		}
+		ArrayList<Event> all_Events = new ArrayList<Event> ();
+		if(from_Search) {
+			if(session.getAttribute("content") != null) {
+				all_Events = (ArrayList<Event>) request.getAttribute("content"); 
+			}
+		}
+		else {
+			all_Events = curr_user.getAttendedEvent();
+		}
 		
-		ArrayList<Event> all_Events = curr_user.getAttendedEvent();
 		
 	%>
 	<div class="content">
