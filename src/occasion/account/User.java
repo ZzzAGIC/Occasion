@@ -315,7 +315,7 @@ public class User {
 		//query = "";
 		ArrayList<Event> recommend = new ArrayList<Event>();
 		
-		ArrayList<Integer> event_points = new ArrayList<Integer>(recommend.size());
+		//ArrayList<Integer> event_points = new ArrayList<Integer>(recommend.size());
 		
 		for(List<String> item : details) {
 			Event event = new Event(item);

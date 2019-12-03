@@ -9,22 +9,19 @@
 <%@ page import="java.util.ArrayList" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>Event Page</title>
-<script>
-	function display_name() {
-		document.getElementById("search_content").style.display="initial"
-		document.getElementById("event_type_list").style.display="none"
-
-	}
-	function display_type() {
-		document.getElementById("event_type_list").style.display="initial"
-		document.getElementById("search_content").style.display="none"
-
-	}
+	<script>
+		function display_name() {
+			document.getElementById("search_content").style.display="initial"
+			document.getElementById("event_type_list").style.display="none"
 	
+		}
+		function display_type() {
+			document.getElementById("event_type_list").style.display="initial"
+			document.getElementById("search_content").style.display="none"
 	
-
-
-</script>
+		}
+	</script>
+	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 <div class="navbar">
@@ -147,8 +144,8 @@
 								</a>					
 							</div>
 							<div class="col" style="text-align: left; padding-top: 20px;">
-								<b>Event name: </b><%=all_Events.get(i).getEventName()%><br>
-								<b>Time: <%= all_Events.get(i).getEventTime() %></b><br>
+								<b>Event name: </b><%=all_Events.get(i).getEventName()%><br><br>
+								<b>Time: <%= all_Events.get(i).getEventTime() %></b><br><br>
 								<b>Description:  <%= all_Events.get(i).getDescription() %> </b>	
 							</div>
 						</div>		
@@ -158,13 +155,12 @@
 						
 			<div class="col" id="map"></div>
 		</div>
-		<div class="row" align =center style="margin-top: 100px;">
-			<div style="width: 100%;">
-				<h1 align=center><i>Events that are recommended for you</i></h1>
-			</div>
-		
-			<div class="recommended">
-				<!-- <h1>Recommended Events For You</h1> -->
+
+		<div class="row" align =center style="margin-top: 100px; width: 200px">
+			<div class="recommended horizontal-events">
+				<div class="event-list" id="recommendedEvents">
+			
+				</div>
 			</div>
 		</div>
 		
@@ -240,10 +236,41 @@
 		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsK1nRM2sfZDiQE7P4MIkxwUrft61TUTw&callback=initMap">
 	</script>
 
-
 	<script>
 		$(window).bind("load", function() { 
-		    // Your code here.
+			var xhttp = new XMLHttpRequest();
+
+			xhttp.open("GET", "GetRecommendedEvents", true);	
+			xhttp.send();
+			
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var json = JSON.parse(this.responseText); 
+					
+					var recommendedEvents = json.recommended;
+					
+					//Add Initial events to display of Invited Events
+					for(var i = 0; i < recommendedEvents.length; i++) {
+						var container = document.createElement("div");
+						var a = document.createElement("a");
+						a.href = "EventProfile.jsp?EventID=" + recommendedEvents[i].id;
+						var image = document.createElement("IMG");
+						image.className = "event";
+						image.src = recommendedEvents[i].img;
+						image.id = "rec" + i;
+						a.append(image);	
+						container.append(a);
+						
+						var message = "<b>" + recommendedEvents[i].event_name + "</b>!";
+						message += "<br> <b> Date:</b> " + recommendedEvents[i].date;
+						var textContainer = document.createElement("div");
+						textContainer.innerHTML = message;
+						container.append(textContainer);
+						container.style = "display: inline-block;";
+						document.getElementById("recommendedEvents").append(container);
+					}
+				}
+			}
 		});
 	</script>
 </body>
