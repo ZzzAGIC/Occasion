@@ -156,15 +156,17 @@
 						
 			<div class="col" id="map" style="margin-top: 50px;"></div>
 		</div>
-				
-		<div class="row" align =center style="top: 200px; height: 500px">
+			
+			<div class="recommended" style="font-size: 30px">	
+				<b>Recommended events</b>
+			</div>
+			
 			<div class="recommended horizontal-events">
-				<div class="event-list" style="margin-top: 100px; width: 100%;" id="recommendedEvents">
+				<div class="event-list" style="width: 100%;" id="recommendedEvents">
+					<!-- Taken from W3Schools -->
 					<div class="load"></div>
 				</div>
 			</div>
-		</div>
-		
 	</div>
 	
 	<script>
