@@ -9,6 +9,22 @@
 <%@ page import="java.util.ArrayList" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>Event Page</title>
+<script>
+	function display_name() {
+		document.getElementById("search_content").style.display="initial"
+		document.getElementById("event_type_list").style.display="none"
+
+	}
+	function display_type() {
+		document.getElementById("event_type_list").style.display="initial"
+		document.getElementById("search_content").style.display="none"
+
+	}
+	
+	
+
+
+</script>
 </head>
 <body>
 <div class="navbar">
@@ -59,27 +75,31 @@
 		
 	</div>
 		
-	<div class="event_search">
-		<form id="Eventsearch" method="Post" action="" >
-			<input id="search" type="text" name="search" placeholder="Search an event!" style="width:30%;"> 
-			Type:<select class="bar"  name="EventType" style="width:10%;">
-					<option value="all">ALL</option>
-					<option value="academic">Academic</option>
-					<option value="leisure">Leisure</option>
-					<option value="music">Music</option>
-					<option value="party">Party</option>
-					<option value="sports">Sports</option>
-					<option value="stu_org">Student Organization</option>
-					<option value="other">Other</option>
-				</select>
+		<div class="event_search">
+		<form id="Eventsearch" method="Post" action="Event_search_validate" >
+			<input id="search_content" type="text" name="Event_name" placeholder="Search an event!" style="width:35%; display:none;"> 
 			<br>
+			<input id="selection" type="radio" name="selection" value="EventName" onclick="display_name()">
+			<label for="EventName">Search Name</label>
+			<input id="selection" type="radio" name="selection" value="Type" onclick="display_type()">
+			<label for="EventType">Search Type</label>
+				<select id ="event_type_list" class="bar"  name="EventType" style="width:10%; display:none;">
+						<option value="all">ALL</option>
+						<option value="academic">Academic</option>
+						<option value="leisure">Leisure</option>
+						<option value="music">Music</option>
+						<option value="party">Party</option>
+						<option value="sports">Sports</option>
+						<option value="stu_org">Student Organization</option>
+						<option value="other">Other</option>
+					</select>
+				<br>
 			<div id="formerror">
 			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 			</div>
-			<input id="selection" type="radio" name="type" value="Username">
-			<label for="EventName">Event Name</label>
-			<input id="selection" type="radio" name="type" value="Phone"> 
-			<label for="Location">Location</label>
+			
+			<!-- <input id="selection" type="radio" name="type" value="Location"> 
+			<label for="Location">Location</label> -->
 			 
 			
 			
@@ -89,13 +109,27 @@
 		
 	<%
 		String myusername = null;
+		boolean from_Search = false;
 		if(session.getAttribute("myname") != null) {
 			myusername = session.getAttribute("myname").toString(); 
 		}
 		User curr_user = new User(myusername);
 		
+		if(request.getAttribute("from_search") != null) {
+			from_Search = true;
+			/* System.out.println(Boolean.getBoolean(request.getAttribute("from_search").toString()));*/
+		 }
+		ArrayList<Event> all_Events = new ArrayList<Event> ();
 		
-		ArrayList<Event> all_Events = curr_user.getAttendedEvent();
+		if(from_Search) {
+			if(request.getAttribute("content") != null) {
+				all_Events = (ArrayList<Event>) request.getAttribute("content"); 
+			}
+		}
+		else {
+			all_Events = curr_user.getAttendedEvent();
+		}
+		
 		
 	%>
 	<div class="content">

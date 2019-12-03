@@ -29,7 +29,19 @@
 					}
 					User curr_user = new User(myusername);
 					ArrayList<Event> CreatedEvents = curr_user.getCreatedEvent();
+					ArrayList<Event> AttendedEvents = curr_user.getAttendedEvent();
+					ArrayList<Event> FutureEvents = curr_user.getFutureEvent();
 					
+					ArrayList<Event> AllEvents = new ArrayList<Event> ();
+					for(int i = 0; i < CreatedEvents.size(); i++) {
+						AllEvents.add(CreatedEvents.get(i));
+					}
+					for(int i = 0; i < AttendedEvents.size(); i++) {
+						AllEvents.add(AttendedEvents.get(i));
+					}
+					for(int i = 0; i < FutureEvents.size(); i++) {
+						AllEvents.add(FutureEvents.get(i));
+					}
 						
 					%>
 					<%if(CreatedEvents != null){
