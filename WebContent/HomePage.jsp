@@ -80,9 +80,15 @@
 		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'trend');"></div>
 	</div>
 	
+	
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
 		<div>
+				<div class="post-activity" >
+					<div id="PostEvents"></div>
+				</div>
+		</div>
+<!-- 		<div>
 			<div class="post-activity">
 				<img class="post-img" src="images/Event1.jpg" alt="Event1">
 				<div class="post-description">
@@ -107,7 +113,7 @@
 					<b class = "postTitle">Text Description</b>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	
 	<div class="footer">
@@ -207,6 +213,28 @@
 				document.getElementById("popularEvents").append(a);
 			}
 			//Add Post Activity
+			
+			for(var i = 0; i < userPost.length; i++) {
+				var a = document.createElement("a");
+				
+				var image = document.createElement("IMG");
+				image.className = "post-img";
+				image.src = userPost[i].pictures;
+				image.id = "post" + i;
+				image.href = "EventProfile.jsp?EventID=" + userPost[i].id;
+				a.append(image);
+				
+				var text = document.createElement("h2");
+				text.innerHTML = userPost[i].post_text;
+				text.className = "post-description";
+				a.append(text);
+				/* 
+				var style = document.createElement("style");
+				style.innerHTML = "margin-left: auto;margin-right: auto;";
+				a.append(style); */
+				
+				document.getElementById("PostEvents").append(a);
+			}
 		});
 		
 		function transitionElement(action, type) {
