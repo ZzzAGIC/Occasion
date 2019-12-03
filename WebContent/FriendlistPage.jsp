@@ -21,19 +21,21 @@
 		var xhttp = new XMLHttpRequest();
 		var search = document.getElementById("search").value;
 		var type = document.getElementById("selection").value;
-		if(type == "") type = "Username";
+		if(type == null) type = "Username";
 		
-		if(search == null) return;
+		if(search == "") {
+			document.getElementById("search-list").innerHTML = "";
+			return;
+		}
 		
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("search-list").innerHTML = "";
+				
 				var response = this.responseText;
 				
-				var load = document.getElementById("loader");
-				load.remove();
 				
 				if(response == "EMPTY") {
-					document.getElementById("search-list").innerHTML = "";
 					return;
 				}
 				
@@ -68,11 +70,6 @@
 		  
 		xhttp.open("POST", "SearchUser_validate?search=" + search + "&type=" + type, true);	
 		xhttp.send();
-		
-		var load = document.createElement("div");
-		load.className = "loader";
-		load.id = "loader";
-		document.getElementById("search-list").append(load)
 	}
 	</script>
 </head>
