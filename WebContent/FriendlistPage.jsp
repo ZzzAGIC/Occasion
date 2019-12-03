@@ -23,14 +23,19 @@
 		var type = document.getElementById("selection").value;
 		if(type == null) type = "Username";
 		
-		if(search == null) return;
+		if(search == "") {
+			document.getElementById("search-list").innerHTML = "";
+			return;
+		}
 		
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("search-list").innerHTML = "";
+				
 				var response = this.responseText;
 				
+				
 				if(response == "EMPTY") {
-					document.getElementById("search-list").innerHTML = "";
 					return;
 				}
 				
@@ -65,7 +70,6 @@
 		  
 		xhttp.open("POST", "SearchUser_validate?search=" + search + "&type=" + type, true);	
 		xhttp.send();
-		
 	}
 	</script>
 </head>
