@@ -129,6 +129,7 @@
 		
 		
 	%>
+	
 	<div class="content">
 		<div class="row">
 			<div class="col eventList">
@@ -159,7 +160,7 @@
 		<div class="row" align =center style="top: 200px; height: 500px">
 			<div class="recommended horizontal-events">
 				<div class="event-list" style="margin-top: 100px; width: 100%;" id="recommendedEvents">
-			
+					<div class="load"></div>
 				</div>
 			</div>
 		</div>
@@ -245,6 +246,7 @@
 			
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("recommendedEvents").innerHTML = "";
 					var json = JSON.parse(this.responseText); 
 					
 					var recommendedEvents = json.recommended;

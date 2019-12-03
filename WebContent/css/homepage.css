@@ -401,15 +401,18 @@ iframe{
 	text-align: center;
 }
 
-<!-- Taken from W3school >
 
-.loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+.load {
+  border: 16px solid #727776; 
+  border-top: 16px solid #3498db; 
   border-radius: 50%;
   width: 120px;
   height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+  margin: 0;
+  left: 50%;
+  position: relative;
 }
 
 @keyframes spin {

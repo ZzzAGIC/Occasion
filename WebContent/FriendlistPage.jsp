@@ -119,9 +119,9 @@
 			<br>
 			<button class="subbutton" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">Add Event</button>
 			</div>
-		</div>
-		
+		</div>		
 	</div>
+	
 		<form id="UserSearch" method="Post" action="SearchUser_validate">
 			<input id="search" type="text" name="search" placeholder="Search a Occasion User!" oninput="searchUser()" style="width:30%;"> <br>
 			<div id="formerror">
