@@ -172,16 +172,19 @@
 	
 	<h1 style="text-align: center;">Recent events for <%=curr_username%></h1>
 	<div class="profile_activity">
-		<div class="scroll-events" >
-		<%if(all_Events != null){
-			for(int i = 0; i < all_Events.size(); i++ ){%> 
-				
-				<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
-				<img src="<%=all_Events.get(i).getPictures() %>" 
-				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
-				</a>
-				<%-- <h4><%=all_Events.get(i).getEventName()%></h4>	 --%>
-	    <%}}%> 
+		<div class="horizontal-events" >
+			<div class="event-list">
+			<%if(all_Events != null){
+				for(int i = 0; i < all_Events.size(); i++ ){%> 
+					<div style="display: inline-block">
+						<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
+							<img class="event" src="<%=all_Events.get(i).getPictures() %>" 
+							alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="200" width="370">
+						</a>
+						<%-- <h4><%=all_Events.get(i).getEventName()%></h4>	 --%>
+					</div>
+		    <%}}%>
+	    	</div> 
 	    </div>
 	</div>
 	
