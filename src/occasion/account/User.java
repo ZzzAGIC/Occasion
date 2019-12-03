@@ -308,21 +308,30 @@ public class User {
 	
 	//Placeholder Replace
 	public ArrayList<Event> getRecommendedEvents() {
-		String query = "select * from Event;";
+		String query = "SELECT * from Event;";
 
 		List<List<String>> details = Database.SelectQuery(query);
-				
+		
+		//query = "SELECT * FROM User WHERE UserID IN ()";
+		//query = "";
 		ArrayList<Event> recommend = new ArrayList<Event>();
-				
+		
+		ArrayList<Integer> event_points = new ArrayList<Integer>(recommend.size());
+		
 		for(List<String> item : details) {
-			recommend.add(new Event(item));
+			Event event = new Event(item);
+			
+			
+			
+			
+			recommend.add(event);
 		}
 		return recommend;
 	}
 	
 	//Placeholder Replace
 	public ArrayList<Event> getInvitedEvents() {
-		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ?);";
+		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ? AND RSVPStatus = '1');";
 		
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
 				

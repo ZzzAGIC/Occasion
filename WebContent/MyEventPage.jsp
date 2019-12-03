@@ -78,7 +78,7 @@
 			<%if(CreatedEvents != null){
 			for(int i = 0; i < CreatedEvents.size(); i++ ){%> 
 				<div class="event-list" id="invitedEvents">
-					<div style="display: inline-block">
+					<div style="display: inline-block; height: 200px; width: 370px;">
 						<a href="EventProfile.jsp?EventID=<%=CreatedEvents.get(i).getEventID()%>">
 							<img class="event" src="<%=CreatedEvents.get(i).getPictures() %>" 
 							alt="<%=CreatedEvents.get(i).getEventName()%>'s event image">
