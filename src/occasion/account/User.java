@@ -209,14 +209,13 @@ public class User {
 
 	public ArrayList<User> getFollowerList(){
 		//Add users which are following this user 
-		String query = "SELECT User.username FROM User, Relationship WHERE FollowingUserID = User.ID AND FollowingUserID = ?";
+		String query = "SELECT * FROM User, Relationship WHERE FollowingUserID = User.ID AND FollowingUserID = ?";
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
 		ArrayList<User> follower = new ArrayList<User>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			follower.add(new User(itemUsername));
+			follower.add(new User(item));
 		}
 		return follower; 
 	}
@@ -224,25 +223,25 @@ public class User {
 
 	public ArrayList<User> getFollowingList(){
 		//Add users which this user is following
-		String query = "select Username from User where UserID in (select FollowingUserID from Relationship where FollowerUserID = ?);";
+		String query = "select * from User where UserID in (select FollowingUserID from Relationship where FollowerUserID = ?);";
 
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
 		ArrayList<User> following = new ArrayList<User>();
 				
 		for(List<String> item : details) {
-			following.add(new User(item.get(0)));
+			following.add(new User(item));
 		}
 		return following;
 	}
 	
 	public ArrayList<User> getBlockedFriendlist(){
-		String query = "SELECT Username FROM User, Relationship WHERE Relationship.BlockCode = 3 AND Relationship.FollowerUserID = ? AND Relationship.FollowerUserID = User.UserID";
+		String query = "SELECT * FROM User, Relationship WHERE Relationship.BlockCode = 3 AND Relationship.FollowerUserID = ? AND Relationship.FollowerUserID = User.UserID";
 		List<List<String>> result = Database.SelectQuery(query, Integer.toString(this.userID));
 		
 		ArrayList<User> block_users = new ArrayList<User>();
 		for(List<String> record : result) {
-			block_users.add(new User(record.get(0)));
+			block_users.add(new User(record));
 		}
 		return block_users;
 	}

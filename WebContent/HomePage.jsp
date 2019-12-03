@@ -55,8 +55,9 @@
 			<button class="subbutton" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">Add Event</button>
 			</div>
 		</div>
-		<p id="notification"></p>
 	</div>
+	
+	<p id="notification"></p>
 	
 	<div class="header">
 		
@@ -248,16 +249,18 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    
     <script>
         $(function () {
             //change username to current user
-            var username = "<%=session.getAttribute("myname") %>";
+            var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
             var socket = io("http://localhost:3000/");
             socket.emit('room name',username);
             socket.on('notification', function(data){
                 //change new message to what you want to display
-                $('#notification').replaceWith($('<p>').text("new message"));
+                $('#notification').replaceWith($('<p>').text("new message from "));
             });
       });
       </script>

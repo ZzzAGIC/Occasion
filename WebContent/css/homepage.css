@@ -146,6 +146,19 @@ input[type=text] {
 	flex: 2;
 	overflow-y: auto;
   	overflow-x: hidden;
+  	height: 100%;
+}
+
+.vertical_event {
+	height: 200px;
+	width: 370px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.vertical_event:hover {
+	transform: scale(1.05);
 }
 
 .postTitle {
@@ -292,6 +305,7 @@ input[type=text] {
 
 .col {
 	flex: 50%;
+	margin-right: 30px;
 }
 
 .row {
@@ -381,6 +395,11 @@ iframe{
 	text-align: center;
 	background-color: white;
 	border: 1px solid gray;
+}
+
+.recommended {
+	margin-top: 100px;
+	text-align: center;
 }
 
 <!-- Taken from W3school >

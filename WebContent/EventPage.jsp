@@ -136,80 +136,83 @@
 		<div class="row">
 			<div class="col eventList">
 				<h1 align=center><i>Events you are attending</i></h1>
-				<div class="vertical_scroll" >
+				<div class="vertical_scroll" style="margin-left: 30px">
 				<%if(all_Events != null){
 					for(int i = 0; i < all_Events.size(); i++ ){%> 
-						
-						<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
-						<img src="<%=all_Events.get(i).getPictures() %>" 
-						alt="<%=all_Events.get(i).getEventName()%>'s event image" height="180" width="220">
-						</a>
-						<h4><%=all_Events.get(i).getEventName()%></h4>			
+						<div class="row" style="white-space: nowrap;">
+							<div class="vertical_event col">
+								<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
+								<img src="<%=all_Events.get(i).getPictures() %>" 
+								alt="<%=all_Events.get(i).getEventName()%>'s event image" height="200" width="370">
+								</a>					
+							</div>
+							<div class="col" style="text-align: left; padding-top: 20px;">
+								<b>Event name: </b><%=all_Events.get(i).getEventName()%><br>
+								<b>Time: <%= all_Events.get(i).getEventTime() %></b><br>
+								<b>Description:  <%= all_Events.get(i).getDescription() %> </b>	
+							</div>
+						</div>		
 			    <%}}%> 
 			    </div>
 			</div>
 						
 			<div class="col" id="map"></div>
 		</div>
-		<div class="row">
+		<div class="row" align =center style="margin-top: 100px;">
+			<div style="width: 100%;">
+				<h1 align=center><i>Events that are recommended for you</i></h1>
+			</div>
+		
 			<div class="recommended">
 				<!-- <h1>Recommended Events For You</h1> -->
 			</div>
 		</div>
 		
 	</div>
-
-
 	
 	<script>
-			var login  = <%=session.getAttribute("login")%>
-			if(login != null) {
-				if(login == true) {
-					//already login, display profile & signout
-					document.getElementById("Login_button").style.display="none"
-					document.getElementById("Register_button").style.display="none"
-					document.getElementById("Profilepage_button").style.display="initial"
-					document.getElementById("Signout_button").style.display="initial"
-				}
-				else {
-					//not login, display login & register
-					document.getElementById("Login_button").style.display="initial"
-					document.getElementById("Register_button").style.display="initial"
-					document.getElementById("Profilepage_button").style.display="none"
-					document.getElementById("Signout_button").style.display="none"
-				}
-				
+		var login  = <%=session.getAttribute("login")%>
+		if(login != null) {
+			if(login == true) {
+				//already login, display profile & signout
+				document.getElementById("Login_button").style.display="none"
+				document.getElementById("Register_button").style.display="none"
+				document.getElementById("Profilepage_button").style.display="initial"
+				document.getElementById("Signout_button").style.display="initial"
 			}
-			//first open, same as not login
 			else {
+				//not login, display login & register
 				document.getElementById("Login_button").style.display="initial"
 				document.getElementById("Register_button").style.display="initial"
 				document.getElementById("Profilepage_button").style.display="none"
 				document.getElementById("Signout_button").style.display="none"
-				
-			}
+			}		
+		}
+		//first open, same as not login
+		else {
+			document.getElementById("Login_button").style.display="initial"
+			document.getElementById("Register_button").style.display="initial"
+			document.getElementById("Profilepage_button").style.display="none"
+			document.getElementById("Signout_button").style.display="none"		
+		}
 			
 
-		   function initMap() {
-			   	var option ={
-				    center: {lat: 34.0522, lng: -118.2437},
-				    zoom: 11
-			     };
-			   	var map = new google.maps.Map(document.getElementById('map'),option);
+		function initMap() {
+	    	var option ={
+		 		center: {lat: 34.0522, lng: -118.2437},
+				zoom: 11
+			};
+			var map = new google.maps.Map(document.getElementById('map'),option);
+			   		   	
+			var locations = [];
 			   	
-			   	
-			   	var locations = [];
-			   	
-			   	<%if(all_Events != null){
-					for(int i = 0; i < all_Events.size(); i++ ){%> 
-						
-						
-						var name = '<%=all_Events.get(i).getEventName()%>'
-						var lat = <%=all_Events.get(i).getLocation().getlatitude()%>;
-						var lng = <%=all_Events.get(i).getLocation().getlongitute()%>;
-						locations.push(name,lat,lng);
-					
-			    <%}}%> 
+			<%if(all_Events != null){
+				for(int i = 0; i < all_Events.size(); i++ ){%> 				
+					var name = '<%=all_Events.get(i).getEventName()%>'
+					var lat = <%=all_Events.get(i).getLocation().getlatitude()%>;
+					var lng = <%=all_Events.get(i).getLocation().getlongitute()%>;
+					locations.push(name,lat,lng);
+			<%}}%> 
 			    /* for (i = 0; i < locations.length; i+=3) {  
 			    	console.log(locations[i])
 			        console.log(locations[i+1]+" "+locations[i+2])
@@ -222,19 +225,26 @@
 			   	    map: map,
 			   	    title: 'Hello World!'
 			   	  }); */
-			   	var marker, i;
+			var marker, i;
 
-			      for (i = 0; i < locations.length; i+=3) {  
-			        marker = new google.maps.Marker({
-			          position: new google.maps.LatLng(locations[i+1], locations[i+2]),
-			          map: map
-			        });
-			      }
-		   }
+			for (i = 0; i < locations.length; i+=3) {  
+				marker = new google.maps.Marker({
+			    position: new google.maps.LatLng(locations[i+1], locations[i+2]),
+			    map: map
+			});
+			}
+		}
 	</script>
 	
 	<script async defer
 		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsK1nRM2sfZDiQE7P4MIkxwUrft61TUTw&callback=initMap">
+	</script>
+
+
+	<script>
+		$(window).bind("load", function() { 
+		    // Your code here.
+		});
 	</script>
 </body>
 			
