@@ -21,7 +21,7 @@
 		var xhttp = new XMLHttpRequest();
 		var search = document.getElementById("search").value;
 		var type = document.getElementById("selection").value;
-		if(type == null) type = "Username";
+		if(type == "") type = "Username";
 		
 		if(search == null) return;
 		
