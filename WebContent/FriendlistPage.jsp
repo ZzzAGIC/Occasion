@@ -13,10 +13,60 @@
 		function display_friends() {
 			document.getElementById("new_group").style.display="initial"
 				
-		}
-
-		
+		}	
+	</script>
 	
+	<script>
+	function searchUser() {
+		var xhttp = new XMLHttpRequest();
+		var search = document.getElementById("search").value;
+		var type = document.getElementById("selection").value;
+		if(type == null) type = "Username";
+		
+		if(search == null) return;
+		
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var response = this.responseText;
+				
+				if(response == "EMPTY") {
+					document.getElementById("search-list").innerHTML = "";
+					return;
+				}
+				
+				var json = JSON.parse(response);
+					
+				for(var i = 0; i < json.length; i++) {
+					var friend_panel = document.createElement("div");
+					friend_panel.className = "friend-panel";
+					
+					var container = document.createElement("div");
+					container.className = "friend-image-container"
+					
+					var a = document.createElement("a");
+					a.href = "ProfilePage.jsp?Friend_User=" + json[i].username;
+					
+					var image = document.createElement("img");
+					image.className = "friend-image";
+					image.src = json[i].image;
+					
+					var name = document.createElement("h4");
+					name.className = "friend-text";
+					name.innerHTML = json[i].username;
+					
+					a.append(image);
+					container.append(a);
+					friend_panel.append(container);
+					container.append(name)
+					document.getElementById("search-list").append(friend_panel);			
+				}
+		    }
+		};
+		  
+		xhttp.open("POST", "SearchUser_validate?search=" + search + "&type=" + type, true);	
+		xhttp.send();
+		
+	}
 	</script>
 </head>
 <body>
@@ -68,10 +118,8 @@
 		</div>
 		
 	</div>
-
-
-		<form id="UserSearch" method="Post" action="SearchUser_validate" >
-			<input id="search" type="text" name="search" placeholder="Search a Occasion User!" style="width:30%;"> <br>
+		<form id="UserSearch" method="Post" action="SearchUser_validate">
+			<input id="search" type="text" name="search" placeholder="Search a Occasion User!" oninput="searchUser()" style="width:30%;"> <br>
 			<div id="formerror">
 			<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 			</div>
@@ -80,10 +128,7 @@
 			<input id="selection" type="radio" name="type" value="Phone"> 
 			<label for="author">Phone</label>
 			<input id="selection" type="radio" name="type" value="Email"> 
-			<label for="ISBN">Email</label> 
-			
-			
-			<button id="button" type="submit"> Search!</button>
+			<label for="ISBN">Email</label> 			
 		</form>
 
 	<% 
@@ -98,10 +143,17 @@
 		
 				
 	%>
-	<h1 align=center><%=myusername%>'s Following Users</h1>
+	
+	
+	<div class="friend_list" id="friend_list">
+	
+			<div id="search-list" class="list">
+				
+			</div>		
+	</div>
 	
 	<div class="friend_list">
-		
+		<h1 align=center><%=myusername%>'s Following Users</h1>		
 		<div class="list">
 		<%if(followingUsers != null){
 			for(int i = 0; i < followingUsers.size(); i++ ){%> 

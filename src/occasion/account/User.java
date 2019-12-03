@@ -38,7 +38,35 @@ public class User {
 	private int preferenceDistance;
 	private Location curr_Loc;
 			
-	public User() {
+	public User(List<String> record) {
+		
+		this.setUserID(Integer.parseInt(record.get(0)));
+		this.setUsername(record.get(1));
+		this.setNickname(record.get(3));
+		this.setPremium(Boolean.parseBoolean(record.get(4)));
+		this.setEmail(record.get(5));
+		this.setGender(record.get(6));
+		this.setPhone(record.get(7));
+		this.setImage(record.get(8));
+		
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			this.setBirthday(formatter.parse(record.get(9)));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.setPoints(Integer.parseInt(record.get(10)));
+		} catch (Exception e) {
+			this.setPoints(0);
+		}
+		
+		try {
+			this.setPoints(Integer.parseInt(record.get(11)));
+		} catch (Exception e) {
+			this.setStatus(0);
+		}
 	}
 	
 	public User(String username) {
