@@ -60,7 +60,7 @@
 	</div>
 		
 	<div class="event_search">
-		<form id="Eventsearch" method="Post" action="" >
+		<form id="Eventsearch" method="Post" action="Event_search_validate" >
 			<input id="search" type="text" name="search" placeholder="Search an event!" style="width:30%;"> 
 			Type:<select class="bar"  name="EventType" style="width:10%;">
 					<option value="all">ALL</option>
@@ -78,8 +78,8 @@
 			</div>
 			<input id="selection" type="radio" name="type" value="Username">
 			<label for="EventName">Event Name</label>
-			<input id="selection" type="radio" name="type" value="Phone"> 
-			<label for="Location">Location</label>
+			<!-- <input id="selection" type="radio" name="type" value="Location"> 
+			<label for="Location">Location</label> -->
 			 
 			
 			
