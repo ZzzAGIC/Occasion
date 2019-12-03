@@ -14,7 +14,9 @@
 			<div id="formerror" style="color: red;"> 
 				<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 			</div>
-			<b>Login</b><br/>
+			<div class="banner">
+				<p class="banner-text">Login</p>
+			</div>
 			<br/> <input class="bar" type="text" name="username" placeholder="Username"/><br/><br/>  
 			<br/> <input class="bar" type="password" name="userpass" placeholder="Password"/><br/><br/>  
 			<input class="button" type="submit" name="status" value="Sign in"/>  

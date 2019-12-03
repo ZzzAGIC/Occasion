@@ -13,13 +13,13 @@ input[type=text] {
 }
 
 .navbar{
-	background-color: purple;
+	background-color: #602f6b;
 	height: 60px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
-    border-bottom: 1px solid #602f6b;
+    border-bottom: 1px solid purple;
 }
 	
 .logo{
@@ -33,12 +33,19 @@ input[type=text] {
 	font-size: 16px;
 	height: 100%;
 	width: 100px;
-	background-color: white;
-  	color: black;
-  	border: 2px solid black;
-  	border-radius: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #602f6b;
+  	color: white;
+  	border: none;
 }
 
+.large-button {
+	width: 200px;
+	height: 35px;
+	background-color: #602f6b;
+  	border: 1px solid purple;
+}
 #Homepage_button{
 	margin-left: auto;
 }
@@ -183,6 +190,9 @@ input[type=text] {
 
 .friend-panel {
 	padding-left: 20px;
+	padding-right: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .friend-text {
@@ -262,7 +272,15 @@ input[type=text] {
 }
 
 .AddEvent{
-	margin-left: 25%;
+	padding-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top : 50px;
+	margin-bottom: 50px;
+	width: 50%;
+	text-align: center;
+	background-color: white;
+	border: 1px solid gray;
 }
 
 .col {
@@ -310,6 +328,19 @@ iframe{
 	width: 500px;
 }
 
+.form-banner {
+	background-color: #602f6b;
+	border-bottom: 1px solid purple;
+	height: 100px;
+}
+
+.banner-title {
+	margin: 0;
+	color: white;
+	font-size: 40px;
+	position: relative;
+	top: 30%;
+}
 <!-- Taken from W3school >
 
 .loader {
