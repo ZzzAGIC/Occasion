@@ -156,7 +156,7 @@
 			<div class="col" id="map"></div>
 		</div>
 
-		<div class="row" align =center style="margin-top: 100px; width: 200px">
+		<div class="row" align =center style="margin-top: 100px; height: 500px">
 			<div class="recommended horizontal-events">
 				<div class="event-list" id="recommendedEvents">
 			
