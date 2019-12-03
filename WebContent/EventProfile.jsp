@@ -106,9 +106,9 @@
 		</div>
 		
 	</div>
-	<div class="profile_all">
+	<div class="profile_all" >
 	
-		<div class="event_profile">
+		<div class="event_profile" style="margin-left: auto; margin-right: auto;">
 			<% 
 			int EventID = Integer.parseInt(request.getParameter("EventID").toString());
 		
@@ -156,7 +156,7 @@
 			
 			<h1 align=center><i>Details for <%=name%></i></h1>
 
-	    	<img src="<%=img%>" alt="event image" align="left" height="180" width="240">
+	    	<img src="<%=img%>" alt="event image" align="left" height="260" width="340">
 
 	    	<div class="profile_text">
 		    	<h4>Type: <span id="Type"><%=type%></span></h4>
@@ -190,6 +190,7 @@
 				<%}}
 				else if(attendents == null){%> 
 				<h4>N/A</h4>
+				<%}%>
 				
 				<button id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
 			    <div id="new_invitation" style="display:none;">
@@ -212,7 +213,7 @@
 			    
 			    </div>
 				
-			<%} }%>
+			<%}%>
 		<div id="map"></div>
 		
 		

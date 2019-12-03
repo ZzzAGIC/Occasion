@@ -34,7 +34,7 @@
         socket.emit('room name',room);
         $('form').submit(function(){
           socket.emit('chat message', {"msg": username+": "+$('#m').val(),"room": room});
-          socket.emit('notification',{"username":otherUser});
+          socket.emit('notification',{"username": otherUser,"from": username});
           $('#m').val('');
           return false;
         });

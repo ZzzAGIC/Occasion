@@ -15,7 +15,7 @@
             socket.emit('room name',username);
             socket.on('notification', function(data){
                 //change new message to what you want to display
-                $('#notification').replaceWith($('<p>').text("new message"));
+                $('#notification').text("new message from " + data.from);
             });
       });
       </script>

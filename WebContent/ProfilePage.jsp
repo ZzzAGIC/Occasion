@@ -104,79 +104,87 @@
 		
 	</div>
 	<div class="profile_all">
-	<div class="profile_info">
-		<% 
-		String curr_username = null;
-		boolean own_profile = false;
-		if(request.getParameter("Friend_User")!=null){
-			curr_username = request.getParameter("Friend_User").toString();
-		}
-		else if(request.getParameter("Friend_User")==null){
-		
-			if(session.getAttribute("myname") != null) {
-				curr_username = session.getAttribute("myname").toString(); 
-				own_profile = true;
+		<div class="profile_info">
+			<% 
+			String curr_username = null;
+			boolean own_profile = false;
+			if(request.getParameter("Friend_User")!=null){
+				curr_username = request.getParameter("Friend_User").toString();
 			}
-		}
-		User curr_user = new User(curr_username);
-		
-		String profile_img = curr_user.getImage();
-		String gender = curr_user.getGender();
-		String Email = curr_user.getEmail();
-		String phone = curr_user.getPhone();
-		Date birthday = curr_user.getBirthday();
-		int points = curr_user.getPoints();
-		ArrayList<Event> pastEvent = curr_user.getAttendedEvent();
-		ArrayList<Event> futureEvent = curr_user.getFutureEvent();
-		
-		ArrayList<Event> all_Events = curr_user.getCreatedEvent();
-		ArrayList<Post> all_Posts = curr_user.getPost();
-				
-		%>
-    	<h1 align=center><%=curr_username%>'s Profile</h1>
-
-    	<form method="post" action="FileUpload" enctype="multipart/form-data">
-			<div id="img-container">
-				<label for="newimg">
-					<img src="<%=profile_img%>" alt="profile image" align="left" height="180" width="180">
-				</label>
-				<% if(own_profile) %><input id="newimg" type="file" name="newfile"/>
+			else if(request.getParameter("Friend_User")==null){
+			
+				if(session.getAttribute("myname") != null) {
+					curr_username = session.getAttribute("myname").toString(); 
+					own_profile = true;
+				}
+			}
+			User curr_user = new User(curr_username);
+			
+			String profile_img = curr_user.getImage();
+			String gender = curr_user.getGender();
+			String Email = curr_user.getEmail();
+			String phone = curr_user.getPhone();
+			Date birthday = curr_user.getBirthday();
+			int points = curr_user.getPoints();
+			ArrayList<Event> pastEvent = curr_user.getAttendedEvent();
+			ArrayList<Event> futureEvent = curr_user.getFutureEvent();
+			
+			ArrayList<Event> all_Events = curr_user.getCreatedEvent();
+			ArrayList<Post> all_Posts = curr_user.getPost();
+					
+			%>
+	    	<p align=center><%=curr_username%>'s Profile</p>
+			<div class="image-form-container">
+		    	<form method="post" action="FileUpload" enctype="multipart/form-data">
+					<div id="img-container">
+						<label for="newimg">
+							<img class="profile-img" src="<%=profile_img%>" alt="profile image" align="left" height="180" width="180">
+						</label>
+						<% if(own_profile) %><input id="newimg" type="file" name="newfile"/>
+					</div>
+					<% if(own_profile) %><input type="submit" value="submit" name="submit"/>
+					
+					<button class="button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
+					<button class="button" id="UnfollowUser_button" type="button" onclick="Unfollowing();" style="display: none;">Unfollow</button>
+				</form>
+				<div id="submitButton" style="text-align: center;">
+					<button class="button" id="EditProfile_button" type="button" onclick="module.editProfile();">Edit profile</button></div>				
+				</div>
+			
+			
+			<div class="profile-description">
+				<form action="EditProfile" method="POST">
+			    	<div class="profile_text" id="prof-text">
+				    	<h4>GENDER: <span id="genderDetail"><%=gender%></span></h4>
+				    	<h4>EMAIL ADDRESS: <span id="emailDetail"><%=Email%></span></h4>
+				    	<h4>PHONE: <span id="phoneDetail"><%=phone%></span></h4>
+				    	<h4>DATE OF BIRTH: <span id="birthDetail"><%=birthday%></span></h4>
+				    	<h4>POINTS: <%=points%></h4>
+			    	</div>
+				</form>
 			</div>
-			<% if(own_profile) %><input type="submit" value="submit" name="submit"/>
-		</form>
-		
-		
-		<form action="EditProfile" method="POST">
-	    	<div class="profile_text" id="prof-text">
-		    	<h4>GENDER: <span id="genderDetail"><%=gender%></span></h4>
-		    	<h4>EMAIL ADDRESS: <span id="emailDetail"><%=Email%></span></h4>
-		    	<h4>PHONE: <span id="phoneDetail"><%=phone%></span></h4>
-		    	<h4>DATE OF BIRTH: <span id="birthDetail"><%=birthday%></span></h4>
-		    	<h4>POINTS: <%=points%></h4>
-	    	</div>
-	    	<div id="submitButton"><button class="button" id="EditProfile_button" type="button" onclick="module.editProfile();">Edit profile</button></div>
-			<button class="button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
-			<button class="button" id="UnfollowUser_button" type="button" onclick="Unfollowing();" style="display: none;">Unfollow</button>
-		
-		</form>
-	</div>
+			<br>
+			<div id="chat">
+				<button class="button" onclick="chat()">Chat</button>
+			</div>
+		</div>
 	
-	<div id="chat">
-	<button class="button" onclick="chat()">Chat</button>
-	</div>
 	
 	<h1 style="text-align: center;">Recent events for <%=curr_username%></h1>
 	<div class="profile_activity">
-		<div class="scroll-events" >
-		<%if(all_Events != null){
-			for(int i = 0; i < all_Events.size(); i++ ){%> 
-				
-				<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
-				<img src="<%=all_Events.get(i).getPictures() %>" 
-				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
-				</a>
-				<%-- <h4><%=all_Events.get(i).getEventName()%></h4>	 --%>
-	    <%}}%> 
+		<div class="horizontal-events" >
+			<div class="event-list">
+			<%if(all_Events != null){
+				for(int i = 0; i < all_Events.size(); i++ ){%> 
+					<div style="display: inline-block">
+						<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
+							<img class="event" src="<%=all_Events.get(i).getPictures() %>" 
+							alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="200" width="370">
+						</a>
+						<%-- <h4><%=all_Events.get(i).getEventName()%></h4>	 --%>
+					</div>
+		    <%}}%>
+	    	</div> 
 	    </div>
 	</div>
 	
@@ -202,6 +210,7 @@
 		function chat(){
 			var un = "<%= myname.toLowerCase() %>";
 			var ou = "<%= curr_username.toLowerCase()%>";
+			var src = "http://localhost:3000/?username="+un+"&otherUser=" + ou;
 			document.getElementById('chat').innerHTML = "<iframe src=\"http://localhost:3000/?username="
 					+un+"&otherUser="+ou+"\"></iframe>"+"<br><button id=\"chat_button\" class=\"button\" onclick=\"closeChat()\">Close chat</button>";
 		}

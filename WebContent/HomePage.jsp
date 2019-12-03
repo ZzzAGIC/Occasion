@@ -55,8 +55,9 @@
 			<button class="subbutton" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">Add Event</button>
 			</div>
 		</div>
-		<p id="notification"></p>
 	</div>
+	
+	<p id="notification"></p>
 	
 	<div class="header">
 		
@@ -64,50 +65,36 @@
 	
 	<div><h1 style="text-align: left;">Invitation</h1></div>
 	<div class="horizontal-events">
-		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'inv');"></div>
 		<div class="event-list" id="invitedEvents">
 			
 		</div>
-		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'inv');"></div>
 	</div>
 	
 	<h1 style="text-align: left;">Trending</h1>
 	<div class="horizontal-events">
-		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'trend');"></div>
 		<div class="event-list" id="popularEvents">
 			
 		</div>
-		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'trend');"></div>
 	</div>
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
 		<div>
-			<div class="post-activity">
-				<img class="post-img" src="images/Event1.jpg" alt="Event1">
-				<div class="post-description">
-					<b class = "postTitle">Text Description</b>
+			<div class="post-activity" >
+				<div id="PostEvents">
+				
 				</div>
 			</div>
-			<div class="post-activity">
-				<img class="post-img" src="images/Event2.jpg" alt="Event1">
-				<div class="post-description">
-					<b class = "postTitle">Text Description</b>
-				</div>
-			</div>
-			<div class="post-activity">
-				<img class="post-img" src="images/Event3.jpg" alt="Event1">
-				<div class="post-description">
-					<b class = "postTitle">Text Description</b>
-				</div>
-			</div>
+		</div>
+		<!--   <div>
 			<div class="post-activity">
 				<img class="post-img" src="images/Event4.jpg" alt="Event1">
 				<div class="post-description">
 					<b class = "postTitle">Text Description</b>
 				</div>
-			</div>
-		</div>
+			</div>	
+		</div> -->
+		
 	</div>
 	
 	<div class="footer">
@@ -115,7 +102,7 @@
 	</div>
 
 </body>
-<script>
+	<script>
 			var login  = <%=session.getAttribute("login")%>
 			if(login != null) {
 				if(login == true) {
@@ -207,6 +194,32 @@
 				document.getElementById("popularEvents").append(a);
 			}
 			//Add Post Activity
+			for(var i = 0; i < userPost.length; i++) {
+				var a = document.createElement("a");
+				
+				var image = document.createElement("IMG");
+				image.className = "post-img";
+				image.src = userPost[i].pictures;
+				image.id = "post" + i;
+				a.append(image);
+				
+				var related_event = document.createElement("a");
+				related_event.innerHTML = "<br>Related event: " + userPost[i].related_Event.event_name;
+				related_event.href = "EventProfile.jsp?EventID=" + userPost[i].related_Event.eventID;
+				related_event.className = "post-description";
+				a.append(related_event);
+				
+				var text = document.createElement("h2");
+				text.innerHTML = userPost[i].post_text;
+				text.className = "post-description";
+				a.append(text);
+				/* 
+				var style = document.createElement("style");
+				style.innerHTML = "margin-left: auto;margin-right: auto;";
+				a.append(style); */
+				
+				document.getElementById("PostEvents").append(a);
+			}	
 		});
 		
 		function transitionElement(action, type) {
@@ -236,16 +249,18 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    
     <script>
         $(function () {
             //change username to current user
-            var username = "<%=session.getAttribute("myname") %>";
+            var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
             var socket = io("http://localhost:3000/");
             socket.emit('room name',username);
             socket.on('notification', function(data){
                 //change new message to what you want to display
-                $('#notification').replaceWith($('<p>').text("new message"));
+                $('#notification').replaceWith($('<p>').text("new message from "));
             });
       });
       </script>

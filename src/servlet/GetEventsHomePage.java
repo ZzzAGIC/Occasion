@@ -55,11 +55,12 @@ public class GetEventsHomePage extends HttpServlet {
 	    	popularData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID(), event.getEventTime()));
 	    }
 	    
-	    List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowingUserID = ?) ", username);
-	    
+//	    List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowingUserID = ?) ", username);
+	    ArrayList<Post> posts = currentUser.getFriendPost();
 	    ArrayList<Post> postData = new ArrayList<Post>();
-	    for(List<String> post : posts) {
-	    	postData.add(new Post(post));
+	    for(Post post : posts) {
+	    	postData.add(post);
+//	    	System.out.println(post.getPost_text());
 	    }
 	    
 	    EventList list = new EventList();
@@ -69,6 +70,7 @@ public class GetEventsHomePage extends HttpServlet {
 	    list.setPostActivity(postData);
 	    
 	    String json = new Gson().toJson(list);
+	    System.out.println(json);
 	    
 		PrintWriter out = response.getWriter();
 		out.write(json);

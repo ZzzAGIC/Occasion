@@ -156,6 +156,7 @@ public class User {
 	}
 
 	public String getImage() {
+		if(image == null) return "images/placeholder-person.jpg";
 		if(image.equals("")) return "images/placeholder-person.jpg";
 		
 		return image;
@@ -208,14 +209,13 @@ public class User {
 
 	public ArrayList<User> getFollowerList(){
 		//Add users which are following this user 
-		String query = "SELECT User.username FROM User, Relationship WHERE FollowingUserID = User.ID AND FollowingUserID = ?";
+		String query = "SELECT * FROM User, Relationship WHERE FollowingUserID = User.ID AND FollowingUserID = ?";
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
 		ArrayList<User> follower = new ArrayList<User>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			follower.add(new User(itemUsername));
+			follower.add(new User(item));
 		}
 		return follower; 
 	}
@@ -223,25 +223,25 @@ public class User {
 
 	public ArrayList<User> getFollowingList(){
 		//Add users which this user is following
-		String query = "select Username from User where UserID in (select FollowingUserID from Relationship where FollowerUserID = ?);";
+		String query = "select * from User where UserID in (select FollowingUserID from Relationship where FollowerUserID = ?);";
 
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
 		ArrayList<User> following = new ArrayList<User>();
 				
 		for(List<String> item : details) {
-			following.add(new User(item.get(0)));
+			following.add(new User(item));
 		}
 		return following;
 	}
 	
 	public ArrayList<User> getBlockedFriendlist(){
-		String query = "SELECT Username FROM User, Relationship WHERE Relationship.BlockCode = 3 AND Relationship.FollowerUserID = ? AND Relationship.FollowerUserID = User.UserID";
+		String query = "SELECT * FROM User, Relationship WHERE Relationship.BlockCode = 3 AND Relationship.FollowerUserID = ? AND Relationship.FollowerUserID = User.UserID";
 		List<List<String>> result = Database.SelectQuery(query, Integer.toString(this.userID));
 		
 		ArrayList<User> block_users = new ArrayList<User>();
 		for(List<String> record : result) {
-			block_users.add(new User(record.get(0)));
+			block_users.add(new User(record));
 		}
 		return block_users;
 	}
@@ -290,14 +290,14 @@ public class User {
 		
 
 	public ArrayList<Event> getFutureEvent(){
-		String query = "select EventID from Attendance where UserID = ? AND RSVPStatus = 2;";
+		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ? AND RSVPStatus = '2');";
 
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
 		ArrayList<Event> future = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			future.add(new Event(Integer.parseInt(item.get(0))));
+			future.add(new Event(item));
 		}
 		return future;
 	}
@@ -307,21 +307,30 @@ public class User {
 	
 	//Placeholder Replace
 	public ArrayList<Event> getRecommendedEvents() {
-		String query = "select * from Event;";
+		String query = "SELECT * from Event;";
 
 		List<List<String>> details = Database.SelectQuery(query);
-				
+		
+		//query = "SELECT * FROM User WHERE UserID IN ()";
+		//query = "";
 		ArrayList<Event> recommend = new ArrayList<Event>();
-				
+		
+		//ArrayList<Integer> event_points = new ArrayList<Integer>(recommend.size());
+		
 		for(List<String> item : details) {
-			recommend.add(new Event(item));
+			Event event = new Event(item);
+			
+			
+			
+			
+			recommend.add(event);
 		}
 		return recommend;
 	}
 	
 	//Placeholder Replace
 	public ArrayList<Event> getInvitedEvents() {
-		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ?);";
+		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ? AND RSVPStatus = '1');";
 		
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
 				
