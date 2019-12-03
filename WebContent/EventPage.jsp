@@ -115,12 +115,14 @@
 		}
 		User curr_user = new User(myusername);
 		
-		if(session.getAttribute("from_search") != null) {
-			from_Search = Boolean.getBoolean(request.getAttribute("from_search").toString()); 
+		if(request.getAttribute("from_search") != null) {
+			from_Search = true;
+			System.out.println(Boolean.getBoolean(request.getAttribute("from_search").toString()));
 		}
 		ArrayList<Event> all_Events = new ArrayList<Event> ();
+		
 		if(from_Search) {
-			if(session.getAttribute("content") != null) {
+			if(request.getAttribute("content") != null) {
 				all_Events = (ArrayList<Event>) request.getAttribute("content"); 
 			}
 		}

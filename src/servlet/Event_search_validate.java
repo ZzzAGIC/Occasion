@@ -64,7 +64,8 @@ public class Event_search_validate extends HttpServlet {
 				event.add(new Event(curr_Event));
 			}
 			
-			if (output.size() > 0) {	
+			if (output.size() > 0) {
+				System.out.println("set attributes");
 				request.setAttribute("from_search", true);
 				request.setAttribute("content", event);
 			}
@@ -100,6 +101,7 @@ public class Event_search_validate extends HttpServlet {
 	public static List<List<String>> SearchEvent(String content, String type) throws SQLException, ClassNotFoundException {
 		
 		String tosearch = "SELECT * FROM Event WHERE " + type + " LIKE ?;";
+		System.out.println(tosearch);
 		content = "%" + content + "%";
 		List<List<String>> output = Database.SelectQuery(tosearch, content);
 		return output;		
