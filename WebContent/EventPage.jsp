@@ -117,8 +117,8 @@
 		
 		if(request.getAttribute("from_search") != null) {
 			from_Search = true;
-			System.out.println(Boolean.getBoolean(request.getAttribute("from_search").toString()));
-		}
+			/* System.out.println(Boolean.getBoolean(request.getAttribute("from_search").toString()));*/
+		 }
 		ArrayList<Event> all_Events = new ArrayList<Event> ();
 		
 		if(from_Search) {
