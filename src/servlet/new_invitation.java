@@ -32,7 +32,7 @@ public class new_invitation extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String members [] = request.getParameterValues("members");
-		String EventID = request.getAttribute("EventID").toString();
+		String EventID = request.getParameter("EventID").toString();
 
 		String next = "/EventProfile.jsp";
 		String error = "";
@@ -71,12 +71,10 @@ public class new_invitation extends HttpServlet {
 	
 	
 	public static void AddAttendance(String[] MembersID, String EventID) throws SQLException, ClassNotFoundException {
-		
 		for(int i = 0; i < MembersID.length; i++) {
 			String toinsert = "INSERT INTO Attendance (EventID,UserID,RSVPStatus) "
-					+ "VALUES (?,?,?)";
-			
-			Database.UpdateQuery(toinsert, EventID,MembersID[i],"1");
+					+ "VALUES (?, ?, ?)";			
+			Database.UpdateQuery(toinsert, EventID ,MembersID[i], "1");
 		}
 			
 		

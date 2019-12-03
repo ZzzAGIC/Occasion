@@ -3,23 +3,53 @@ body {
 	background: #cccccc;
 }
 
-.form {
-	
-	  vertical-align: middle;
-	  background: #ccffff;
-	  width: 40%;
-	  margin: auto;
-	  padding: 40px;
-	  box-shadow: 0 0 3px rgb(204, 204, 204, 0.5);
+input{
+	width:270px;
+	padding: 8px 2px 8px 2px;
+	border-radius: 3px;
+	border: 0.5px solid black;
 }
+
+.banner {
+	background-color: #602f6b;
+	border-bottom: 1px solid purple;
+	height: 80px;
+}
+
+.container {
+	height: 300px;
+	width: 500px;
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+  	background-color: white;
+}
+
+.form {
+	vertical-align: middle;
+	margin: auto;
+	padding: 0;
+}
+
+.banner-text {
+	color: white;
+	font-size: 40px;	
+	margin: 0;
+}
+
  .button {
     cursor: pointer;
-    background: #ff9999;
-    width: 100%;
+	background-color: #602f6b;
+  	border: 1px solid purple;
+  	width: 100px;
     padding: 10px 15px;
     border: 0;
     color: #fff;
     font-size: 14px;
     font-weight: 400;
-
+    margin-left: 20px;
+    margin-right: 20px;
 }

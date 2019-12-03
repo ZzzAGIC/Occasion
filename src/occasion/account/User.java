@@ -1,5 +1,6 @@
 package occasion.account;
 
+import java.io.File;
 import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
@@ -36,10 +37,36 @@ public class User {
 	private TreeSet<String> preferenceType;
 	private int preferenceDistance;
 	private Location curr_Loc;
-	private ArrayList<Post> sharedPost;
+			
+	public User(List<String> record) {
 		
-	
-	public User() {
+		this.setUserID(Integer.parseInt(record.get(0)));
+		this.setUsername(record.get(1));
+		this.setNickname(record.get(3));
+		this.setPremium(Boolean.parseBoolean(record.get(4)));
+		this.setEmail(record.get(5));
+		this.setGender(record.get(6));
+		this.setPhone(record.get(7));
+		this.setImage(record.get(8));
+		
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			this.setBirthday(formatter.parse(record.get(9)));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.setPoints(Integer.parseInt(record.get(10)));
+		} catch (Exception e) {
+			this.setPoints(0);
+		}
+		
+		try {
+			this.setPoints(Integer.parseInt(record.get(11)));
+		} catch (Exception e) {
+			this.setStatus(0);
+		}
 	}
 	
 	public User(String username) {
@@ -129,6 +156,8 @@ public class User {
 	}
 
 	public String getImage() {
+		if(image.equals("")) return "images/placeholder-person.jpg";
+		
 		return image;
 	}
 
@@ -201,8 +230,7 @@ public class User {
 		ArrayList<User> following = new ArrayList<User>();
 				
 		for(List<String> item : details) {
-			String itemUsername = item.get(0);
-			following.add(new User(itemUsername));
+			following.add(new User(item.get(0)));
 		}
 		return following;
 	}
@@ -246,11 +274,19 @@ public class User {
 		createdEvent.add(E);
 	}
 	public ArrayList<Event> getAttendedEvent(){
-		return attendedEvent;
+		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ? AND RSVPStatus = '2');";
+		
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
+				
+		ArrayList<Event> invited = new ArrayList<Event>();
+				
+		for(List<String> item : details) {
+			invited.add(new Event(item));
+		}
+		
+		return invited;
 	}
-	public void AddAttendedEvent(Event E) {
-		attendedEvent.add(E);
-	}
+	
 		
 
 	public ArrayList<Event> getFutureEvent(){
@@ -285,15 +321,16 @@ public class User {
 	
 	//Placeholder Replace
 	public ArrayList<Event> getInvitedEvents() {
-		String query = "select * from Event;";
-
-		List<List<String>> details = Database.SelectQuery(query);
+		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ?);";
+		
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
 				
 		ArrayList<Event> invited = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
 			invited.add(new Event(item));
 		}
+		
 		return invited;
 	}
 
@@ -310,12 +347,22 @@ public class User {
 	}
 
 	public ArrayList<Post> getPost(){
-		return sharedPost;
-	}
-	public void AddPost(Post P) {
-		sharedPost.add(P);
+		List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post WHERE UserID = ?", Integer.toString(this.userID));
+		ArrayList<Post> postList = new ArrayList<Post>();
+		for(List<String> post : posts) {
+			postList.add(new Post(post));
+		}
+		return postList;
 	}
 	
+	public ArrayList<Post> getFriendPost(){
+		List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post WHERE UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowerUserID = ?)", Integer.toString(this.userID));
+		ArrayList<Post> postList = new ArrayList<Post>();
+		for(List<String> post : posts) {
+			postList.add(new Post(post));
+		}
+		return postList;
+	}	
 	public static String getUsernameFromId(int id) {
 		String query = "SELECT username FROM User Where userID = ?";
 		

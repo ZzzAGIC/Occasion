@@ -1,7 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
+import occasion.account.User;
 import occasion.db.Database;
 
 /**
@@ -31,9 +37,12 @@ public class SearchUser_validate extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-					String search_content = request.getParameter("search");
-					String search_type = request.getParameter("type");
+					
+    	System.out.println(request.getQueryString());
+					String search_content = (String) request.getParameter("search");
+					String search_type = (String) request.getParameter("type");
+					
+					System.out.println(search_content + "-" + search_type);
 					
 					String next = "/UserSearchResult.jsp";
 					String error = "";
@@ -50,8 +59,26 @@ public class SearchUser_validate extends HttpServlet {
 						next = "/FriendlistPage.jsp";
 					}
 					
+					
 					try {
 						List<List<String>> output= SearchUser(search_content,search_type);
+						ArrayList<User> users = new ArrayList();
+						PrintWriter out = response.getWriter();
+
+						if(output.size() == 0) {
+							out.write("EMPTY");
+						} else {
+							for(List<String> user : output) {
+								users.add(new User(user));
+							}
+							
+							String json = new Gson().toJson(users);
+							out.write(json);
+						}
+						out.flush();
+						out.close();
+					    
+						
 						if (output.size() > 0) {	
 							request.setAttribute("searchresult", output);
 							request.setAttribute("content", search_content);
@@ -67,28 +94,13 @@ public class SearchUser_validate extends HttpServlet {
 					catch (ClassNotFoundException e){
 						e.printStackTrace();
 					}
-										
-					request.setAttribute("error", error);
-					RequestDispatcher dispatch = getServletContext().getRequestDispatcher(next);
-					
-					try {
-						dispatch.forward(request,response);
-					}
-					catch (IOException e){
-						e.printStackTrace();
-					}
-					catch (ServletException e){
-						e.printStackTrace();
-					}
 			}
 			    
 	public static List<List<String>> SearchUser(String content, String type) throws SQLException, ClassNotFoundException {
 		
-		String tosearch = "SELECT * FROM User WHERE " + type + " = ?";
-		System.out.print(tosearch);
+		String tosearch = "SELECT * FROM User WHERE " + type + " LIKE ?;";
+		content = content + "%";
 		List<List<String>> output = Database.SelectQuery(tosearch, content);
-		return output;
-		
+		return output;		
 	}
-
 }

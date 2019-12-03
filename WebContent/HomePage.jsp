@@ -55,7 +55,7 @@
 			<button class="subbutton" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">Add Event</button>
 			</div>
 		</div>
-		
+		<p id="notification"></p>
 	</div>
 	
 	<div class="header">
@@ -74,22 +74,39 @@
 	<h1 style="text-align: left;">Trending</h1>
 	<div class="horizontal-events">
 		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'trend');"></div>
-		<div class="event-list">
-			<img class="event" src="images/Event1.jpg" id="trend1">
-			<img class="event" src="images/Event2.jpg" id="trend2">
-			<img class="event" src="images/Event3.jpg" id="trend3">
-			<img class="event" src="images/Event4.jpg" id="trend4">
+		<div class="event-list" id="popularEvents">
+			
 		</div>
 		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'trend');"></div>
 	</div>
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
-		<div class="vertical_scroll" >
-			<img src="images/Event1.jpg" alt="Event1" height="60%" width="60%">
-			<img src="images/Event2.jpg" alt="Event2" height="60%" width="60%">
-			<img src="images/Event3.jpg" alt="Event3" height="60%" width="60%">
-			<img src="images/Event4.jpg" alt="Event4" height="60%" width="60%">
+		<div>
+			<div class="post-activity">
+				<img class="post-img" src="images/Event1.jpg" alt="Event1">
+				<div class="post-description">
+					<b class = "postTitle">Text Description</b>
+				</div>
+			</div>
+			<div class="post-activity">
+				<img class="post-img" src="images/Event2.jpg" alt="Event1">
+				<div class="post-description">
+					<b class = "postTitle">Text Description</b>
+				</div>
+			</div>
+			<div class="post-activity">
+				<img class="post-img" src="images/Event3.jpg" alt="Event1">
+				<div class="post-description">
+					<b class = "postTitle">Text Description</b>
+				</div>
+			</div>
+			<div class="post-activity">
+				<img class="post-img" src="images/Event4.jpg" alt="Event1">
+				<div class="post-description">
+					<b class = "postTitle">Text Description</b>
+				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -139,7 +156,6 @@
 		var userPost = {};
 		
 		
-		
 		//Sets up initial State
 		$(document).ready(function() {
 			var xhttp = new XMLHttpRequest();
@@ -155,17 +171,41 @@
 			
 			//Add Initial events to display of Invited Events
 			for(var i = 0; i < inviteEvents.length; i++) {
-				if(i < inviteEvents.length - 1) {
-					var image = document.createElement("IMG");
-					image.className = "event";
-					image.src = inviteEvents[i].img;
-					image.id = "inv" + i;
-					document.getElementById("invitedEvents").append(image);
-				}
+				var container = document.createElement("div");
+				var a = document.createElement("a");
+				a.href = "EventProfile.jsp?EventID=" + inviteEvents[i].id;
+				var image = document.createElement("IMG");
+				image.className = "event";
+				image.src = inviteEvents[i].img;
+				image.id = "inv" + i;
+				a.append(image);	
+				container.append(a);
+				
+				var message = "<b>You have been invited to " + inviteEvents[i].event_name + "</b>!";
+				message += "<br> <b> Date:</b> " + inviteEvents[i].date;
+				var textContainer = document.createElement("div");
+				textContainer.innerHTML = message;
+				container.append(textContainer);
+				container.style = "display: inline-block;";
+				document.getElementById("invitedEvents").append(container);
 			}
 			
+			if(inviteEvents.length == 0) {
+				var b = document.createElement("b");
+				b.innerHTML = "You currently have no invites";
+				document.getElementById("invitedEvents").append(b);
+			}
 			//Add Popular events
-			
+			for(var i = 0; i < popularEvents.length; i++) {
+				var a = document.createElement("a");
+				a.href = "EventProfile.jsp?EventID=" + popularEvents[i].id;
+				var image = document.createElement("IMG");
+				image.className = "event";
+				image.src = popularEvents[i].img;
+				image.id = "popular" + i;
+				a.append(image);	
+				document.getElementById("popularEvents").append(a);
+			}
 			//Add Post Activity
 		});
 		
@@ -194,4 +234,19 @@
 		};
 	})();
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //change username to current user
+            var username = "<%=session.getAttribute("myname") %>";
+            var socket = io("http://localhost:3000/");
+            socket.emit('room name',username);
+            socket.on('notification', function(data){
+                //change new message to what you want to display
+                $('#notification').replaceWith($('<p>').text("new message"));
+            });
+      });
+      </script>
 </html>

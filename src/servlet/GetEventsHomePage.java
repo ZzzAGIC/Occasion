@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -45,7 +46,13 @@ public class GetEventsHomePage extends HttpServlet {
 	    ArrayList<Event> invitedEvents = currentUser.getInvitedEvents();
 	    ArrayList<EventData> invitedData = new ArrayList<EventData>();	    
 	    for(Event event : invitedEvents) {
-	    	invitedData.add(new EventData(event.getEventName(), event.getPictures()));
+	    	invitedData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID(), event.getEventTime()));
+	    }
+	    
+	    ArrayList<Event> popularEvents = Event.getPopularEvents();
+	    ArrayList<EventData> popularData = new ArrayList<EventData>();	    
+	    for(Event event : popularEvents) {
+	    	popularData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID(), event.getEventTime()));
 	    }
 	    
 	    List<List<String>> posts = Database.SelectQuery("SELECT * FROM Post Where UserID IN (SELECT FollowingUserID FROM Relationship WHERE FollowingUserID = ?) ", username);
@@ -58,7 +65,7 @@ public class GetEventsHomePage extends HttpServlet {
 	    EventList list = new EventList();
 	    
 	    list.setInvited(invitedData);
-	    list.setPopular(new ArrayList<Event>());
+	    list.setPopular(popularData);
 	    list.setPostActivity(postData);
 	    
 	    String json = new Gson().toJson(list);
@@ -72,11 +79,16 @@ public class GetEventsHomePage extends HttpServlet {
 	class EventData {
 		private String event_name;
 		private String img;
+		private Date date;
+		private int id;
 		
-		public EventData(String name, String image) {
+		public EventData(String name, String image, int id, Date date) {
 			this.event_name = name;
 			this.img = image;
+			this.id = id;
+			this.date = date;
 		}
+		
 		public String getEvent_name() {
 			return event_name;
 		}
@@ -90,11 +102,28 @@ public class GetEventsHomePage extends HttpServlet {
 			this.img = img;
 		}
 
+		public int getId() {
+			return id;
+		}
+
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public Date getDate() {
+			return date;
+		}
+
+		public void setDate(Date date) {
+			this.date = date;
+		}
+
 	}
 	
 	class EventList {
 		private ArrayList<EventData> invited;
-		private ArrayList<Event> popular;
+		private ArrayList<EventData> popular;
 		private ArrayList<Post> postActivity;
 		
 		public ArrayList<EventData> getInvited() {
@@ -103,10 +132,10 @@ public class GetEventsHomePage extends HttpServlet {
 		public void setInvited(ArrayList<EventData> invited) {
 			this.invited = invited;
 		}
-		public ArrayList<Event> getPopular() {
+		public ArrayList<EventData> getPopular() {
 			return popular;
 		}
-		public void setPopular(ArrayList<Event> popular) {
+		public void setPopular(ArrayList<EventData> popular) {
 			this.popular = popular;
 		}
 		public ArrayList<Post> getPostActivity() {

@@ -115,20 +115,24 @@
 			boolean own_event = false;
 			String myusername = null;
 			ArrayList<User> followingUsers = null;
+			User curr_user = null;
 			if(session.getAttribute("myname") != null) {
-				myusername = session.getAttribute("myname").toString();
-				User curr_user = new User(myusername);
+				myusername = session.getAttribute("myname").toString().toLowerCase();
+				curr_user = new User(myusername);
 				followingUsers = curr_user.getFollowingList();
+				
 			}
-			
+						
 
 			Event curr_Event = new Event(EventID);
 			String name = curr_Event.getEventName();
 			int initiatorID = curr_Event.getInitiator();
-			String initiator = User.getUsernameFromId(initiatorID);
-			
+			String initiator = User.getUsernameFromId(initiatorID).toLowerCase();
+			boolean followed = false;
 			if(initiator.compareTo(myusername) == 0) {
 				own_event = true;
+			} else {
+				followed = curr_Event.userAlreadyFollowed(curr_user.getUserID());
 			}
 				
 			String img = curr_Event.getPictures();
@@ -166,10 +170,13 @@
 		    	<h4>Free spots: <%=freespots%></h4>
 		    	<h4>Location: <%=location%></h4>
 	    	</div>
-	    	<%if(!own_event) {%>
-	    	<button class="button" id="AddEvent_button" type="button" onclick="add();">Going event</button>
-			<button class="button" id="RemoveEvent_button" type="button" onclick="remove();" style="display: none;">Not Going</button>
-			<%}
+	    	<%if(!own_event) {
+	    		if(!followed){%>
+	    			<button class="button" id="AddEvent_button" type="button" onclick="add();">Going event</button>
+				<% } else { %>
+					<button class="button" id="RemoveEvent_button" type="button" onclick="remove();">Unfollow</button>	
+			<% }
+	    	}
 	    	else if(own_event) {%>
 				<h4>Attendents: </h4>
 				<%if(attendents != null){
@@ -191,7 +198,6 @@
 				<div id="formerror" style="color: red;"> 
 				<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
 				</div>
-			    <%request.setAttribute("EventID", EventID); %>
 			    Select Users to invite:<br/>
 				<%if(followingUsers != null){
 					for(int i = 0; i < followingUsers.size(); i++ ){%> 
@@ -200,6 +206,7 @@
 						<br>
 					
 			    <%}}%> 
+			    <input type="hidden" name ="EventID" value="<%= EventID %>"/>
 			    <input class="button" type="submit" value="Invite!"/>  
 				</form> 
 			    

@@ -174,7 +174,19 @@ public class Event {
 	}
 
 	public ArrayList<User> getAttendants(){
-		return attendants;
+		String query = "SELECT UserID FROM Attendance WHERE EventID = ?";
+		
+		List<List<String>> result = Database.SelectQuery(query,Integer.toString(this.eventID));
+		ArrayList<User> Attendants_ = new ArrayList<User>();
+		for(List<String> item : result) {
+			String find_ID = "SELECT Username FROM User WHERE UserID = ?";
+			List<List<String>> IDresult = Database.SelectQuery(find_ID,item.get(0));
+			
+			Attendants_.add(new User(IDresult.get(0).get(0)));
+		}
+		
+		
+		return Attendants_;
 	}
 	public void addAttendants(User U) {
 		attendants.add(U);
@@ -219,18 +231,36 @@ public class Event {
 			type_ = "public"; 
 		}
 		else if(private_event == 1) {
-			type_ = "privae"; 
+			type_ = "privte"; 
 		}
 		else if(private_event == 2) {
 			type_ = "exclusive"; 
 		}
 		return type_;
 	}
-
+	
+	public static ArrayList<Event> getPopularEvents() {
+		String query = "SELECT * FROM Event ORDER BY Size DESC LIMIT 20";
+		
+		List<List<String>> result = Database.SelectQuery(query);
+		System.out.println("+++" + result.size());
+		ArrayList<Event> events = new ArrayList<Event>();
+		for(List<String> item : result) {
+			events.add(new Event(item));
+		}
+		return events;
+	}
+	
 	public void PrintDetails() {
 		System.out.println("EventName: " + getEventName());
 		System.out.println("Type: " + getType());
 		System.out.println("Private: " + getPrivate_event());
 	}
 	
+	public boolean userAlreadyFollowed(int userID) {
+		List<List<String>> result = Database.SelectQuery("SELECT RSVPStatus FROM Attendance WHERE EventID = ? AND UserID = ?;", Integer.toString(this.eventID), Integer.toString(userID));
+		if(result.size() == 0) return false;
+		if(result.get(0).get(0).equals("1")) return false;
+		return true;
+	}
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <!-- add this part to where you want notification to appear-->
+    <p id="notification"></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //change username to current user
+            var username = "lucy";
+            var socket = io("http://localhost:3000/");
+            socket.emit('room name',username);
+            socket.on('notification', function(data){
+                //change new message to what you want to display
+                $('#notification').replaceWith($('<p>').text("new message"));
+            });
+      });
+      </script>
+</body>
+</html>

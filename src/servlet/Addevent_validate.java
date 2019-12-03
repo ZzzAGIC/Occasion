@@ -42,6 +42,7 @@ public class Addevent_validate extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String event_name= request.getParameter("EventName");
+		System.out.println("name " + event_name);
 		String day= request.getParameter("day");
 		if(day.length() == 1) {
 			day = '0' + day;
