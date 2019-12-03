@@ -10,12 +10,12 @@
     <script>
         $(function () {
             //change username to current user
-            var username = "username";
+            var username = "lucy";
             var socket = io("http://localhost:3000/");
             socket.emit('room name',username);
             socket.on('notification', function(data){
                 //change new message to what you want to display
-                $('#notification').append($('<p>').text("new message"));
+                $('#notification').replaceWith($('<p>').text("new message"));
             });
       });
       </script>
