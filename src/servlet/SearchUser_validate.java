@@ -96,8 +96,7 @@ public class SearchUser_validate extends HttpServlet {
 					}
 			}
 			    
-	public static List<List<String>> SearchUser(String content, String type) throws SQLException, ClassNotFoundException {
-		
+	public static List<List<String>> SearchUser(String content, String type) throws SQLException, ClassNotFoundException {	
 		String tosearch = "SELECT * FROM User WHERE " + type + " LIKE ?;";
 		content = content + "%";
 		List<List<String>> output = Database.SelectQuery(tosearch, content);

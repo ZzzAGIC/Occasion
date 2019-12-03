@@ -74,33 +74,43 @@
 		%>
   
 	    <h1 align=center>Events created by <%=myusername%></h1>
-		<div class="list">
+		<div class="horizontal-events">
 			<%if(CreatedEvents != null){
 			for(int i = 0; i < CreatedEvents.size(); i++ ){%> 
-				
-				<a href="EventProfile.jsp?EventID=<%=CreatedEvents.get(i).getEventID()%>">
-				<img src="<%=CreatedEvents.get(i).getPictures() %>" 
-				alt="<%=CreatedEvents.get(i).getEventName()%>'s event image" height="180" width="220">
-				</a>
-				<h4><%=CreatedEvents.get(i).getEventName()%></h4>
-			
+				<div class="event-list" id="invitedEvents">
+					<div style="display: inline-block">
+						<a href="EventProfile.jsp?EventID=<%=CreatedEvents.get(i).getEventID()%>">
+							<img class="event" src="<%=CreatedEvents.get(i).getPictures() %>" 
+							alt="<%=CreatedEvents.get(i).getEventName()%>'s event image">
+						</a>
+					</div>
+					<div>
+						<h4><%=CreatedEvents.get(i).getEventName()%></h4>
+					</div>
+				</div>			
 	    <%}}%> 
 		
 	    </div>
 	    
 	    <h1 align=center><%=myusername%>'s Future Events</h1>
-		<div class="list">
+		<div class="horizontal-events">
 			<%if(FutureEvent != null){
 			for(int i = 0; i < FutureEvent.size(); i++ ){%> 
-				
-				<a href="EventProfile.jsp?EventID=<%=FutureEvent.get(i).getEventID()%>">
-				<img src="<%=FutureEvent.get(i).getPictures() %>" 
-				alt="<%=FutureEvent.get(i).getEventName()%>'s event image" height="180" width="220">
-				</a>
-				<h4><%=FutureEvent.get(i).getEventName()%></h4>
-			
+				<div class="event-list" id="invitedEvents">
+					<div style="display: inline-block">
+						<a href="EventProfile.jsp?EventID=<%=FutureEvent.get(i).getEventID()%>">
+							<img class="event" src="<%=FutureEvent.get(i).getPictures() %>" 
+							alt="<%=FutureEvent.get(i).getEventName()%>'s event image">
+						</a>
+					</div>
+					<div>
+						<h4><%=FutureEvent.get(i).getEventName()%></h4>
+					</div>
+				</div>			
 	    <%}}%> 
+		
 	    </div>
+	    
 	    
 	    <h1 align=center><%=myusername%>'s Past Events</h1>
 		<div class="list">

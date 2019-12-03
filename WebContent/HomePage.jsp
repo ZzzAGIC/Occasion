@@ -64,58 +64,36 @@
 	
 	<div><h1 style="text-align: left;">Invitation</h1></div>
 	<div class="horizontal-events">
-		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'inv');"></div>
 		<div class="event-list" id="invitedEvents">
 			
 		</div>
-		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'inv');"></div>
 	</div>
 	
 	<h1 style="text-align: left;">Trending</h1>
 	<div class="horizontal-events">
-		<div class= "event-scroll back" id="back" onclick="module.transitionElement(this.id, 'trend');"></div>
 		<div class="event-list" id="popularEvents">
 			
 		</div>
-		<div class="forward event-scroll" id="front" onclick="module.transitionElement(this.id, 'trend');"></div>
 	</div>
-	
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
 		<div>
-				<div class="post-activity" >
-					<div id="PostEvents">
-					
-					</div>
+			<div class="post-activity" >
+				<div id="PostEvents">
+				
 				</div>
+			</div>
 		</div>
-<!-- 		<div>
-			<div class="post-activity">
-				<img class="post-img" src="images/Event1.jpg" alt="Event1">
-				<div class="post-description">
-					<b class = "postTitle">Text Description</b>
-				</div>
-			</div>
-			<div class="post-activity">
-				<img class="post-img" src="images/Event2.jpg" alt="Event1">
-				<div class="post-description">
-					<b class = "postTitle">Text Description</b>
-				</div>
-			</div>
-			<div class="post-activity">
-				<img class="post-img" src="images/Event3.jpg" alt="Event1">
-				<div class="post-description">
-					<b class = "postTitle">Text Description</b>
-				</div>
-			</div>
+		<!--   <div>
 			<div class="post-activity">
 				<img class="post-img" src="images/Event4.jpg" alt="Event1">
 				<div class="post-description">
 					<b class = "postTitle">Text Description</b>
 				</div>
-			</div>
+			</div>	
 		</div> -->
+		
 	</div>
 	
 	<div class="footer">
@@ -123,7 +101,7 @@
 	</div>
 
 </body>
-<script>
+	<script>
 			var login  = <%=session.getAttribute("login")%>
 			if(login != null) {
 				if(login == true) {
@@ -215,7 +193,6 @@
 				document.getElementById("popularEvents").append(a);
 			}
 			//Add Post Activity
-			
 			for(var i = 0; i < userPost.length; i++) {
 				var a = document.createElement("a");
 				
@@ -235,13 +212,13 @@
 				text.innerHTML = userPost[i].post_text;
 				text.className = "post-description";
 				a.append(text);
-				
-				
-
-				
+				/* 
+				var style = document.createElement("style");
+				style.innerHTML = "margin-left: auto;margin-right: auto;";
+				a.append(style); */
 				
 				document.getElementById("PostEvents").append(a);
-			}
+			}	
 		});
 		
 		function transitionElement(action, type) {

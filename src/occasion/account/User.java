@@ -156,6 +156,7 @@ public class User {
 	}
 
 	public String getImage() {
+		if(image == null) return "images/placeholder-person.jpg";
 		if(image.equals("")) return "images/placeholder-person.jpg";
 		
 		return image;
@@ -290,14 +291,14 @@ public class User {
 		
 
 	public ArrayList<Event> getFutureEvent(){
-		String query = "select EventID from Attendance where UserID = ? AND RSVPStatus = 2;";
+		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ? AND RSVPStatus = '2');";
 
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.getUserID()));
 				
 		ArrayList<Event> future = new ArrayList<Event>();
 				
 		for(List<String> item : details) {
-			future.add(new Event(Integer.parseInt(item.get(0))));
+			future.add(new Event(item));
 		}
 		return future;
 	}

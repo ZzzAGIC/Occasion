@@ -32,9 +32,9 @@ input[type=text] {
 .button{
 	font-size: 16px;
 	height: 100%;
-	width: 100px;
-	padding-left: 10px;
-	padding-right: 10px;
+	width: 130px;
+	padding-left: 5px;
+	padding-right: 5px;
 	background-color: #602f6b;
   	color: white;
   	border: none;
@@ -46,6 +46,8 @@ input[type=text] {
 	background-color: #602f6b;
   	border: 1px solid purple;
 }
+
+
 #Homepage_button{
 	margin-left: auto;
 }
@@ -159,7 +161,6 @@ input[type=text] {
 	padding-bottom: 20px;
 	padding-left: 20px;
 	background-color: white;
-	
 	text-align: center;
 	flex: 2;
 	overflow-y: auto;
@@ -235,12 +236,11 @@ input[type=text] {
 
 .list_v{
 	width: 100%;
-	display: flex;
-    
+	display: flex;    
     flex-direction: column;
 }
 .profile_info{
-	
+	border-bottom: 1px solid gray;
   	width: 100%;
   	margin: auto;
   	padding: 40px;
@@ -313,6 +313,29 @@ input[type=text] {
 	width: 60%;
 }
 
+.image-form-container {
+	width: 200px;
+	height: 200px;
+	margin-left: 0px;
+	display: inline-block;
+}
+
+#img-container {
+	width: 100%;
+	height: 100%;
+}
+
+.profile-img {
+	width: 200px;
+	height: 200px;
+}
+
+.profile-description {
+	display: inline-block;
+	top: -30px;
+	position: relative;
+	left: 0;
+}
 #img-container > input {
 	display: none;
 }
@@ -324,7 +347,6 @@ input[type=text] {
 }
 
 #chat{
-	margin-left: 40px;
 }
 
 #chat_button{
@@ -348,6 +370,19 @@ iframe{
 	position: relative;
 	top: 30%;
 }
+
+.AddPost {
+	padding-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top : 50px;
+	margin-bottom: 50px;
+	width: 50%;
+	text-align: center;
+	background-color: white;
+	border: 1px solid gray;
+}
+
 <!-- Taken from W3school >
 
 .loader {
