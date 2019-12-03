@@ -9,6 +9,13 @@ input{
 	border-radius: 3px;
 	border: 0.5px solid black;
 }
+
+.banner {
+	background-color: #602f6b;
+	border-bottom: 1px solid purple;
+	height: 80px;
+}
+
 .container {
 	height: 300px;
 	width: 500px;
@@ -24,16 +31,25 @@ input{
 .form {
 	vertical-align: middle;
 	margin: auto;
-	padding: 40px;
+	padding: 0;
 }
+
+.banner-text {
+	color: white;
+	font-size: 40px;	
+	margin: 0;
+}
+
  .button {
     cursor: pointer;
-    background: #ff9999;
-    width: 100%;
+	background-color: #602f6b;
+  	border: 1px solid purple;
+  	width: 100px;
     padding: 10px 15px;
     border: 0;
     color: #fff;
     font-size: 14px;
     font-weight: 400;
-
+    margin-left: 20px;
+    margin-right: 20px;
 }
