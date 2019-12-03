@@ -9,6 +9,22 @@
 <%@ page import="java.util.ArrayList" %>
 <link rel="stylesheet" href="css/homepage.css">
 <title>Event Page</title>
+<script>
+	function display_name() {
+		document.getElementById("search_content").style.display="initial"
+		document.getElementById("event_type_list").style.display="none"
+
+	}
+	function display_type() {
+		document.getElementById("event_type_list").style.display="initial"
+		document.getElementById("search_content").style.display="none"
+
+	}
+	
+	
+
+
+</script>
 </head>
 <body>
 <div class="navbar">
