@@ -190,6 +190,7 @@
 				<%}}
 				else if(attendents == null){%> 
 				<h4>N/A</h4>
+				<%}%>
 				
 				<button id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
 			    <div id="new_invitation" style="display:none;">
@@ -212,7 +213,7 @@
 			    
 			    </div>
 				
-			<%} }%>
+			<%}%>
 		<div id="map"></div>
 		
 		
