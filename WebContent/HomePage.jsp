@@ -85,7 +85,9 @@
 	<div class="friend_activity">
 		<div>
 				<div class="post-activity" >
-					<div id="PostEvents"></div>
+					<div id="PostEvents">
+					
+					</div>
 				</div>
 		</div>
 <!-- 		<div>
@@ -221,17 +223,22 @@
 				image.className = "post-img";
 				image.src = userPost[i].pictures;
 				image.id = "post" + i;
-				image.href = "EventProfile.jsp?EventID=" + userPost[i].id;
 				a.append(image);
+				
+				var related_event = document.createElement("a");
+				related_event.innerHTML = "<br>Related event: " + userPost[i].related_Event.event_name;
+				related_event.href = "EventProfile.jsp?EventID=" + userPost[i].related_Event.eventID;
+				related_event.className = "post-description";
+				a.append(related_event);
 				
 				var text = document.createElement("h2");
 				text.innerHTML = userPost[i].post_text;
 				text.className = "post-description";
 				a.append(text);
-				/* 
-				var style = document.createElement("style");
-				style.innerHTML = "margin-left: auto;margin-right: auto;";
-				a.append(style); */
+				
+				
+
+				
 				
 				document.getElementById("PostEvents").append(a);
 			}

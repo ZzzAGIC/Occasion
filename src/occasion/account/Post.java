@@ -25,6 +25,7 @@ public class Post {
 		post_text = dbRow.get(4);
 		pictures = dbRow.get(5);
 		likes = Integer.parseInt(dbRow.get(3));
+		related_Event = new Event(Integer.parseInt(dbRow.get(1)));
 	}
 	public Post(String postID) {
 		
@@ -79,7 +80,11 @@ public class Post {
 		this.postDate = postDate;
 	}
 	public Event getRelated_Event() {
-		return related_Event;
+		List<List<String>> EventID = Database.SelectQuery("SELECT EventID FROM Post WHERE PostID = ?", this.postID);
+		
+		Event relatedEvent = new Event(Integer.parseInt(EventID.get(0).get(0)));
+
+		return relatedEvent;
 	}
 	public void setRelated_Event(Event related_Event) {
 		this.related_Event = related_Event;
