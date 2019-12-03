@@ -29,6 +29,9 @@
 			if (this.readyState == 4 && this.status == 200) {
 				var response = this.responseText;
 				
+				var load = document.getElementById("loader");
+				load.remove();
+				
 				if(response == "EMPTY") {
 					document.getElementById("search-list").innerHTML = "";
 					return;
@@ -66,6 +69,10 @@
 		xhttp.open("POST", "SearchUser_validate?search=" + search + "&type=" + type, true);	
 		xhttp.send();
 		
+		var load = document.createElement("div");
+		load.className = "loader";
+		load.id = "loader";
+		document.getElementById("search-list").append(load)
 	}
 	</script>
 </head>
