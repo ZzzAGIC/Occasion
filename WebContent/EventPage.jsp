@@ -153,12 +153,12 @@
 			    </div>
 			</div>
 						
-			<div class="col" id="map"></div>
+			<div class="col" id="map" style="margin-top: 50px;"></div>
 		</div>
-
-		<div class="row" align =center style="margin-top: 100px; height: 500px">
+				
+		<div class="row" align =center style="top: 200px; height: 500px">
 			<div class="recommended horizontal-events">
-				<div class="event-list" id="recommendedEvents">
+				<div class="event-list" style="margin-top: 100px; width: 100%;" id="recommendedEvents">
 			
 				</div>
 			</div>
