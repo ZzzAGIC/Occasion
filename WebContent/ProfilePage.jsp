@@ -133,7 +133,7 @@
 			ArrayList<Post> all_Posts = curr_user.getPost();
 					
 			%>
-	    	<p align=center><%=curr_username%>'s Profile</p>
+	    	<h1 align=center><%=curr_username%>'s Profile</h1>
 			<div class="image-form-container">
 		    	<form method="post" action="FileUpload" enctype="multipart/form-data">
 					<div id="img-container">
