@@ -297,12 +297,14 @@
 				//this is my profile page, display edit button
 				document.getElementById("FollowUser_button").style.display="none"
 				document.getElementById("EditProfile_button").style.display="initial"
+				document.getElementById("chat").style.display="none"
 				
 			}
 			else if(!own) {
 				//this is other user's button, display add/remove button
 				document.getElementById("FollowUser_button").style.display="initial"
 				document.getElementById("EditProfile_button").style.display="none"
+				document.getElementById("chat").style.display="initial"
 			}	
 		</script>
 </html>
