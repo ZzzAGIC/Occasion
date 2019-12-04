@@ -134,7 +134,7 @@
 		<div class="row">
 			<div class="col eventList">
 				<h1 align=center><i>Events you are attending</i></h1>
-				<div class="vertical_scroll" style="margin-left: 30px">
+				<div class="vertical_scroll" style="margin-left: 30px; word-wrap: break-word;">
 				<%if(all_Events != null){
 					for(int i = 0; i < all_Events.size(); i++ ){%> 
 						<div class="row" style="white-space: nowrap;">
