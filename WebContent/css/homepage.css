@@ -30,13 +30,13 @@ input[type=text] {
 }
 
 .navbar{
-	background-color: #0072d2;
+	background-color: #81D8D0;
 	height: 70px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    border-bottom: 1px solid purple;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: row;
+	/* border-bottom: 1px solid purple; */
 }
 	
 .logo {
@@ -54,7 +54,7 @@ input[type=text] {
     width: 130px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: #0072d2;
+    background-color: #81D8D0;
     color: white;
     border: none;
 }
@@ -81,18 +81,18 @@ input[type=text] {
 
 .subbutton {
    font-size: 15px;
-    height: 100%;
-    width: 130px;
-    padding-left: 0px;
-    padding-right: 0px;
-    background-color: #0072d2;
-    /* border-color: blue; */
-    /* border-style: solid; */
-    color: white;
-    border-bottom: 0.5px solid gray;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    /* border-width: 5px; */
+   height: 100%;
+   width: 130px;
+   padding-left: 0px;
+   padding-right: 0px;
+   background-color: #87CEEB;
+   /* border-color: blue; */
+   /* border-style: solid; */
+   color: white;
+   /* border-bottom: 0.5px solid gray; */
+   padding-top: 5px;
+   padding-bottom: 5px;
+   /* border-width: 5px; */
 }
 
 .subbutton:hover {

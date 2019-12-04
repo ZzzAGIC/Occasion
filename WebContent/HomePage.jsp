@@ -72,13 +72,13 @@
 	<div class="header"></div>
 
 	<div>
-		<h1 style="text-align: left;">Invitation</h1>
+		<h1 style="text-align: left; margin-left:4%;">Invitation</h1>
 	</div>
 	<div class="horizontal-events">
 		<div class="event-list" id="invitedEvents"></div>
 	</div>
 
-	<h1 style="text-align: left;">Trending</h1>
+	<h1 style="text-align: left; margin-left:4%;">Trending</h1>
 	<div class="horizontal-events">
 		<div class="event-list" id="popularEvents"></div>
 	</div>
