@@ -1,7 +1,8 @@
 @charset "UTF-8";
 body{
-	background-color:#f2f2f2;
+	background-color:#141414;
 	font-family: 'Helvetica', 'Arial', sans-serif;
+	color: #fff;
 	margin: 0;
 }
 
@@ -13,7 +14,7 @@ input[type=text] {
 
 .navbar{
 	background-color: #602f6b;
-	height: 60px;
+	height: 50px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -23,7 +24,7 @@ input[type=text] {
 	
 .logo{
 	color: white;
-	font-size: 30px;
+	font-size: 15px;
 	vertical-align: middle;
 	align: left;
 }
@@ -177,7 +178,7 @@ input[type=text] {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	padding-left: 20px;
-	background-color: white;
+	background-color: #f2f2f2;
 	text-align: center;
 	flex: 2;
   	border: 1px solid #dee2e6;

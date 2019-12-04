@@ -86,15 +86,19 @@
 		</div>
 		-->
 		<div class="post-list">
-			<div class="post-activity">
-				<div class="PostEvents">
-					<div class="post-title"><b>Title</b></div>
-					<img class="post-img" src="images/Event4.jpg" alt="Event1">
-					<div class="post-description">
-						<span class = "postText">Event Name: name of event </span> <br><br>
-						<span class= "postText">Time: time of event </span> <br><br>
-						<span class= "postText">Description: Description of event </span> <br><br>
-					</div>					
+			<div class="row">
+				<div class="post-activity">
+					<div class="PostEvents">
+						<div class="col">
+							<img class="post-img" src="images/Event4.jpg" alt="Event1">
+						</div>
+						<div class="post-title"><b>Title</b></div>
+						<div class="post-description">
+							<span class = "postText">Event Name: name of event </span> <br><br>
+							<span class= "postText">Time: time of event </span> <br><br>
+							<span class= "postText">Description: Description of event </span> <br><br>
+						</div>					
+					</div>
 				</div>
 			</div>	
 		</div>
