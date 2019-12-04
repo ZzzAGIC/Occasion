@@ -7,23 +7,15 @@
 	font-family: GothamBook;
 	src: url(Gotham-Book.otf) format("opentype");
 }
-<<<<<<< HEAD
 body{
 	background-color:#141414;
-	font-family: 'GothamPro';
+	font-family: 'Gotham';
 	color: #fff;
 	margin: 0;
-=======
-
-body {
-    background-color: #141414;
-	font-family: 'GothamPro';
-    color: #fff;
-    margin: 0;
->>>>>>> 536ad99010b4ec4b17f1b99cf73a7e88fc102141
 }
 
-button{
+
+button {
 	font-family: 'GothamBook';
 }
 
@@ -33,22 +25,15 @@ input[type=text] {
     border-radius: 3px;
 }
 
-<<<<<<< HEAD
 .navbar{
 	background-color: #602f6b;
 	height: 70px;
-=======
-.navbar {
-    background-color: #602f6b;
-    height: 50px;
->>>>>>> 536ad99010b4ec4b17f1b99cf73a7e88fc102141
     width: 100%;
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
     border-bottom: 1px solid purple;
 }
-<<<<<<< HEAD
 	
 .logo {
     color: white;
@@ -65,7 +50,7 @@ input[type=text] {
     width: 130px;
     padding-left: 0px;
     padding-right: 0px;
-=======
+}
 
 .logo {
     color: white;
@@ -80,7 +65,6 @@ input[type=text] {
     width: 130px;
     padding-left: 5px;
     padding-right: 5px;
->>>>>>> 536ad99010b4ec4b17f1b99cf73a7e88fc102141
     background-color: #602f6b;
     color: white;
     border: none;
@@ -276,14 +260,8 @@ input[type=text] {
 }
 
 .friend-text {
-<<<<<<< HEAD
 	margin-top: 5px;
 	text-align: center;
-=======
-    margin-top: 5px;
-    text-align: center;
-    color: black;
->>>>>>> 536ad99010b4ec4b17f1b99cf73a7e88fc102141
 }
 
 .friend-image-container {
