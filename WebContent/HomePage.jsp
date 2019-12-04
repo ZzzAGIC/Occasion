@@ -85,25 +85,11 @@
 			</div>
 		</div>
 		-->
-		<div class="post-list">
-			<div class="row">
-				<div class="post-activity">
-					<div class="PostEvents">
-						<div class="col">
-							<img class="post-img" src="images/Event4.jpg" alt="Event1">
-						</div>
-						<div class="post-title"><b>Title</b></div>
-						<div class="post-description">
-							<span class = "postText">Event Name: name of event </span> <br><br>
-							<span class= "postText">Time: time of event </span> <br><br>
-							<span class= "postText">Description: Description of event </span> <br><br>
-						</div>					
-					</div>
-				</div>
-			</div>	
-		</div>
+		<div class="post-list" id="post-list">
 		
+		</div>	
 	</div>
+		
 	
 	<div class="footer">
 	
@@ -207,56 +193,51 @@
 			}
 			//Add Post Activity
 			for(var i = 0; i < userPost.length; i++) {
-				var a = document.createElement("a");
-				
-				var image = document.createElement("IMG");
-				image.className = "post-img";
-				image.src = userPost[i].pictures;
-				image.id = "post" + i;
-				a.append(image);
-				
-				var related_event = document.createElement("a");
-				related_event.innerHTML = "<br>Related event: " + userPost[i].related_Event.event_name;
-				related_event.href = "EventProfile.jsp?EventID=" + userPost[i].related_Event.eventID;
-				related_event.className = "post-description";
-				a.append(related_event);
-				
-				var text = document.createElement("h2");
-				text.innerHTML = userPost[i].post_text;
-				text.className = "post-description";
-				a.append(text);
-				
-				
+					
 				var container = document.createElement("div");
 				container.className = "post-activity";
 				
-				var post = document.createElement("div");
-				post.className = "PostEvents";
+				var post_image = document.createElement("div");
+				post_image.className = "post-image";
 				
-				var title = document.createElement("div");
-				title.className = "post-title";
-				title.innerHTML = userPost[i].related_Event.event_name + " has shared the post"
+				var post_description = document.createElement("div");
+				post_description.className = "post_description";
 				
 				var image = document.createElement("img");
+				image.className = "post-img";
 				image.src = userPost[i].pictures;
 				image.id = "post" + i;
 				
+				var titleContainer = document.createElement("div");
+				titleContainer.className = "post-title";
+				
+				var title = document.createElement("span");
+				title.innerHTML = userPost[i].related_Event.event_name + " has shared the post"
+				
 				var description = document.createElement("div");
-				description.className = "post-description";
+				description.className = "postText";
 				
 				var name = document.createElement("span");
-				name.className = "class-text";
+				name.className = "postText";
 				name.innerHTML = "Event Name: " + userPost[i].related_Event.event_name;
 				
 				var time = document.createElement("span");
-				time.className = "class-text";
+				time.className = "postText";
 				time.innerHTML = "Event Time: ";
 				
-				var description = document.createElement("span");
-				description.className = "class-text";
-				description.innerHTML = "Post Description: " + userPost[i].post_text;
-
-				document.getElementById("post-list").append(a);
+				post_image.append(image);
+				
+				titleContainer.append(title);
+				
+				post_description.append(titleContainer);
+				post_description.append(name);
+				post_description.append(time);
+				post_description.append(description);
+				
+				container.append(post_image);
+				container.append(post_description);
+				
+				document.getElementById("post-list").append(container);
 			}	
 		});
 		
