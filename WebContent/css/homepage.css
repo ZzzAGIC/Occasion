@@ -7,9 +7,13 @@
 	font-family: GothamBook;
 	src: url(Gotham-Book.otf) format("opentype");
 }
+@font-face {
+	font-family: GothamMedium;
+	src: url(Gotham-Medium.otf) format("opentype");
+}
 body{
 	background-color:#141414;
-	font-family: 'GothamBook';
+	font-family: 'GothamMedium';
 	color: #fff;
 	margin: 0;
 }
@@ -286,12 +290,17 @@ input[type=text] {
     border-bottom: 1px solid gray;
     width: 100%;
     margin: auto;
-    padding: 40px;
+    padding: 4%;
 }
 
 .profile_all {
     margin-left: auto;
     margin-right: auto;
+}
+
+.profPageButton {
+    margin-left: 85px;
+    margin-top: 12px;
 }
 
 .submitButtonElement {
@@ -305,7 +314,8 @@ input[type=text] {
 }
 
 #prof-text {
-    margin-left: 300px;
+    margin-left: 190px;
+    font-size: 22px;
 }
 
 .profile_activity {
@@ -374,13 +384,13 @@ input[type=text] {
 }
 
 .profile-img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
 }
 
 .profile-description {
     display: inline-block;
-    top: -30px;
+    top: -127px;
     position: relative;
     left: 0;
 }
