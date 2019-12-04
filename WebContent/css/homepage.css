@@ -393,7 +393,7 @@ input[type=text] {
 
 .profile-description {
     display: inline-block;
-    top: -127px;
+    top: -110px;
     position: relative;
     left: 0;
 }
@@ -418,6 +418,9 @@ input[type=text] {
 
 iframe {
     width: 500px;
+    height: 300px;
+    margin-left: 102px;
+    position: relative;
 }
 
 .form-banner {

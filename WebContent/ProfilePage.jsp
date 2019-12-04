@@ -146,9 +146,6 @@
 					
 					<button class="profPageButton button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
 					<button class="profPageButton button" id="UnfollowUser_button" type="button" onclick="Unfollowing();" style="display: none;">Unfollow</button>
-					<div id="chat">
-					<button class="profPageButton button" onclick="chat()">Chat</button>
-					</div>
 				</form>
 				<div id="submitButton" style="text-align: center;">
 					<button class="button" id="EditProfile_button" type="button" onclick="module.editProfile();">Edit profile</button></div>				
@@ -166,6 +163,7 @@
 			    	</div>
 				</form>
 			</div>
+			<div id="chat"></div>
 			<br>
 		</div>
 	
@@ -207,16 +205,11 @@
 	
 	</div>
 	<script>
-		function chat(){
-			var un = "<%= myname.toLowerCase() %>";
-			var ou = "<%= curr_username.toLowerCase()%>";
-			var src = "http://localhost:3000/?username="+un+"&otherUser=" + ou;
-			document.getElementById('chat').innerHTML = "<iframe src=\"http://localhost:3000/?username="
-					+un+"&otherUser="+ou+"\"></iframe>"+"<br><button id=\"chat_button\" class=\"button\" onclick=\"closeChat()\">Close chat</button>";
-		}
-		function closeChat(){
-			document.getElementById('chat').innerHTML = "<button class=\"button\" onclick=\"chat()\">Chat</button>";
-		}
+	var un = "<%= myname.toLowerCase() %>";
+	var ou = "<%= curr_username.toLowerCase()%>";
+	var src = "http://localhost:3000/?username="+un+"&otherUser=" + ou;
+	document.getElementById('chat').innerHTML = "<iframe src=\"http://localhost:3000/?username="
+			+un+"&otherUser="+ou+"\"></iframe>";
 	</script>
 </body>
 	<script>
