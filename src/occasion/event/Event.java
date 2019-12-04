@@ -1,5 +1,6 @@
 package occasion.event;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -198,7 +199,6 @@ public class Event {
 	}
 		
 	public String getPictures(){
-//		return pictures;
 		return img;
 	}
 //	public void addPictures(String P) {

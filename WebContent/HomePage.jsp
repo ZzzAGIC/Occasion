@@ -227,7 +227,7 @@
 				
 				var time = document.createElement("span");
 				time.className = "postText";
-				time.innerHTML = "Event Time: ";
+				time.innerHTML = "Event Time: " + userPost[i].related_Event.event_time;
 				
 				post_image.append(image);
 				

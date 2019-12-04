@@ -148,17 +148,16 @@
 				
 	%>
 	
+	<div class="horizontal-events" id="friend_list">
 	
-	<div class="friend_list" id="friend_list">
-	
-			<div id="search-list" class="list">
+			<div id="search-list" class="event-list">
 				
 			</div>		
 	</div>
 	
-	<div class="friend_list">
-		<h1 align=center><%=myusername%>'s Following Users</h1>		
-		<div class="list">
+	<h1 align=center><%=myusername%>'s Following Users</h1>			
+	<div class="horizontal-events">
+		<div class="event-list">
 		<%if(followingUsers != null){
 			for(int i = 0; i < followingUsers.size(); i++ ){%> 
 				<div class = "friend-panel">

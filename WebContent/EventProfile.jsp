@@ -175,19 +175,24 @@
 			
 			<h1 align=center><i>Details for <%=name%></i></h1>
 
-	    	<img src="<%=img%>" alt="event image" align="left" height="260" width="340">
 
-	    	<div class="profile_text">
-		    	<h4>Type: <span id="Type"><%=type%></span></h4>
-		    	<h4>Initiator: <span id="Initiator">
-		    		<a href="ProfilePage.jsp?Friend_User=<%=initiator%>">
-					<%=initiator%>
-					</a></span></h4>
-		    	<h4>Time: <span id="Time"><%=time%></span></h4>
-		    	<h4>Description: <span id="Description"><%=description%></span></h4>
-		    	<h4>Price: $<%=price%></h4>
-		    	<h4>Free spots: <%=freespots%></h4>
-		    	<h4>Location: <%=location%></h4>
+			<div>
+				<div style="float: left; width: 60%; margin-top: 50px; margin-left: 30px;">
+					<img src="<%=img%>" alt="event image" align="left" height="260" width="340">
+			    	<div class="profile_text">
+				    	<h4>Type: <span id="Type"><%=type%></span></h4>
+				    	<h4>Initiator: <span id="Initiator">
+				    		<a href="ProfilePage.jsp?Friend_User=<%=initiator%>">
+							<%=initiator%>
+							</a></span></h4>
+				    	<h4>Time: <span id="Time"><%=time%></span></h4>
+				    	<h4>Description: <span id="Description"><%=description%></span></h4>
+				    	<h4>Price: $<%=price%></h4>
+				    	<h4>Free spots: <%=freespots%></h4>
+				    	<h4>Location: <%=location%></h4>
+			    	</div>
+		    	</div>
+		    	<div id="map"></div>
 	    	</div>
 	    	<%if(!own_event) {
 	    		if(!followed){%>
@@ -198,16 +203,23 @@
 	    	}
 	    	else if(own_event) {%>
 				<h4>Attendents: </h4>
-				<%if(attendents != null){
-				for(int i = 0; i < attendents.size(); i++ ){%> 
-					
-					<a href="ProfilePage.jsp?Friend_User=<%=attendents.get(i).getUsername()%>">
-					<h4><%=attendents.get(i).getUsername()%></h4>
-					</a>
-					
-				
-				<%}}
-				else if(attendents == null){%> 
+				<div class="horizontal-events">
+					<div class="event-list">
+						<%if(attendents != null){
+						for(int i = 0; i < attendents.size(); i++ ){%> 			
+						<div class = "friend-panel">
+							<div class="friend-image-container">
+								<a href="ProfilePage.jsp?Friend_User=<%=attendents.get(i).getUsername()%>">
+								<img class="friend-image" src="<%=attendents.get(i).getImage() %>" 
+								alt="<%=attendents.get(i).getUsername()%>'s profile image" >
+								</a>
+							</div>
+							<h4 class="friend-text"><%=attendents.get(i).getUsername()%></h4>
+						</div>			
+				<%}%>
+					</div>
+				</div>		
+				<% } else if(attendents == null){%> 
 				<h4>N/A</h4>
 				<%}%>
 				
@@ -233,10 +245,6 @@
 			    </div>
 				
 			<%}%>
-		<div id="map"></div>
-		
-		
-		
 		</div>
 	
 	</div>
