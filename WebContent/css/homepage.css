@@ -422,9 +422,10 @@ iframe{
    height: 200px;
    width: 300px;
    background-color: white;
-   border: 1px solid gray;
+   border: 0.5px solid gray;
    color: black;
    display: none;
+   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .notification-message {

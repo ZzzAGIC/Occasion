@@ -110,12 +110,6 @@
 	    <%}}%> 
 		
 	    </div>
-	    
-	    
-	    <h1 align=center><%=myusername%>'s Past Events</h1>
-		<div class="list">
-		
-	    </div>
 	</div>
 	
 	<div class="notificationBox" id="notificationBox">
