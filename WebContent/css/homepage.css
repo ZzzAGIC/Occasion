@@ -12,9 +12,9 @@
 	src: url(Gotham-Medium.otf) format("opentype");
 }
 body{
-	background-color:#e0eef1;
+	background-color: white;
 	font-family: 'GothamMedium';
-	color: #02283f;
+	color: #00385a;
 	margin: 0;
 }
 
@@ -30,7 +30,7 @@ input[type=text] {
 }
 
 .navbar{
-	background-color: #78bcda;
+	background-color: #00385a;
 	height: 70px;
     width: 100%;
     display: flex;
@@ -54,7 +54,7 @@ input[type=text] {
     width: 130px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: #78bcda;
+    background-color: #00385a;
     color: white;
     border: none;
 }
