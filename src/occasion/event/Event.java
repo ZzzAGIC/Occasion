@@ -180,10 +180,10 @@ public class Event {
 		List<List<String>> result = Database.SelectQuery(query,Integer.toString(this.eventID));
 		ArrayList<User> Attendants_ = new ArrayList<User>();
 		for(List<String> item : result) {
-			String find_ID = "SELECT Username FROM User WHERE UserID = ?";
+			String find_ID = "SELECT * FROM User WHERE UserID = ?";
 			List<List<String>> IDresult = Database.SelectQuery(find_ID,item.get(0));
 			
-			Attendants_.add(new User(IDresult.get(0).get(0)));
+			Attendants_.add(new User(IDresult.get(0)));
 		}
 		
 		
