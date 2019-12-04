@@ -298,6 +298,7 @@ input[type=text] {
 .profile_all {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 50px;
 }
 
 .profPageButton {
@@ -371,11 +372,20 @@ input[type=text] {
     position: absolute;
 }
 
-#map {
+.map {
     height: 400px;
     width: 500px;
 }
 
+.map-explore {
+    height: 600px;
+    width: 400px;
+}
+
+.invite-button {
+	margin-left: 40px;
+	
+}
 .image-form-container {
     width: 200px;
     height: 200px;

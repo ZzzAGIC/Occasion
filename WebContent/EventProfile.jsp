@@ -193,7 +193,7 @@
 				    	<h4>Location: <%=location%></h4>
 			    	</div>
 		    	</div>
-		    	<div id="map"></div>
+		    	<div class="map" id="map"></div>
 	    	</div>
 	    	<%if(!own_event) {
 	    		if(!followed){%>
@@ -224,25 +224,27 @@
 				<h4>N/A</h4>
 				<%}%>
 				
-				<button id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
-			    <div id="new_invitation" style="display:none;">
-			    
-			    <form class="form" action="new_invitation" method="post"> 
-				<div id="formerror" style="color: red;"> 
-				<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
-				</div>
-			    Select Users to invite:<br/>
-				<%if(followingUsers != null){
-					for(int i = 0; i < followingUsers.size(); i++ ){%> 
-						<input type="checkbox" name="members" 
-						value="<%=followingUsers.get(i).getUserID()%>"><%=followingUsers.get(i).getUsername()%>
-						<br>
-					
-			    <%}}%> 
-			    <input type="hidden" name ="EventID" value="<%= EventID %>"/>
-			    <input class="button" type="submit" value="Invite!"/>  
-				</form> 
-			    
+				<div>
+					<button class="invite-button" id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
+				    <div id="new_invitation" style="display:none;">
+				    
+				    <form class="form" action="new_invitation" method="post"> 
+						<div id="formerror" style="color: red;"> 
+						<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+						</div>
+					    Select Users to invite:<br/>
+						<%if(followingUsers != null){
+							for(int i = 0; i < followingUsers.size(); i++ ){%> 
+								<input type="checkbox" name="members" 
+								value="<%=followingUsers.get(i).getUserID()%>"><%=followingUsers.get(i).getUsername()%>
+								<br>
+							
+					    <%}}%> 
+					    <input type="hidden" name ="EventID" value="<%= EventID %>"/>
+					    <input class="button" type="submit" value="Invite!"/>  
+					</form> 
+				    
+				    </div>
 			    </div>
 				
 			<%}%>

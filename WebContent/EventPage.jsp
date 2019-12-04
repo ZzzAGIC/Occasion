@@ -154,7 +154,7 @@
 			    </div>
 			</div>
 						
-			<div class="col" id="map" style="margin-top: 50px;"></div>
+			<div class="map-explore col" id="map" style="margin-top: 50px;"></div>
 		</div>
 			
 			<div class="recommended" style="font-size: 30px">	
