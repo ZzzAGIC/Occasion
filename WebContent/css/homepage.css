@@ -62,7 +62,7 @@ input[type=text] {
 .large-button {
     width: 200px;
     height: 35px;
-    background-color: #78bcda;
+    background-color: #f56f6c;
     border: 1px solid purple;
 }
 
@@ -86,7 +86,7 @@ input[type=text] {
 }
 
 .subbutton:hover {
-    background-color: #b3ffff;
+    background-color: #78bcda;
 }
 
 .button:hover {
