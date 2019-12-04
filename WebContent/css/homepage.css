@@ -80,13 +80,23 @@ input[type=text] {
 }
 
 .subbutton {
-    width: 80px;
-    border-radius: 8px;
-    background-color: white;
+   	font-size: 20px;
+    height: 100%;
+    width: 130px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color: #501f5b;
+    /* border-color: blue; */
+    /* border-style: solid; */
+    color: white;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* border-width: 5px; */
 }
 
 .subbutton:hover {
-    background-color: #b3ffff;
+    text-decoration: underline;
 }
 
 .button:hover {
