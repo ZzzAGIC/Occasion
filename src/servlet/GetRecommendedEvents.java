@@ -52,7 +52,7 @@ public class GetRecommendedEvents extends HttpServlet {
 	    list.setRecommended(recommendedEventData);
 	    
 	    String json = new Gson().toJson(list);
-	    System.out.println(json);
+//	    System.out.println(json);
 	    
 		PrintWriter out = response.getWriter();
 		out.write(json);
