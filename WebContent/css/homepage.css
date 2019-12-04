@@ -13,8 +13,8 @@
 }
 body{
 	background-color: rgb(250, 250, 250);
-	font-family: 'GothamMedium';
-	color: #00385a;
+	font-family: 'GothamBook';
+	/* color: #00385a; */
 	margin: 0;
 }
 
@@ -30,7 +30,7 @@ input[type=text] {
 }
 
 .navbar{
-	background-color: #81D8D0;
+	background-color: #f85b1a;
 	height: 70px;
 	width: 100%;
 	display: flex;
@@ -54,7 +54,7 @@ input[type=text] {
     width: 130px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: #81D8D0;
+    background-color: #f85b1a;
     color: white;
     border: none;
 }
@@ -85,7 +85,7 @@ input[type=text] {
    width: 130px;
    padding-left: 0px;
    padding-right: 0px;
-   background-color: #87CEEB;
+   background-color: black;
    /* border-color: blue; */
    /* border-style: solid; */
    color: white;
