@@ -41,9 +41,9 @@ input[type=text] {
 	
 .logo {
     color: white;
+    font-family: GothamMedium;
     font-size: 31px;
     vertical-align: middle;
-    align: left;
     margin-left: 21px;
     margin-top: 19px;
 }
