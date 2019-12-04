@@ -186,19 +186,6 @@
 	    </div>
 	</div>
 	
-	<h1 style="text-align: center;"><%=curr_username%>'s Posts</h1>
-	<div class="profile_posts">
-		<div class="vertical_scroll" >
-		<%if(all_Posts != null){
-			for(int i = 0; i < all_Posts.size(); i++ ){%> 
-				<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
-				<img src="<%=all_Posts.get(i).getPictures() %>" 
-				alt="<%=all_Events.get(i).getEventName()%>'s profile image" style="margin:19px" height="240" width="420">
-				</a>
-	    <%}}%> 
-	    </div>
-	</div>
-	
 	</div>
 	
 	<div class="footer">
