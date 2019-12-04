@@ -331,11 +331,13 @@ input[type=text] {
     margin-top: 50px;
     margin-bottom: 50px;
     width: 50%;
-    text-align: center;
+    text-align: left;
     background-color: white;
     color: black;
     border: 1px solid gray;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
+
 
 .col {
     flex: 50%;
@@ -431,6 +433,7 @@ iframe {
     width: 50%;
     text-align: center;
     background-color: white;
+    color: black;
     border: 1px solid gray;
     position: absolute;
     top: 50%;
