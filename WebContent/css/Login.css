@@ -7,7 +7,6 @@ input{
 	width:270px;
 	padding: 8px 2px 8px 2px;
 	border-radius: 3px;
-	border: 0.5px solid black;
 }
 
 input[type=radio] {
