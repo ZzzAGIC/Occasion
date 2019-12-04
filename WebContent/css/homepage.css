@@ -1,7 +1,15 @@
 @charset "UTF-8";
+@font-face {
+	font-family: Gotham;
+	src: url(Gotham_Bold.otf) format("opentype");
+  }
+@font-face {
+	font-family: GothamPro;
+	src: url(GothamPro-Black.woff);
+}
 body{
 	background-color:#141414;
-	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-family: 'GothamPro';
 	color: #fff;
 	margin: 0;
 }
