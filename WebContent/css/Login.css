@@ -10,6 +10,10 @@ input{
 	border: 0.5px solid black;
 }
 
+input[type=radio] {
+	width: fit-content;
+}
+
 .banner {
 	background-color: #602f6b;
 	border-bottom: 1px solid purple;
@@ -52,4 +56,16 @@ input{
     font-weight: 400;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.register-container {
+	height: 800px;
+	width: 500px;
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+  	background-color: white;
 }

@@ -114,6 +114,7 @@
 					document.getElementById("Signout_button").style.display="initial"
 				}
 				else {
+					window.location.replace("Login.jsp");
 					//not login, display login & register
 					document.getElementById("Login_button").style.display="initial"
 					document.getElementById("Register_button").style.display="initial"

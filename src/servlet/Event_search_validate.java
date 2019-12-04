@@ -45,8 +45,8 @@ public class Event_search_validate extends HttpServlet {
 		String next = "/EventPage.jsp";
 		String error = "";
 		
-		if(selection =="") {
-			error += "Search content cannot be empty & ";
+		if(selection == "" || selection == null) {
+			error += "Search content cannot be empty <br> ";
 			next = "/EventPage.jsp";
 		}
 		else if(selection.compareTo("EventName") == 0) {
@@ -70,7 +70,7 @@ public class Event_search_validate extends HttpServlet {
 				request.setAttribute("content", event);
 			}
 			else if(output.size() == 0){
-				error += "Event does not exist! & ";
+				error += "Event does not exist! <br> ";
 				next = "/EventPage.jsp";
 			}
 		}

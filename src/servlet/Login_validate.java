@@ -44,11 +44,11 @@ public class Login_validate extends HttpServlet {
 			
 
 		if(login_name =="") {
-			error += "Username cannot be empty & ";
+			error += "Username cannot be empty <br> ";
 			next = "/Login.jsp";
 		}
 		if(login_pass =="") {
-			error += "password cannot be empty & ";
+			error += "password cannot be empty <br> ";
 			next = "/Login.jsp";
 		}
 		try {
@@ -59,7 +59,7 @@ public class Login_validate extends HttpServlet {
 			}
 			//login failed
 			else {
-				error += "invalid username or wrong password  & ";
+				error += "invalid username or wrong password <br>";
 				next = "/Login.jsp";
 			}
 		} catch (SQLException e){

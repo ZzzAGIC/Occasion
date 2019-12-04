@@ -9,7 +9,10 @@
 </head>
 <body>
 	
-	<div align="center">
+	<div class="register-container">
+		<div class="banner">
+				<p class="banner-text">Login</p>
+		</div>
 		<form class="form" action="register_validate" method="post">
 		<div id="formerror" style="color: red;">  
 		<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>

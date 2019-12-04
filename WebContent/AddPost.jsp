@@ -125,6 +125,7 @@
 			}
 			else {
 				//not login, display login & register
+				window.location.replace("Login.jsp");
 				document.getElementById("Login_button").style.display="initial"
 				document.getElementById("Register_button").style.display="initial"
 				document.getElementById("Profilepage_button").style.display="none"
