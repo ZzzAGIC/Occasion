@@ -9,9 +9,9 @@
 </head>
 <body>
 	
-	<div class="register-container">
+	<div align=center class="register-container">
 		<div class="banner">
-				<p class="banner-text">Login</p>
+				<p class="banner-text">Register</p>
 		</div>
 		<form class="form" action="register_validate" method="post">
 		<div id="formerror" style="color: red;">  
@@ -63,7 +63,8 @@
 		Confirm password:<br/> <input class="bar" type="password" name="new_userpass2"/><br/><br/>  
 		
 		profile image:<br/> <input class="bar" type="text" name="profile_image"/><br/><br/>  
-		<input class="button" type="submit" name="status" />  
+		<input class="button" type="submit" name="status"/> <br>
+		<a style="padding-top: 20px; "href="Login.jsp">Login</a>
 		</form>  
 	</div>
 
