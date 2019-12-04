@@ -50,14 +50,6 @@ input[type=text] {
     width: 130px;
     padding-left: 0px;
     padding-right: 0px;
-}
-
-.button {
-    font-size: 16px;
-    height: 100%;
-    width: 130px;
-    padding-left: 5px;
-    padding-right: 5px;
     background-color: #602f6b;
     color: white;
     border: none;
