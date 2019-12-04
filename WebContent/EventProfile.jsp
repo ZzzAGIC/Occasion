@@ -173,10 +173,11 @@
 					
 			%>
 			
-			<h1 align=center><i>Details for <%=name%></i></h1>
 
 
 			<div>
+				<h1 align=center>Details for <%=name%></h1>
+			
 				<div style="float: left; width: 60%; margin-top: 50px; margin-left: 30px;">
 					<img src="<%=img%>" alt="event image" align="left" height="260" width="340">
 			    	<div class="profile_text">
@@ -202,7 +203,7 @@
 			<% }
 	    	}
 	    	else if(own_event) {%>
-				<h4>Attendents: </h4>
+				<h3 style="margin-left:	40px;">Attendents: </h3>
 				<div class="horizontal-events">
 					<div class="event-list">
 						<%if(attendents != null){
