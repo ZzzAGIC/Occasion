@@ -173,7 +173,7 @@
 	    <%}}%> 
 	    </div>
 	</div>
-	<div>
+<%-- 	<div>
 	    <h1 align=center><%=myusername%>'s Groups</h1>
 		<div class="list">
 		
@@ -201,7 +201,7 @@
 		</form> 
 	    
 	    </div>
-	</div>
+	</div> --%>
 	
 		
 	
