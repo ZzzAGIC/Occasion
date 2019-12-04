@@ -4,10 +4,17 @@ import java.io.File;
 import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.TreeSet;
+
+import com.sun.tools.javac.util.Pair;
 
 import occasion.event.Event;
 import occasion.event.Location;
@@ -305,29 +312,64 @@ public class User {
 		futureEvent.add(E);
 	}
 	
-	//Placeholder Replace
 	public ArrayList<Event> getRecommendedEvents() {
-		String query = "SELECT * from Event;";
+		String query = "SELECT * from Event WHERE EventID NOT IN (SELECT EventID FROM Attendance WHERE UserID = ? );";
 
-		List<List<String>> details = Database.SelectQuery(query);
+		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
+			
+		Map<String, Double> preferences = new HashMap<String, Double>(); 
 		
-		//query = "SELECT * FROM User WHERE UserID IN ()";
-		//query = "";
-		ArrayList<Event> recommend = new ArrayList<Event>();
+		query = "SELECT Type FROM Event WHERE EventID IN (SELECT EventID FROM Attendance WHERE UserID = ? AND RSVPStatus = 2)";
 		
-		//ArrayList<Integer> event_points = new ArrayList<Integer>(recommend.size());
+		List<List<String>> pref_List = Database.SelectQuery(query, Integer.toString(this.userID));
+		
+		for(List<String> item : pref_List) {
+			double count = preferences.containsKey(item.get(0)) ? preferences.get(item.get(0)) : 0;
+			preferences.put(item.get(0), count + 1);
+		}
+		
+		for (Map.Entry<String,Double> entry : preferences.entrySet()) {
+			preferences.compute(entry.getKey(), (key, val) -> (val = val / pref_List.size()));
+		}
+				
+		
+		PriorityQueue<Node> queue = new PriorityQueue<>(new NodeComparator());
 		
 		for(List<String> item : details) {
 			Event event = new Event(item);
+			Double score = preferences.get(event.getType());
 			
-			
-			
-			
-			recommend.add(event);
+			if(score == null) queue.add(new Node(event, 0));
+			else queue.add(new Node(event, score.intValue()));			
+		}
+		ArrayList<Event> recommend = new ArrayList<Event>();
+		
+		for(int i = 0; i < Math.max(queue.size(), 10); i++) {
+			if(queue.peek() != null) {
+				System.out.println(queue.peek().key.getEventName() + " " + queue.peek().value);
+				recommend.add(queue.peek().key);
+				queue.remove();
+			}
 		}
 		return recommend;
 	}
 	
+	  class Node{
+	        public int value;
+	        public Event key;
+	        
+	        public Node(Event key, int v){
+	            this.value = v;
+	            this.key = key;
+	        }
+	  }
+	  
+	  class NodeComparator implements Comparator<Node>{
+	        public int compare(Node a, Node b){
+	            return (b.value -a.value);
+	        }
+	   }
+	  
 	//Placeholder Replace
 	public ArrayList<Event> getInvitedEvents() {
 		String query = "SELECT * FROM Event WHERE EventID IN (select EventID from Attendance WHERE UserID = ? AND RSVPStatus = '1');";
@@ -385,4 +427,6 @@ public class User {
 		System.out.println("Nickname: " + getNickname());
 		System.out.println("Email: " + getEmail());
 	}
+	
 }
+
