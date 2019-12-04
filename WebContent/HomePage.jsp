@@ -77,21 +77,27 @@
 	
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
-		<div>
+		<!--  <div>
 			<div class="post-activity" >
 				<div id="PostEvents">
 				
 				</div>
 			</div>
 		</div>
-		<!--   <div>
+		-->
+		<div class="post-list">
 			<div class="post-activity">
-				<img class="post-img" src="images/Event4.jpg" alt="Event1">
-				<div class="post-description">
-					<b class = "postTitle">Text Description</b>
+				<div class="PostEvents">
+					<div class="post-title"><b>Title</b></div>
+					<img class="post-img" src="images/Event4.jpg" alt="Event1">
+					<div class="post-description">
+						<span class = "postText">Event Name: name of event </span> <br><br>
+						<span class= "postText">Time: time of event </span> <br><br>
+						<span class= "postText">Description: Description of event </span> <br><br>
+					</div>					
 				</div>
 			</div>	
-		</div> -->
+		</div>
 		
 	</div>
 	
@@ -215,12 +221,38 @@
 				text.innerHTML = userPost[i].post_text;
 				text.className = "post-description";
 				a.append(text);
-				/* 
-				var style = document.createElement("style");
-				style.innerHTML = "margin-left: auto;margin-right: auto;";
-				a.append(style); */
 				
-				document.getElementById("PostEvents").append(a);
+				
+				var container = document.createElement("div");
+				container.className = "post-activity";
+				
+				var post = document.createElement("div");
+				post.className = "PostEvents";
+				
+				var title = document.createElement("div");
+				title.className = "post-title";
+				title.innerHTML = userPost[i].related_Event.event_name + " has shared the post"
+				
+				var image = document.createElement("img");
+				image.src = userPost[i].pictures;
+				image.id = "post" + i;
+				
+				var description = document.createElement("div");
+				description.className = "post-description";
+				
+				var name = document.createElement("span");
+				name.className = "class-text";
+				name.innerHTML = "Event Name: " + userPost[i].related_Event.event_name;
+				
+				var time = document.createElement("span");
+				time.className = "class-text";
+				time.innerHTML = "Event Time: ";
+				
+				var description = document.createElement("span");
+				description.className = "class-text";
+				description.innerHTML = "Post Description: " + userPost[i].post_text;
+
+				document.getElementById("post-list").append(a);
 			}	
 		});
 		
