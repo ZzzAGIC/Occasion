@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.TreeSet;
 
 import com.sun.tools.javac.util.Pair;
@@ -312,7 +314,7 @@ public class User {
 		futureEvent.add(E);
 	}
 	
-	public ArrayList<Event> getRecommendedEvents() {
+	public Set<Event> getRecommendedEvents() {
 		String query = "SELECT * from Event WHERE EventID NOT IN (SELECT EventID FROM Attendance WHERE UserID = ? );";
 
 		List<List<String>> details = Database.SelectQuery(query, Integer.toString(this.userID));
@@ -330,8 +332,7 @@ public class User {
 		
 		for (Map.Entry<String,Double> entry : preferences.entrySet()) {
 			preferences.compute(entry.getKey(), (key, val) -> (val = val / pref_List.size()));
-		}
-				
+		}			
 		
 		PriorityQueue<Node> queue = new PriorityQueue<>(new NodeComparator());
 		
@@ -342,26 +343,28 @@ public class User {
 			if(score == null) queue.add(new Node(event, 0));
 			else queue.add(new Node(event, score.intValue()));			
 		}
-		ArrayList<Event> recommend = new ArrayList<Event>();
-		
+		//ArrayList<Event> recommend = new ArrayList<Event>();
+        Set<Event> recommendSet = new HashSet<Event>(); 
+
 		for(int i = 0; i < Math.max(queue.size(), 10); i++) {
 			if(queue.peek() != null) {
 				System.out.println(queue.peek().key.getEventName() + " " + queue.peek().value);
-				recommend.add(queue.peek().key);
+				recommendSet.add(queue.peek().key);
+				//recommend.add(queue.peek().key);
 				queue.remove();
 			}
 		}
-		return recommend;
+		return recommendSet;
 	}
 	
-	  class Node{
-	        public int value;
-	        public Event key;
+	class Node{
+		public int value;
+	    public Event key;
 	        
-	        public Node(Event key, int v){
-	            this.value = v;
-	            this.key = key;
-	        }
+	    public Node(Event key, int v){
+	    	this.value = v;
+	        this.key = key;
+	    }
 	  }
 	  
 	  class NodeComparator implements Comparator<Node>{

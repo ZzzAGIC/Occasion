@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +42,7 @@ public class GetRecommendedEvents extends HttpServlet {
 	    
 	    User currentUser = new User(username);
 	    
-	    ArrayList<Event> recommendedEvents = currentUser.getRecommendedEvents();
+	    Set<Event> recommendedEvents = currentUser.getRecommendedEvents();
 	    ArrayList<EventData> recommendedEventData = new ArrayList<EventData>();	    
 	    for(Event event : recommendedEvents) {
 	    	recommendedEventData.add(new EventData(event.getEventName(), event.getPictures(), event.getEventID(), event.getEventTime()));
