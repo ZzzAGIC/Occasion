@@ -37,16 +37,22 @@ public class Going_Event extends HttpServlet {
 		// TODO Auto-generated method stub
 		String Username = request.getParameter("Username");
 		String E_ID = request.getParameter("EventID");
+		String type = request.getParameter("Type");
 		int Event_ID = Integer.parseInt(E_ID);
 		User cur_User = new User(Username);
 		Event join_Event =  new Event(Event_ID);
 		int UserID = cur_User.getUserID();
 		
-		
+
 		try{
-			add_event(UserID,join_Event.getEventID());
+			if(type.compareTo("Add") == 0) {
+				add_event(UserID,join_Event.getEventID());
+			}
+			else if(type.compareTo("Delete") == 0) {
+				delete_event(UserID,join_Event.getEventID());
+			}
 			response.sendRedirect("/EventPage.jsp");
-			System.out.println("follow user");
+			
 		}
 		catch (SQLException e){
 			e.printStackTrace();
@@ -68,6 +74,7 @@ public class Going_Event extends HttpServlet {
 		
 		//if not invited, insert into Attendance
 		if(output.isEmpty()) {
+			System.out.println("insert");
 			String toinsert = "INSERT INTO Attendance (EventID,UserID,RSVPStatus) VALUES (?, ?, ?)";
 			//RSVPStatus: 0: nothing/1: invited/2: invitation accepted & the user will attend/
 			Database.UpdateQuery(toinsert, E_ID, U_ID, "2");
@@ -76,11 +83,27 @@ public class Going_Event extends HttpServlet {
 		
 		//if get invited, just update the RSVPStatus
 		else {
+			System.out.println("update");
 			String update_RSVP = "UPDATE Attendance SET RSVPStatus = 2 WHERE EventID = ? AND UserID = ?";
 			Database.UpdateQuery(update_RSVP, E_ID, U_ID);
 		}
 	
 		String update_size = "UPDATE Event SET size = size + 1 WHERE EventID = ?";
 		Database.UpdateQuery(update_size, E_ID);
+	}
+	
+	public static void delete_event(int UserID, int EventID) throws SQLException, ClassNotFoundException {
+		String U_ID = Integer.toString(UserID);
+		String E_ID = Integer.toString(EventID);
+		
+		
+		System.out.println("delete");
+		String todelete = "DELETE FROM Attendance WHERE EventID = ? AND UserID = ?";
+		//RSVPStatus: 0: nothing/1: invited/2: invitation accepted & the user will attend/
+		Database.UpdateQuery(todelete, E_ID, U_ID);
+		
+		
+		
+		
 	}
 }

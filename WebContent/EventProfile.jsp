@@ -21,7 +21,6 @@
 		function add(){
 			<%
 			String myname = null;
-			String follow_username = null;
 			
 			if(session.getAttribute("myname") != null) {
 					myname = session.getAttribute("myname").toString();
@@ -35,25 +34,45 @@
 			console.log(myUsername);
 			var EventID = "<%=E_ID%>";
 			console.log(EventID);
-			
-			var mylink = "Going_Event?Username="+myUsername+"&EventID="+EventID;
+			var type = "Add";
+			var mylink = "Going_Event?Username="+myUsername+"&EventID="+EventID+"&Type="+type;
 	
 			console.log(mylink);
 			var xhttp= new XMLHttpRequest();
 			xhttp.open("GET", mylink, false);
 			xhttp.send();
 			
-			if (xhttp.responseText.trim().length > 0) {
-				document.getElementById("formerror").innerHTML= xhttp.responseText;
-				
-			}
-				
-            else{
-	            document.getElementById("RemoveEvent_button").style.display="initial";
-	 			document.getElementById("AddEvent_button").style.display="none";
-            }
 			
 		}
+		
+		function remove(){
+			<%
+			
+			
+			if(session.getAttribute("myname") != null) {
+					myname = session.getAttribute("myname").toString();
+			
+			}
+			
+			E_ID = request.getParameter("EventID").toString();
+			
+			%>
+			var myUsername = "<%=myname%>";
+			console.log(myUsername);
+			var EventID = "<%=E_ID%>";
+			console.log(EventID);
+			var type = "Delete";
+			var mylink = "Going_Event?Username="+myUsername+"&EventID="+EventID+"&Type="+type;
+	
+			console.log(mylink);
+			var xhttp= new XMLHttpRequest();
+			xhttp.open("GET", mylink, false);
+			xhttp.send();
+			
+			
+		}
+		
+
 	
 	</script>
 </head>
