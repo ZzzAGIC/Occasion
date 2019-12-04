@@ -201,8 +201,7 @@
 				<% } else { %>
 					<button class="button" id="RemoveEvent_button" type="button" onclick="remove();">Unfollow</button>	
 			<% }
-	    	}
-	    	else if(own_event) {%>
+	    	%>
 				<h3 style="margin-left:	40px;">Attendents: </h3>
 				<div class="horizontal-events">
 					<div class="event-list">
@@ -217,14 +216,32 @@
 							</div>
 							<h4 class="friend-text"><%=attendents.get(i).getUsername()%></h4>
 						</div>			
-				<%}%>
+						<%}%>
 					</div>
 				</div>		
 				<% } else if(attendents == null){%> 
 				<h4>N/A</h4>
 				<%}%>
 				
+				<% } else if(own_event) { %>
 				<div>
+					<h3 style="margin-left:	40px;">Attendents: </h3>
+					<div class="horizontal-events">
+						<div class="event-list">
+							<%if(attendents != null){
+							for(int i = 0; i < attendents.size(); i++ ){%> 			
+							<div class = "friend-panel">
+								<div class="friend-image-container">
+									<a href="ProfilePage.jsp?Friend_User=<%=attendents.get(i).getUsername()%>">
+									<img class="friend-image" src="<%=attendents.get(i).getImage() %>" 
+									alt="<%=attendents.get(i).getUsername()%>'s profile image" >
+									</a>
+								</div>
+								<h4 class="friend-text"><%=attendents.get(i).getUsername()%></h4>
+							</div>			
+							<%}}%>
+						</div>
+					</div>	
 					<button class="invite-button" id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
 				    <div id="new_invitation" style="display:none;">
 				    

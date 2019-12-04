@@ -12,7 +12,7 @@
 	src: url(Gotham-Medium.otf) format("opentype");
 }
 body{
-	background-color:#141414;
+	background-color:#e0eef1;
 	font-family: 'GothamMedium';
 	color: #fff;
 	margin: 0;
@@ -30,7 +30,7 @@ input[type=text] {
 }
 
 .navbar{
-	background-color: #602f6b;
+	background-color: #78bcda;
 	height: 70px;
     width: 100%;
     display: flex;
@@ -54,7 +54,7 @@ input[type=text] {
     width: 130px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: #602f6b;
+    background-color: #78bcda;
     color: white;
     border: none;
 }
@@ -62,7 +62,7 @@ input[type=text] {
 .large-button {
     width: 200px;
     height: 35px;
-    background-color: #602f6b;
+    background-color: #78bcda;
     border: 1px solid purple;
 }
 
@@ -198,7 +198,7 @@ input[type=text] {
 .post-title {
     font-size: 30px;
     font-weight: lighter;
-    color: black;
+    color: #e0eef1;
     border-bottom: 0.5px solid black;
 }
 
@@ -446,7 +446,7 @@ iframe {
 }
 
 .form-banner {
-    background-color: #602f6b;
+    background-color: #78bcda;
     border-bottom: 1px solid purple;
     height: 100px;
 }
