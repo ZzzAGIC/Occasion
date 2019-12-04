@@ -56,9 +56,7 @@
 			</div>
 		</div>
 	</div>
-	
-	<p id="notification"></p>
-	
+		
 	<div class="header">
 		
 	</div>
@@ -100,7 +98,10 @@
 	<div class="footer">
 	
 	</div>
-
+	
+	<div class="notificationBox" id="notificationBox">
+		<p id="notification" class="notification-message"></p>
+	</div>
 </body>
 	<script>
 			var login  = <%=session.getAttribute("login")%>
@@ -248,20 +249,19 @@
 	})();
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     
-    <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+	<script>
         $(function () {
             //change username to current user
             var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
             var socket = io("http://localhost:3000/");
             socket.emit('room name',username);
             socket.on('notification', function(data){
-                //change new message to what you want to display
-                $('#notification').replaceWith($('<p>').text("new message from "));
+                document.getElementById("notificationBox").style.display = "block";
+                $('#notification').replaceWith($('<p class="notification-message">').text("new message from " + data.from));
             });
       });
-      </script>
+ </script>
 </html>

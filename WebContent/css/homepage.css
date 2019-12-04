@@ -415,6 +415,27 @@ iframe{
   position: relative;
 }
 
+.notificationBox {
+   position: fixed;
+   bottom: 0;
+   right: 0;
+   height: 200px;
+   width: 300px;
+   background-color: white;
+   border: 1px solid gray;
+   color: black;
+   display: none;
+}
+
+.notification-message {
+	text-align: center;
+	position: relative;
+    top: 50%; 
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    margin: 0;	
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

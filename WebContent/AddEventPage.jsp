@@ -225,7 +225,10 @@
 		</div>
 	</div>
 	
-
+	<div class="notificationBox" id="notificationBox">
+		<p id="notification" class="notification-message"></p>
+	</div>
+	
 </body>
 	<script>
 			var login  = <%=session.getAttribute("login")%>
@@ -253,10 +256,19 @@
 				document.getElementById("Profilepage_button").style.display="none"
 				document.getElementById("Signout_button").style.display="none"
 				
-			}
-			
-			
-			
+			}		
 		</script>
-
+		
+		<script>
+        $(function () {
+            //change username to current user
+            var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
+            var socket = io("http://localhost:3000/");
+            socket.emit('room name',username);
+            socket.on('notification', function(data){
+                //change new message to what you want to display
+                $('#notification').replaceWith($('<p>').text("new message from " + data.from));
+            });
+      	});
+      </script>
 </html>

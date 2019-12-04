@@ -238,4 +238,18 @@
 				
 			}
 		</script>
+		
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+<script>
+        $(function () {
+            //change username to current user
+            var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
+            var socket = io("http://localhost:3000/");
+            socket.emit('room name',username);
+            socket.on('notification', function(data){
+                document.getElementById("notificationBox").style.display = "block";
+                $('#notification').replaceWith($('<p class="notification-message">').text("new message from " + data.from));
+            });
+      });
+ </script>
 </html>

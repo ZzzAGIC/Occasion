@@ -343,14 +343,13 @@ public class User {
 			if(score == null) queue.add(new Node(event, 0));
 			else queue.add(new Node(event, score.intValue()));			
 		}
-		//ArrayList<Event> recommend = new ArrayList<Event>();
-        Set<Event> recommendSet = new HashSet<Event>(); 
+
+		Set<Event> recommendSet = new HashSet<Event>(); 
 
 		for(int i = 0; i < Math.max(queue.size(), 10); i++) {
 			if(queue.peek() != null) {
 				System.out.println(queue.peek().key.getEventName() + " " + queue.peek().value);
 				recommendSet.add(queue.peek().key);
-				//recommend.add(queue.peek().key);
 				queue.remove();
 			}
 		}
