@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="occasion.account.User" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="occasion.account.User"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,70 +11,78 @@
 <body>
 	<div class="navbar">
 		<h1 class="logo">Occasion</h1>
-		<button class="button" id="Homepage_button" type="button" onclick="window.location='HomePage.jsp'">Home Page</button>
+		<button class="button" id="Homepage_button" type="button"
+			onclick="window.location='HomePage.jsp'">Home Page</button>
 
 		<div class="dropdown">
-		<button class="button" type="button" >Profile</button>
+			<button class="button" type="button">Profile</button>
 			<div class="dropdown-content">
-    			<button class="subbutton" id="Login_button" type="button" onclick="window.location='Login.jsp'">Login</button>
-    			<button class="subbutton" id="Profilepage_button" type="button" onclick="window.location='ProfilePage.jsp'">My Profile</button>
-  				<br>
-				<button class="subbutton" id="Register_button" type="button" onclick="window.location='Register.jsp'">Register</button>
-  				<form action="Signout">
-  					<input class="subbutton" id="Signout_button" type="submit" value="Sign out"/>
-  				</form>
-  			</div>
-  		</div>
-  		
-  		<div class="dropdown">
-		<button class="button" id="Friendpage_button" type="button" >Friend list</button>
+				<button class="subbutton" id="Login_button" type="button"
+					onclick="window.location='Login.jsp'">Login</button>
+				<button class="subbutton" id="Profilepage_button" type="button"
+					onclick="window.location='ProfilePage.jsp'">My Profile</button>
+				<br>
+				<button class="subbutton" id="Register_button" type="button"
+					onclick="window.location='Register.jsp'">Register</button>
+				<form action="Signout">
+					<input class="subbutton" id="Signout_button" type="submit"
+						value="Sign out" />
+				</form>
+			</div>
+		</div>
+
+		<div class="dropdown">
+			<button class="button" id="Friendpage_button" type="button">Friend
+				list</button>
 			<div class="dropdown-content">
-    			<button class="subbutton" id="Friendlist_button" type="button" onclick="window.location='FriendlistPage.jsp'">Friend List</button>
-    			<br>
+				<button class="subbutton" id="Friendlist_button" type="button"
+					onclick="window.location='FriendlistPage.jsp'">Friend List</button>
+				<br>
 				<button class="subbutton" id="Chat_button" type="button" onclick="">Chats</button>
-  				
-  			</div>
-		</div>
-		
-		<div class="dropdown">
-		<button class="button" id="Eventpage_buttom" type="button">Event</button>	
-			<div class="dropdown-content">
-			<button class="subbutton" id="ExploreEvent_buttom" type="button" onclick="window.location='EventPage.jsp'">Explore Events</button>	
-			<br>
-			<button class="subbutton" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">Add Event</button>
-			<br>
-			<button class="subbutton" id="MyEvent_buttom" type="button" onclick="window.location='MyEventPage.jsp'">My Event</button>
+
 			</div>
 		</div>
-		
+
 		<div class="dropdown">
-		<button class="button" id="Add_buttom" type="button">+</button>	
+			<button class="button" id="Eventpage_buttom" type="button">Event</button>
 			<div class="dropdown-content">
-			<button class="subbutton" id="AddPost_buttom" type="button" onclick="window.location='AddPost.jsp'">Add Post</button>	
-			<br>
-			<button class="subbutton" id="AddEvent_buttom" type="button" onclick="window.location='AddEventPage.jsp'">Add Event</button>
+				<button class="subbutton" id="ExploreEvent_buttom" type="button"
+					onclick="window.location='EventPage.jsp'">Explore Events</button>
+				<br>
+				<button class="subbutton" id="AddEvent_buttom" type="button"
+					onclick="window.location='AddEventPage.jsp'">Add Event</button>
+				<br>
+				<button class="subbutton" id="MyEvent_buttom" type="button"
+					onclick="window.location='MyEventPage.jsp'">My Event</button>
+			</div>
+		</div>
+
+		<div class="dropdown">
+			<button class="button" id="Add_buttom" type="button">+</button>
+			<div class="dropdown-content">
+				<button class="subbutton" id="AddPost_buttom" type="button"
+					onclick="window.location='AddPost.jsp'">Add Post</button>
+				<br>
+				<button class="subbutton" id="AddEvent_buttom" type="button"
+					onclick="window.location='AddEventPage.jsp'">Add Event</button>
 			</div>
 		</div>
 	</div>
-		
-	<div class="header">
-		
+
+	<div class="header"></div>
+
+	<div>
+		<h1 style="text-align: left;">Invitation</h1>
 	</div>
-	
-	<div><h1 style="text-align: left;">Invitation</h1></div>
 	<div class="horizontal-events">
-		<div class="event-list" id="invitedEvents">
-			
-		</div>
+		<div class="event-list" id="invitedEvents"></div>
 	</div>
-	
+
 	<h1 style="text-align: left;">Trending</h1>
 	<div class="horizontal-events">
-		<div class="event-list" id="popularEvents">
-			
-		</div>
+		<div class="event-list" id="popularEvents"></div>
 	</div>
-	
+
 	<h1 style="text-align: center;">Friends' activities</h1>
 	<div class="friend_activity">
 		<!--  <div>
@@ -85,21 +93,17 @@
 			</div>
 		</div>
 		-->
-		<div class="post-list" id="post-list">
-		
-		</div>	
+		<div class="post-list" id="post-list"></div>
 	</div>
-		
-	
-	<div class="footer">
-	
-	</div>
-	
+
+
+	<div class="footer"></div>
+
 	<div class="notificationBox" id="notificationBox">
 		<p id="notification" class="notification-message"></p>
 	</div>
 </body>
-	<script>
+<script>
 			var login  = <%=session.getAttribute("login")%>
 			if(login != null) {
 				if(login == true) {
@@ -132,7 +136,7 @@
 				sessionInfo.Item("login") = null;
 			}			
 		</script>
-		
+
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
 	var module = (function(){
@@ -268,18 +272,22 @@
 </script>
 
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-	<script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+<script>
         $(function () {
             //change username to current user
-            var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
-            var socket = io("http://localhost:3000/");
-            socket.emit('room name',username);
-            socket.on('notification', function(data){
-                document.getElementById("notificationBox").style.display = "block";
-                $('#notification').replaceWith($('<p class="notification-message">').text("new message from " + data.from));
-            });
-      });
- </script>
+            var username = "<%=session.getAttribute("myname").toString().toLowerCase()%>
+	";
+		var socket = io("http://localhost:3000/");
+		socket.emit('room name', username);
+		socket.on('notification', function(data) {
+			document.getElementById("notificationBox").style.display = "block";
+			$('#notification').replaceWith(
+					$('<p class="notification-message">').text(
+							"new message from " + data.from));
+		});
+	});
+</script>
 </html>

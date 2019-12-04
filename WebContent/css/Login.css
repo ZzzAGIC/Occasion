@@ -1,6 +1,21 @@
 @charset "UTF-8";
-body {
-	background: #cccccc;
+@font-face {
+	font-family: Gotham;
+	src: url(Gotham_Bold.otf) format("opentype");
+  }
+@font-face {
+	font-family: GothamBook;
+	src: url(Gotham-Book.otf) format("opentype");
+}
+@font-face {
+	font-family: GothamMedium;
+	src: url(Gotham-Medium.otf) format("opentype");
+}
+body{
+	background-color:#141414;
+	font-family: 'GothamMedium';
+	color: #fff;
+	margin: 0;
 }
 
 input{
@@ -14,9 +29,9 @@ input[type=radio] {
 }
 
 .banner {
-	background-color: #602f6b;
-	border-bottom: 1px solid purple;
-	height: 80px;
+    background-color: #602f6b;
+    border-bottom: 1px solid purple;
+	padding: 20px 20px;
 }
 
 .container {

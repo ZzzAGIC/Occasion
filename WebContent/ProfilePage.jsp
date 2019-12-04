@@ -144,8 +144,11 @@
 					</div>
 					<% if(own_profile) %><input type="submit" value="submit" name="submit"/>
 					
-					<button class="button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
-					<button class="button" id="UnfollowUser_button" type="button" onclick="Unfollowing();" style="display: none;">Unfollow</button>
+					<button class="profPageButton button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
+					<button class="profPageButton button" id="UnfollowUser_button" type="button" onclick="Unfollowing();" style="display: none;">Unfollow</button>
+					<div id="chat">
+					<button class="profPageButton button" onclick="chat()">Chat</button>
+					</div>
 				</form>
 				<div id="submitButton" style="text-align: center;">
 					<button class="button" id="EditProfile_button" type="button" onclick="module.editProfile();">Edit profile</button></div>				
@@ -164,9 +167,6 @@
 				</form>
 			</div>
 			<br>
-			<div id="chat">
-				<button class="button" onclick="chat()">Chat</button>
-			</div>
 		</div>
 	
 	
@@ -195,7 +195,7 @@
 			for(int i = 0; i < all_Posts.size(); i++ ){%> 
 				<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
 				<img src="<%=all_Posts.get(i).getPictures() %>" 
-				alt="<%=all_Events.get(i).getEventName()%>'s profile image" height="180" width="220">
+				alt="<%=all_Events.get(i).getEventName()%>'s profile image" style="margin:19px" height="240" width="420">
 				</a>
 	    <%}}%> 
 	    </div>
