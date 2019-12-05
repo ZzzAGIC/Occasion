@@ -216,7 +216,7 @@
 
 				var post_description_text = document.createElement("span");
 				post_description_text.className = "post-line";
-				post_description_text.innerHTML = "<b>Event Description: </b>" + userPost[i].post_text;
+				post_description_text.innerHTML = "<b>Post Description: </b>" + userPost[i].post_text;
 				
 				description.append(share);
 				description.append(br);
@@ -245,7 +245,7 @@
 				
 				var event_description = document.createElement("span");
 				event_description.className = "eventText";
-				event_description.innerHTML = userPost[i].related_Event.description;
+				event_description.innerHTML = "Event Description" + userPost[i].related_Event.description;
 				
 				var time = document.createElement("span");
 				time.className = "eventText";
