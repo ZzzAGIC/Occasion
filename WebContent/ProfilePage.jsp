@@ -141,14 +141,12 @@
 							<img class="profile-img" src="<%=profile_img%>" alt="profile image" align="left" height="180" width="180">
 						</label>
 						<% if(own_profile) %><input id="newimg" type="file" name="newfile"/>
-					</div>
-					<% if(own_profile) %><input type="submit" value="submit" name="submit" style="position: relative; left: 50%;"/>
-					
+					</div>					
 					<button class="profPageButton button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
 					<button class="profPageButton button" id="UnfollowUser_button" type="button" onclick="Unfollowing();" style="display: none;">Unfollow</button>
 				</form>
 				<div id="submitButton" style="text-align: center;">
-					<button class="button" id="EditProfile_button" type="button" onclick="module.editProfile();">Edit profile</button></div>				
+					<button class="profPageButton button" id="EditProfile_button" type="button" onclick="editProfile();">Edit profile</button></div>				
 				</div>
 			
 			
@@ -199,13 +197,11 @@
 	</script>
 </body>
 	<script>
-		var module = (function(){
-			var inputGender = document.getElementById('genderDetail').innerHTML;
-			var inputEmail = document.getElementById('emailDetail').innerHTML;
-			var inputPhone = document.getElementById('phoneDetail').innerHTML;
-			var inputBirth = document.getElementById('birthDetail').innerHTML;
-			
 			function editProfile() {	
+				var inputGender = document.getElementById('genderDetail').innerHTML;
+				var inputEmail = document.getElementById('emailDetail').innerHTML;
+				var inputPhone = document.getElementById('phoneDetail').innerHTML;
+				//var inputBirth = document.getElementById('birthDetail').innerHTML;
 				document.getElementById("genderDetail").innerHTML = "";
 				var genderSearch = document.createElement("INPUT");
 				genderSearch.setAttribute("type", "search");
@@ -230,26 +226,22 @@
 				phoneSearch.setAttribute("name", "phoneSearch");
 				document.getElementById("phoneDetail").appendChild(phoneSearch);
 				
-				document.getElementById("birthDetail").innerHTML = "";
-				var birthSearch = document.createElement("INPUT");
-				birthSearch.setAttribute("type", "date");
-				birthSearch.value = inputBirth;
-				birthSearch.setAttribute("id", "birthSearch");
-				birthSearch.setAttribute("name", "birthSearch");
-				document.getElementById("birthDetail").appendChild(birthSearch);
+				
+				//document.getElementById("birthDetail").innerHTML = "";
+				//var birthSearch = document.createElement("INPUT");
+				//birthSearch.setAttribute("type", "date");
+				//birthSearch.value = inputBirth;
+				//birthSearch.setAttribute("id", "birthSearch");
+				//birthSearch.setAttribute("name", "birthSearch");
+				//document.getElementById("birthDetail").appendChild(birthSearch);
 				
 				var submit = document.createElement("INPUT");
 				submit.setAttribute("type", "submit");
-				submit.setAttribute("class", "submitButtonElement")
+				submit.setAttribute("class", "button profPageButton")
 				submit.value = "Submit"
 				document.getElementById("submitButton").innerHTML = "";
 				document.getElementById("submitButton").appendChild(submit);
 			}
-							
-			return {
-			    editProfile: editProfile,
-			};
-		})();
 		
 	</script>
 	<script>
