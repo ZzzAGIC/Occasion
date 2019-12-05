@@ -172,33 +172,37 @@
 			%>
 			
 
-
-			<div>
-				<h1 align=center>Details for <%=name%></h1>
-			
-				<div style="float: left; width: 60%; margin-top: 50px; margin-left: 30px;">
-					<img src="<%=img%>" alt="event image" align="left" height="260" width="340">
-			    	<div class="profile_text">
-				    	<h4>Type: <span id="Type"><%=type%></span></h4>
-				    	<h4>Initiator: <span id="Initiator">
-				    		<a href="ProfilePage.jsp?Friend_User=<%=initiator%>">
-							<%=initiator%>
-							</a></span></h4>
-				    	<h4>Time: <span id="Time"><%=time%></span></h4>
-				    	<h4>Description: <span id="Description"><%=description%></span></h4>
-				    	<h4>Price: $<%=price%></h4>
-				    	<h4>Free spots: <%=freespots%></h4>
-				    	<h4>Location: <%=location%></h4>
+			<h1 align=center>Details for <%=name%></h1>
+			<div style="margin-left: 40px; overflow: hidden;">			
+				<div style="width: 40%; float: left;">
+					<div>
+						<div style="text-align: center">
+							<img src="<%=img%>" style="float: none; position: absolute; left: 10%" alt="event image" align="left" height="150px" width="300px">
+				    	</div>
+				    	<div class="profile_text" style="position: absolute; top: 310px; text-align: left; left: 10%;">
+					    	Type: <span id="Type"><%=type%></span><br><br>
+					    	Initiator: <span id="Initiator">
+					    		<a href="ProfilePage.jsp?Friend_User=<%=initiator%>">
+								<%=initiator%>
+								</a></span><br><br>
+					    	Time: <span id="Time"><%=time%></span><br><br>
+					    	Description: <span id="Description"><%=description%></span><br><br>
+					    	Price: $<%=price%><br><br>
+					    	Free spots: <%=freespots%><br><br>
+					    	Location: <%=location%><br><br>
+				    	</div>
 			    	</div>
 		    	</div>
-		    	<div class="map" id="map"></div>
+		    	<div style="width: 60%; float: right;">
+		    		<div class="map" id="map"></div>		    	
+		    	</div>
 	    	</div>
 	    	<%if(!own_event) {
 	    		if(!followed){%>
-	    			<button class="button" id="AddEvent_button" type="button" onclick="add();">Going event</button>
+	    			<button class="button" id="AddEvent_button" type="button" onclick="add();" style="position: relative; left: 10%; margin-top: 10px;">Going event</button>
 				<% } else { %>
-					<button class="button" id="RemoveEvent_button" type="button" onclick="remove();">Unfollow</button>	
-			<% }
+					<button class="button" id="RemoveEvent_button" type="button" onclick="remove();" style="position: relative; left: 10%; margin-top: 10px;">Unfollow</button>	
+			  <% }
 	    	%>
 				<h3 style="margin-left:	40px;">Attendents: </h3>
 				<div class="horizontal-events">
@@ -240,25 +244,27 @@
 							<%}}%>
 						</div>
 					</div>	
-					<button class="invite-button" id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
-				    <div id="new_invitation" style="display:none;">
-				    
-				    <form class="form" action="new_invitation" method="post"> 
-						<div id="formerror" style="color: red;"> 
-						<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
-						</div>
-					    Select Users to invite:<br/>
-						<%if(followingUsers != null){
-							for(int i = 0; i < followingUsers.size(); i++ ){%> 
-								<input type="checkbox" name="members" 
-								value="<%=followingUsers.get(i).getUserID()%>"><%=followingUsers.get(i).getUsername()%>
-								<br>
-							
-					    <%}}%> 
-					    <input type="hidden" name ="EventID" value="<%= EventID %>"/>
-					    <input class="button" type="submit" value="Invite!"/>  
-					</form> 
-				    
+					
+					<div style="margin-left: 80px;">
+						<button class="invite-button" id="button" type="button" onclick="display_invitation()">Invite friends!</button><br>
+					    <div id="new_invitation" style="display:none;">
+					    
+						    <form class="form" action="new_invitation" method="post"> 
+								<div id="formerror" style="color: red;"> 
+								<%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+								</div>
+							    Select Users to invite:<br/>
+								<%if(followingUsers != null){
+									for(int i = 0; i < followingUsers.size(); i++ ){%> 
+										<input type="checkbox" name="members" 
+										value="<%=followingUsers.get(i).getUserID()%>"><%=followingUsers.get(i).getUsername()%>
+										<br>
+									
+							    <%}}%> 
+							    <input type="hidden" name ="EventID" value="<%= EventID %>"/>
+							    <input class="button" type="submit" value="Invite!"/>  
+							</form> 
+					    </div>
 				    </div>
 			    </div>
 				
