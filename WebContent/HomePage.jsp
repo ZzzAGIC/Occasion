@@ -252,12 +252,19 @@
 				time.className = "eventText";
 				time.innerHTML = "Event Time: " + userPost[i].related_Event.event_time;
 				
+				var button = document.createElement("button");
+				button.innerHTML = "See Event";
+				button.className = "seeMoreButton";
+				button.onclick = "/EventProfile.jsp?EventID=" + userPost[i].related_Event.eventID;
+				
 				post_image.append(eventName);
 				image_container.append(image);
 				post_image.append(image_container);
 				post_event_description.append(event_description);
 				post_event_description.append(br);
 				post_event_description.append(time);
+				post_event_description.append(br);
+				post_event_description.append(button);
 				post_image.append(post_event_description);
 				
 				container.append(post_image);;
@@ -297,18 +304,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 <script>
-        $(function () {
-            //change username to current user
-            var username = "<%=session.getAttribute("myname").toString().toLowerCase()%>
-	
-			var socket = io("http://localhost:3000/");
-			socket.emit('room name', username);
-			socket.on('notification', function(data) {
-			document.getElementById("notificationBox").style.display = "block";
-			$('#notification').replaceWith(
-					$('<p class="notification-message">').text(
-							"new message from " + data.from));
-			});
-		});
+$(function () {
+    //change username to current user
+    var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
+    var socket = io("http://localhost:3000/");
+    socket.emit('room name',username);
+    socket.on('notification', function(data){
+        document.getElementById("notificationBox").style.display = "block";
+        $('#notification').replaceWith($('<p class="notification-message">').text("new message from " + data.from));
+    });
+});
 </script>
 </html>

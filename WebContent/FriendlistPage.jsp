@@ -208,6 +208,10 @@
 	<div class="footer">
 	
 	</div>
+	
+	<div class="notificationBox" id="notificationBox">
+		<p id="notification" class="notification-message"></p>
+	</div>
 </body>
 	<script>
 			var login  = <%=session.getAttribute("login")%>
