@@ -228,6 +228,7 @@
 				post_image.className = "post-image";
 				
 				var eventName = document.createElement("b");
+				eventName.style.fontSize = "20px;"
 				eventName.innerHTML = userPost[i].related_Event.event_name;
 				
 				var image_container = document.createElement("div");
