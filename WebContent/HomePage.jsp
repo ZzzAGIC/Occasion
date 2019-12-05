@@ -245,7 +245,7 @@
 				
 				var event_description = document.createElement("span");
 				event_description.className = "eventText";
-				event_description.innerHTML = "Event Description" + userPost[i].related_Event.description;
+				event_description.innerHTML = "Event Description: " + userPost[i].related_Event.description;
 				
 				var time = document.createElement("span");
 				time.className = "eventText";
