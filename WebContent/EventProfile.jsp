@@ -204,7 +204,7 @@
 					<button class="button" id="RemoveEvent_button" type="button" onclick="remove();" style="position: relative; left: 10%; margin-top: 10px;">Unfollow</button>	
 			  <% }
 	    	%>
-				<h3 style="margin-left:	40px;">Attendents: </h3>
+				<h3 style="margin-left:	10%;">Attendents: </h3>
 				<div class="horizontal-events">
 					<div class="event-list">
 						<%if(attendents != null){
