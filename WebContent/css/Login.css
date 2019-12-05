@@ -12,7 +12,7 @@
 	src: url(Gotham-Medium.otf) format("opentype");
 }
 body{
-	background-color:#141414;
+	background-color: #f5f5f5;
 	font-family: 'GothamMedium';
 	color: black;
 	margin: 0;
@@ -29,8 +29,7 @@ input[type=radio] {
 }
 
 .banner {
-    background-color: #78bcda;
-    border-bottom: 1px solid purple;
+    background-color: #f85b1a;
 	padding: 20px 20px;
 }
 
