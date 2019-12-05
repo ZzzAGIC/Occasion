@@ -237,7 +237,8 @@ public class Event {
 	}
 	
 	public static ArrayList<Event> getPopularEvents() {
-		String query = "SELECT * FROM Event ORDER BY Size DESC LIMIT 20";
+//		String query = "SELECT * FROM Event ORDER BY Size DESC LIMIT 20";
+		String query = "SELECT * FROM Event WHERE Capacity > 19 ORDER BY Size ASC";
 		
 		List<List<String>> result = Database.SelectQuery(query);
 		System.out.println("+++" + result.size());
