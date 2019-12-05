@@ -216,7 +216,7 @@
 
 				var post_description_text = document.createElement("span");
 				post_description_text.className = "post-line";
-				post_description_text.innerHTML = "<b>Event Name: </b>" + userPost[i].post_text;
+				post_description_text.innerHTML = "<b>Event Description: </b>" + userPost[i].post_text;
 				
 				description.append(share);
 				description.append(br);
