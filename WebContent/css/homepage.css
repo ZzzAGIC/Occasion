@@ -12,9 +12,9 @@
 	src: url(Gotham-Medium.otf) format("opentype");
 }
 body{
-	background-color: rgb(250, 250, 250);
+	background-color: #e6ecf0;
 	font-family: 'GothamBook';
-	/* color: #00385a; */
+	color: #00385a;
 	margin: 0;
 }
 
@@ -32,17 +32,16 @@ input[type=text] {
 .navbar{
 	background-color: #f85b1a;
 	height: 70px;
-	width: 100%;
+    width: 100%;
 	display: flex;
 	justify-content: flex-end;
 	flex-direction: row;
-	/* border-bottom: 1px solid purple; */
 }
 	
 .logo {
     color: white;
-    font-family: GothamMedium;
     font-size: 31px;
+    font-family: GothamMedium;
     vertical-align: middle;
     margin-left: 21px;
     margin-top: 19px;
@@ -81,18 +80,17 @@ input[type=text] {
 
 .subbutton {
    font-size: 15px;
-   height: 100%;
-   width: 130px;
-   padding-left: 0px;
-   padding-right: 0px;
-   background-color: black;
-   /* border-color: blue; */
-   /* border-style: solid; */
-   color: white;
-   /* border-bottom: 0.5px solid gray; */
-   padding-top: 5px;
-   padding-bottom: 5px;
-   /* border-width: 5px; */
+    height: 100%;
+    width: 130px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color: black;
+    /* border-color: blue; */
+    /* border-style: solid; */
+    color: white;
+    /* border-bottom: 0.5px solid gray; */
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .subbutton:hover {
@@ -193,6 +191,11 @@ input[type=text] {
 
 .post-list {
     margin-bottom: 100px;
+    margin-left: 250px;
+    margin-right: 250px;
+    background-color: white;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0
+        rgba(0, 0, 0, 0.2);
 }
 
 .post-title {
@@ -203,24 +206,44 @@ input[type=text] {
 }
 
 .post-activity {
-    height: 450px;
-    margin-left: 150px;
-    margin-right: 150px;
-    margin-top: 100px;
-    background-color: #f2f2f2;
+	border-bottom: 0.5px solid gray;
+    height: 300px;
+    background-color: white;
     text-align: center;
     flex: 2;
 }
 
 .post-image {
-    width: 65%;
-    height: 100%;
-    float: left;
+    width: 80%;
+    height: 160px;
+    margin: auto;
+    margin-top: 60px;
+    border: 0.5px solid gray;
+    text-align: left
 }
 
 .post-img {
-    height: 100%;
-    width: 100%;
+	left: 100px;
+    height: 70%;
+    width: 120px;
+    border-radius: 10px;
+    position: relative;
+    top: 30px;
+}
+
+.image-container {
+	height: 100%;
+	width: 50%;	
+	float: left;
+}
+
+.post-event-description {
+	width: 50%;	
+	height: 100%;
+	float: left;
+	text-align: left;
+	top: 30%;
+	position: relative;
 }
 
 .post-description {
@@ -231,10 +254,14 @@ input[type=text] {
 }
 
 .postText {
-    padding-top: 20px;
-    font-size: 20px;
-    color: black;
-    width: 100%;
+    padding-top: 10px;
+    padding-left: 10%;
+    text-align: left;
+}
+
+.eventText {
+ 	padding-top: 10px;
+    text-align: left;
 }
 
 .friend_activity {

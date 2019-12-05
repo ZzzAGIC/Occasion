@@ -161,7 +161,7 @@
 				<b>Recommended events</b>
 			</div>
 			
-			<div class="recommended horizontal-events">
+			<div class="recommended horizontal-events" style="margin-top: 30px;">
 				<div class="event-list" style="width: 100%;" id="recommendedEvents">
 					<!-- Taken from W3Schools -->
 					<div class="load"></div>
