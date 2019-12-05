@@ -142,7 +142,7 @@
 						</label>
 						<% if(own_profile) %><input id="newimg" type="file" name="newfile"/>
 					</div>
-					<% if(own_profile) %><input type="submit" value="submit" name="submit"/>
+					<% if(own_profile) %><input type="submit" value="submit" name="submit" style="position: relative; left: 50%;"/>
 					
 					<button class="profPageButton button" id="FollowUser_button" type="button" onclick="add_following();">Follow</button>
 					<button class="profPageButton button" id="UnfollowUser_button" type="button" onclick="Unfollowing();" style="display: none;">Unfollow</button>
