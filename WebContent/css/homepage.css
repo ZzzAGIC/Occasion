@@ -268,6 +268,12 @@ input[type=text] {
     text-align: left;
 }
 
+.postEventTitle {
+	top: 30px;
+	position: relative;
+	font-size: 20px;
+}
+
 .friend_activity {
     height: 80%;
     width: 100%;

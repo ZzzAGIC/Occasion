@@ -228,7 +228,7 @@
 				post_image.className = "post-image";
 				
 				var eventName = document.createElement("b");
-				eventName.style.fontSize = "20px;"
+				eventName.className = "postEventTitle";
 				eventName.innerHTML = userPost[i].related_Event.event_name;
 				
 				var image_container = document.createElement("div");
@@ -300,15 +300,15 @@
         $(function () {
             //change username to current user
             var username = "<%=session.getAttribute("myname").toString().toLowerCase()%>
-	";
-		var socket = io("http://localhost:3000/");
-		socket.emit('room name', username);
-		socket.on('notification', function(data) {
+	
+			var socket = io("http://localhost:3000/");
+			socket.emit('room name', username);
+			socket.on('notification', function(data) {
 			document.getElementById("notificationBox").style.display = "block";
 			$('#notification').replaceWith(
 					$('<p class="notification-message">').text(
 							"new message from " + data.from));
+			});
 		});
-	});
 </script>
 </html>
