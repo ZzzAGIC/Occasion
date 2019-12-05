@@ -32,9 +32,6 @@
 		<button class="button" id="Friendpage_button" type="button" >Friend list</button>
 			<div class="dropdown-content">
     			<button class="subbutton" id="Friendlist_button" type="button" onclick="window.location='FriendlistPage.jsp'">Friend List</button>
-    			<br>
-				<button class="subbutton" id="Chat_button" type="button" onclick="">Chats</button>
-  				
   			</div>
 		</div>
 		
@@ -113,6 +110,10 @@
 		</div>
 	</div>
 	
+	<div class="notificationBox" id="notificationBox">
+			<p id="notification" class="notification-message"></p>
+	</div>
+	
 	<script>
 		var login  = <%=session.getAttribute("login")%>
 		if(login != null) {
@@ -147,6 +148,18 @@
 		}			
 	</script>
 	
+	<script>
+	        $(function () {
+	            //change username to current user
+	            var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
+	            var socket = io("http://localhost:3000/");
+	            socket.emit('room name',username);
+	            socket.on('notification', function(data){
+	                document.getElementById("notificationBox").style.display = "block";
+	    	        document.getElementById("notification").innerHTML = "new message from " + data.from + "<br><a href='ProfilePage.jsp?Friend_User=" + data.from + "'>Click here to respond</a>";
+	            });
+	      });
+	</script>
 	
 	
 </body>

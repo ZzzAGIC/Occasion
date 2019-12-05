@@ -43,10 +43,7 @@
   		<div class="dropdown">
 		<button class="button" id="Friendpage_button" type="button" >Friend list</button>
 			<div class="dropdown-content">
-    			<button class="subbutton" id="Friendlist_button" type="button" onclick="window.location='FriendlistPage.jsp'">Friend List</button>
-    			<br>
-				<button class="subbutton" id="Chat_button" type="button" onclick="">Chats</button>
-  				
+    			<button class="subbutton" id="Friendlist_button" type="button" onclick="window.location='FriendlistPage.jsp'">Friend List</button>		
   			</div>
 		</div>
 		
@@ -292,7 +289,7 @@
             socket.emit('room name',username);
             socket.on('notification', function(data){
                 document.getElementById("notificationBox").style.display = "block";
-                $('#notification').replaceWith($('<p class="notification-message">').text("new message from " + data.from));
+    	        document.getElementById("notification").innerHTML = "new message from " + data.from + "<br><a href='ProfilePage.jsp?Friend_User=" + data.from + "'>Click here to respond</a>";
             });
       });
     </script>

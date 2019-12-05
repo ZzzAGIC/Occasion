@@ -32,8 +32,6 @@
 			<div class="dropdown-content">
     			<button class="subbutton" id="Friendlist_button" type="button" onclick="window.location='FriendlistPage.jsp'">Friend List</button>
     			<br>
-				<button class="subbutton" id="Chat_button" type="button" onclick="">Chats</button>
-  				
   			</div>
 		</div>
 		
