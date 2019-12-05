@@ -84,20 +84,9 @@
 	</div>
 
 	<h1 style="text-align: center;">Friends' activities</h1>
-	<div class="friend_activity">
-		<!--  <div>
-			<div class="post-activity" >
-				<div id="PostEvents">
-				
-				</div>
-			</div>
-		</div>
-		-->
-	<div class="post-list" id="post-list">
-		
+	<div class="friend_activity">		
+		<div class="post-list" id="post-list"></div>
 	</div>
-
-
 	<div class="footer"></div>
 
 	<div class="notificationBox" id="notificationBox">
@@ -208,18 +197,13 @@
 				var description = document.createElement("div");
 				description.className = "postText";
 				
-				var share = document.createElement("span");
-				share.className = "post-line";
-				share.innerHTML = " has shared an event";
+			
 				
-				var br = document.createElement("BR");
 
 				var post_description_text = document.createElement("span");
 				post_description_text.className = "post-line";
-				post_description_text.innerHTML = "<b>Post Description: </b>" + userPost[i].post_text;
+				post_description_text.innerHTML = userPost[i].post_text;
 				
-				description.append(share);
-				description.append(br);
 				description.append(post_description_text);
 				post_description.append(description);
 				container.append(post_description);
@@ -241,30 +225,29 @@
 				
 				var post_event_description = document.createElement("div");
 				post_event_description.className = "post-event-description";
-				
-				var br = document.createElement("BR");
-				
+								
 				var event_description = document.createElement("span");
 				event_description.className = "eventText";
-				event_description.innerHTML = "Event Description: " + userPost[i].related_Event.description;
+				event_description.innerHTML = "Event Description: " + userPost[i].related_Event.description + "<br><br>";
 				
 				var time = document.createElement("span");
 				time.className = "eventText";
-				time.innerHTML = "Event Time: " + userPost[i].related_Event.event_time;
+				time.innerHTML = "Event Time: " + userPost[i].related_Event.event_time + "<br>";
 				
+				var button_link = document.createElement("a");
 				var button = document.createElement("button");
 				button.innerHTML = "See Event";
 				button.className = "seeMoreButton";
-				button.onclick = "/EventProfile.jsp?EventID=" + userPost[i].related_Event.eventID;
+				button_link.href = "EventProfile.jsp?EventID=" + userPost[i].related_Event.eventID;
+				button_link.append(button);
 				
 				post_image.append(eventName);
 				image_container.append(image);
 				post_image.append(image_container);
 				post_event_description.append(event_description);
-				post_event_description.append(br);
 				post_event_description.append(time);
-				post_event_description.append(br);
-				post_event_description.append(button);
+		
+				post_event_description.append(button_link);
 				post_image.append(post_event_description);
 				
 				container.append(post_image);;
@@ -304,15 +287,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 <script>
-$(function () {
-    //change username to current user
-    var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
-    var socket = io("http://localhost:3000/");
-    socket.emit('room name',username);
-    socket.on('notification', function(data){
-        document.getElementById("notificationBox").style.display = "block";
-        $('#notification').replaceWith($('<p class="notification-message">').text("new message from " + data.from));
-    });
-});
+	$(function () {
+	    //change username to current user
+	    var username = "<%=session.getAttribute("myname").toString().toLowerCase() %>";
+	    var socket = io("http://localhost:3000/");
+	    socket.emit('room name',username);
+	    socket.on('notification', function(data){
+	        document.getElementById("notificationBox").style.display = "block";
+	        $('#notification').replaceWith($('<p class="notification-message">').text("new message from " + data.from));
+	    });
+	});
 </script>
 </html>
