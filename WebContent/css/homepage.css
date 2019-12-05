@@ -223,13 +223,11 @@ input[type=text] {
     height: 160px;
     margin: auto;
     margin-top: 30px;
-    border: 0.5px solid gray;
     border-radius: 10px;
     text-align: left
 }
 
 .post-img {
-	left: 100px;
     height: 70%;
     width: 120px;
     border-radius: 10px;
@@ -248,7 +246,7 @@ input[type=text] {
 	height: 100%;
 	float: left;
 	text-align: left;
-	top: 30%;
+	top: 25%;
 	position: relative;
 }
 
