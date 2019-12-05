@@ -137,7 +137,7 @@
 				<div class="vertical_scroll" style="margin-left: 30px;">
 				<%if(all_Events != null){
 					for(int i = 0; i < all_Events.size(); i++ ){%> 
-						<div class="row" style="white-space: nowrap; border-bottom: 0.5px solid gray; border-top: 0.5px solid gray;">
+						<div class="row" style="border-bottom: 0.5px solid gray; border-top: 0.5px solid gray;">
 							<div class="vertical_event col">
 								<a href="EventProfile.jsp?EventID=<%=all_Events.get(i).getEventID()%>">
 								<img src="<%=all_Events.get(i).getPictures() %>" 
