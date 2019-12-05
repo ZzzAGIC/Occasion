@@ -158,7 +158,6 @@
 				    	<h4>GENDER: <span id="genderDetail"><%=gender%></span></h4>
 				    	<h4>EMAIL ADDRESS: <span id="emailDetail"><%=Email%></span></h4>
 				    	<h4>PHONE: <span id="phoneDetail"><%=phone%></span></h4>
-				    	<h4>DATE OF BIRTH: <span id="birthDetail"><%=birthday%></span></h4>
 				    	<h4>POINTS: <%=points%></h4>
 			    	</div>
 				</form>
