@@ -88,7 +88,7 @@
 		<div class="post-list" id="post-list"></div>
 	</div>
 	<div class="footer"></div>
-
+	
 	<div class="notificationBox" id="notificationBox">
 		<p id="notification" class="notification-message"></p>
 	</div>
@@ -294,7 +294,7 @@
 	    socket.emit('room name',username);
 	    socket.on('notification', function(data){
 	        document.getElementById("notificationBox").style.display = "block";
-	        $('#notification').replaceWith($('<p class="notification-message">').text("new message from " + data.from));
+	        document.getElementById("notification").innerHTML = "new message from " + data.from + "<br><a href='ProfilePage.jsp?Friend_User=" + data.from + "'>Click here to respond</a>";
 	    });
 	});
 </script>
