@@ -227,9 +227,9 @@
 				
 				<% } else if(own_event) { %>
 				<div>
-					<h3 style="margin-left:	40px;">Attendents: </h3>
+					<h3 style="margin-left:	40px; text-align: center">Attendents</h3>
 					<div class="horizontal-events">
-						<div class="event-list">
+						<div class="event-list" style="margin-left: 5%;">
 							<%if(attendents != null){
 							for(int i = 0; i < attendents.size(); i++ ){%> 			
 							<div class = "friend-panel">
