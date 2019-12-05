@@ -12,7 +12,7 @@
 	src: url(Gotham-Medium.otf) format("opentype");
 }
 body{
-	background-color: #e6ecf0;
+	background-color: white;
 	font-family: 'GothamBook';
 	color: #00385a;
 	margin: 0;
@@ -193,7 +193,8 @@ input[type=text] {
     margin-bottom: 100px;
     margin-left: 250px;
     margin-right: 250px;
-    background-color: white;
+    background-color: #fffbfb;
+    border: 1px solid gray;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0
         rgba(0, 0, 0, 0.2);
 }
@@ -207,7 +208,7 @@ input[type=text] {
 
 .post-activity {
 	border-bottom: 0.5px solid gray;
-    height: 300px;
+    height: 290px;
     background-color: white;
     text-align: center;
     flex: 2;
@@ -217,7 +218,7 @@ input[type=text] {
     width: 80%;
     height: 160px;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 30px;
     border: 0.5px solid gray;
     text-align: left
 }
