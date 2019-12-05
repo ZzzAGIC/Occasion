@@ -228,8 +228,8 @@ input[type=text] {
 }
 
 .post-img {
-    height: 70%;
-    width: 120px;
+    height: 100%;
+    width: 200px;
     border-radius: 10px;
     position: relative;
     top: 30px;
